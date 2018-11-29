@@ -36,7 +36,7 @@ int main(int argc,char* argv[])
     }
     
 // Test Cartella
-    if(testPath(argv[1]))
+    if(!testPath(argv[1]))
     {
         printf("Cartella Trovata\n");
     }
