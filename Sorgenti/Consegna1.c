@@ -79,8 +79,8 @@ printf("directory attuale= [%s]\n",getcwd(NULL,0));
     }
         
 
-    if( chdir( currDir ) )
-        return(EXIT_FAILURE); 
+ //   if( chdir( currDir ) )
+   //     return(EXIT_FAILURE); 
         
 #ifdef DEBUG_
 printf("Ritorno alla directory =%s\n",getcwd(NULL,0));

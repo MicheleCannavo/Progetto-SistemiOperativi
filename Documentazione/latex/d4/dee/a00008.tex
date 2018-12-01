@@ -1,0 +1,125 @@
+\hypertarget{a00008}{}\section{Riferimenti per il file /home/mikele/\+Scrivania/\+Univ/\+Sistemi Opeativi/\+Progetto-\/\+Sistemi\+Operatini/\+Consegna1.c}
+\label{a00008}\index{/home/mikele/Scrivania/Univ/Sistemi Opeativi/Progetto-\/SistemiOperatini/Consegna1.c@{/home/mikele/Scrivania/Univ/Sistemi Opeativi/Progetto-\/SistemiOperatini/Consegna1.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00008_aedac27103da1d7cbeb79d62837ce00d1}{D\+E\+B\+U\+G\+\_\+}}
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{a00008_a45da120f57baa2bfd2da67be556dfa8a}{get\+N\+Core}} (long $\ast$\mbox{\hyperlink{a00008_aa458de5166b611b8c2c9c8e7a4a87d87}{n\+Core}})
+\begin{DoxyCompactList}\small\item\em La funzione legge dal file /proc/cinfo l\textquotesingle{}informazione richiesta. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{a00008_ad53b7ea4b153982d90a2c13cc2712980}{test\+Path}} (char $\ast$w\+Path)
+\begin{DoxyCompactList}\small\item\em Verifica se una stringa corrisponda ad una directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variabili}
+\begin{DoxyCompactItemize}
+\item 
+long \mbox{\hyperlink{a00008_aa458de5166b611b8c2c9c8e7a4a87d87}{n\+Core}} =0
+\item 
+char \mbox{\hyperlink{a00008_a0e6ffcfac15a20d9a6157dd0fd804d28}{work\+Path}} \mbox{[}P\+A\+T\+H\+\_\+\+M\+AX\mbox{]} =\char`\"{}$\sim$/\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{a00008_aedac27103da1d7cbeb79d62837ce00d1}\label{a00008_aedac27103da1d7cbeb79d62837ce00d1}} 
+\index{Consegna1.c@{Consegna1.c}!DEBUG\_@{DEBUG\_}}
+\index{DEBUG\_@{DEBUG\_}!Consegna1.c@{Consegna1.c}}
+\subsubsection{\texorpdfstring{DEBUG\_}{DEBUG\_}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+}
+
+Macro per un primo debug 
+
+Definizione alla linea 30 del file Consegna1.\+c.
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{a00008_a45da120f57baa2bfd2da67be556dfa8a}\label{a00008_a45da120f57baa2bfd2da67be556dfa8a}} 
+\index{Consegna1.c@{Consegna1.c}!getNCore@{getNCore}}
+\index{getNCore@{getNCore}!Consegna1.c@{Consegna1.c}}
+\subsubsection{\texorpdfstring{getNCore()}{getNCore()}}
+{\footnotesize\ttfamily int get\+N\+Core (\begin{DoxyParamCaption}\item[{long $\ast$}]{n\+Core }\end{DoxyParamCaption})}
+
+
+
+La funzione legge dal file /proc/cinfo l\textquotesingle{}informazione richiesta. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em $\ast$n\+Core} & Numero di core di un processore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Successo della funzione 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS} & Riuscita della funzione \\
+\hline
+{\em E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE} & Insucesso della funzione \\
+\hline
+\end{DoxyRetVals}
+
+
+Definizione alla linea 106 del file Consegna1.\+c.
+
+\mbox{\Hypertarget{a00008_ad53b7ea4b153982d90a2c13cc2712980}\label{a00008_ad53b7ea4b153982d90a2c13cc2712980}} 
+\index{Consegna1.c@{Consegna1.c}!testPath@{testPath}}
+\index{testPath@{testPath}!Consegna1.c@{Consegna1.c}}
+\subsubsection{\texorpdfstring{testPath()}{testPath()}}
+{\footnotesize\ttfamily int test\+Path (\begin{DoxyParamCaption}\item[{char $\ast$}]{w\+Path }\end{DoxyParamCaption})}
+
+
+
+Verifica se una stringa corrisponda ad una directory. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em w\+Path} & stringa contenete il Path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Successo della funzione 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS} & Riuscita della funzione \\
+\hline
+{\em E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE} & Insucesso della funzione \\
+\hline
+\end{DoxyRetVals}
+
+
+Definizione alla linea 118 del file Consegna1.\+c.
+
+
+
+\subsection{Documentazione delle variabili}
+\mbox{\Hypertarget{a00008_aa458de5166b611b8c2c9c8e7a4a87d87}\label{a00008_aa458de5166b611b8c2c9c8e7a4a87d87}} 
+\index{Consegna1.c@{Consegna1.c}!nCore@{nCore}}
+\index{nCore@{nCore}!Consegna1.c@{Consegna1.c}}
+\subsubsection{\texorpdfstring{nCore}{nCore}}
+{\footnotesize\ttfamily long n\+Core =0}
+
+
+
+Definizione alla linea 21 del file Consegna1.\+c.
+
+\mbox{\Hypertarget{a00008_a0e6ffcfac15a20d9a6157dd0fd804d28}\label{a00008_a0e6ffcfac15a20d9a6157dd0fd804d28}} 
+\index{Consegna1.c@{Consegna1.c}!workPath@{workPath}}
+\index{workPath@{workPath}!Consegna1.c@{Consegna1.c}}
+\subsubsection{\texorpdfstring{workPath}{workPath}}
+{\footnotesize\ttfamily char work\+Path\mbox{[}P\+A\+T\+H\+\_\+\+M\+AX\mbox{]} =\char`\"{}$\sim$/\char`\"{}}
+
+
+
+Definizione alla linea 22 del file Consegna1.\+c.
+
