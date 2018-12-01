@@ -17,24 +17,31 @@
 #include <errno.h>
 #include <dirent.h> // readdir()
 
-///// Variabili globali /////
-long nCore=0;
-char workPath[PATH_MAX]="~/";
 
+/// \var int nCore
+/// \brief Serve a contiene il numero dei core del processore
+int     nCore=0;
+
+/// \var char workPath[PATH_MAX]
+/// \brief Serve a contiene il path della cartella Padre da scansionare
+char    workPath[PATH_MAX]="~/";
+
+/// \var char* currDir
+/// \brief serve a memorizzare l'attuale cartella per poi ristabilirla
+char*   currDir=NULL;
+    
 ///// PROTOTIPI ////
-int getNCore(long*);
+int getNCore(int*);
 int testPath(char*);
 
 /// \def DEBUG_
-/// Macro per un primo debug
-#define DEBUG_ 
-
+/// Macro per un primo debug.
+// 
+// definita con la compilazione
 
 /// \cond
 int main(int argc,char* argv[])
 {
-
-    char* currDir=NULL;
 
     if (argc!=2)
     {
@@ -44,13 +51,14 @@ int main(int argc,char* argv[])
     }
 
 #ifdef DEBUG_
-printf("directory attuale= [%s]\n",getcwd(NULL,0));
+    printf("D)-Passati %d Argomenti\n",argc);
+    printf("D)-Directory di lavoro= [%s]\n",argv[1]);
 #endif
  
 // Test directory
     if(!testPath(argv[1]))
     {  
-        printf("directory di lavoro= [%s]\nMi sposto su di essa...\n",argv[1]);  
+        printf("Directory di lavoro= [%s]\nMi sposto su di essa...\n",argv[1]);  
         if( (currDir=getcwd(NULL,0))==0 ) 
             return(EXIT_FAILURE);
                 
@@ -79,8 +87,8 @@ printf("directory attuale= [%s]\n",getcwd(NULL,0));
     }
         
 
- //   if( chdir( currDir ) )
-   //     return(EXIT_FAILURE); 
+    if( chdir( currDir ) )
+        return(EXIT_FAILURE); 
         
 #ifdef DEBUG_
 printf("Ritorno alla directory =%s\n",getcwd(NULL,0));
@@ -103,10 +111,11 @@ printf("Ritorno alla directory =%s\n",getcwd(NULL,0));
 /// \return Successo della funzione
 /// \retval EXIT_SUCCESS Riuscita della funzione
 /// \retval EXIT_FAILURE Insucesso della funzione
-int getNCore(long *nCore)
+int getNCore(int *nCore)
 {
 // Per test, da implementare con la lettura del file apposito
     *nCore=2;
+    return(*nCore);
 }
 
 

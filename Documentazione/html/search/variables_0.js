@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ncore',['nCore',['../d4/dee/a00008.html#aa458de5166b611b8c2c9c8e7a4a87d87',1,'Consegna1.c']]]
+  ['currdir',['currDir',['../_consegna1_8c.html#a734576976cba0a4d2c4f85cbc7c3a629',1,'Consegna1.c']]]
 ];

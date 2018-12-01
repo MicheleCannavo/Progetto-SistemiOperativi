@@ -22,12 +22,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Pagina Principale",url:"index.html"},
-{text:"Pagine collegate",url:"pages.html"},
-{text:"File",url:"files.html",children:[
-{text:"Elenco dei file",url:"files.html"},
-{text:"Elementi globali",url:"globals.html",children:[
-{text:"Tutto",url:"globals.html"},
-{text:"Funzioni",url:"globals_func.html"},
-{text:"Variabili",url:"globals_vars.html"},
-{text:"Definizioni",url:"globals_defs.html"}]}]}]}
+{text:"Main Page",url:"index.html"},
+{text:"Files",url:"files.html",children:[
+{text:"File List",url:"files.html"},
+{text:"Globals",url:"globals.html",children:[
+{text:"All",url:"globals.html"},
+{text:"Functions",url:"globals_func.html"},
+{text:"Variables",url:"globals_vars.html"}]}]}]}

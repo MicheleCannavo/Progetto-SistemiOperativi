@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getncore',['getNCore',['../d4/dee/a00008.html#a45da120f57baa2bfd2da67be556dfa8a',1,'Consegna1.c']]]
+  ['getncore',['getNCore',['../_consegna1_8c.html#ab49cab7e0319df29a63c35f0f1989511',1,'Consegna1.c']]]
 ];
