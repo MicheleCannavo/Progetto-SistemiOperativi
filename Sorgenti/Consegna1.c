@@ -16,7 +16,7 @@
 #include <sys/stat.h> // stat()
 #include <errno.h>
 #include <dirent.h> // readdir()
-
+#include <prog.h>
 
 /// \var int nCore
 /// \brief Serve a contiene il numero dei core del processore
@@ -30,14 +30,7 @@ char    workPath[PATH_MAX]="~/";
 /// \brief serve a memorizzare l'attuale cartella per poi ristabilirla
 char*   currDir=NULL;
     
-///// PROTOTIPI ////
-int getNCore(int*);
-int testPath(char*);
 
-/// \def DEBUG_
-/// Macro per un primo debug.
-// 
-// definita con la compilazione
 
 /// \cond
 int main(int argc,char* argv[])
@@ -68,7 +61,6 @@ int main(int argc,char* argv[])
        strncpy(workPath, argv[1], PATH_MAX);
        printf("Nuova directory di lavoro= [%s]\n",workPath); 
     }
-    
     else
     {
         printf("directory non trovata\n");
@@ -76,17 +68,14 @@ int main(int argc,char* argv[])
     }
     
     if(getNCore(&nCore))    
-    {
-        
-        printf("Rilevati %ld Core\n",nCore);
+    {    
+        printf("Rilevati %d Core\n",nCore);
     }
     else
     {
         printf("Impossibile reperire numero di core\n");
         exit(EXIT_FAILURE);
     }
-        
-
     if( chdir( currDir ) )
         return(EXIT_FAILURE); 
         
@@ -98,44 +87,6 @@ printf("Ritorno alla directory =%s\n",getcwd(NULL,0));
     // Libero la memoria allocata con getcwd()
     currDir = NULL;         
 
-
     return(EXIT_SUCCESS);
 }
-
 /// \endcond
-
-//==============================================================================
-//==============================================================================
-/// \brief  La funzione legge dal file /proc/cinfo l'informazione richiesta
-/// \param  *nCore Numero di core di un processore
-/// \return Successo della funzione
-/// \retval EXIT_SUCCESS Riuscita della funzione
-/// \retval EXIT_FAILURE Insucesso della funzione
-int getNCore(int *nCore)
-{
-// Per test, da implementare con la lettura del file apposito
-    *nCore=2;
-    return(*nCore);
-}
-
-
-/// \brief  Verifica se una stringa corrisponda ad una directory
-/// \param  wPath stringa contenete il Path
-/// \return Successo della funzione
-/// \retval EXIT_SUCCESS Riuscita della funzione
-/// \retval EXIT_FAILURE Insucesso della funzione
-int testPath(char* wPath)
-{
-struct stat path;
-
-    if (stat(wPath, &path) == 0 && S_ISDIR(path.st_mode))
-    {
-        return(EXIT_SUCCESS);
-    }
-    else
-    {
-        return(EXIT_FAILURE);
-    }
-
-}
-
