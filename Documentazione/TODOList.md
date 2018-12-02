@@ -1,8 +1,8 @@
 TODOList
 =========================
-   - [ ] getnCore
-   - [ ] getnCore
-   - [ ] Prelevare numero Core
-   - [x] getnCore
-
-
+   - [x] Prelevare numero Core
+   - [x] Testare Input
+   - [ ] Creare N thread
+   - [ ] Cercare file e Cartelle
+   - [ ] Inserirli in una lista concatenata
+   - [ ] Funzione Ricorsiva
