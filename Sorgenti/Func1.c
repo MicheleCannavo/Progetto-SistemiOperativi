@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h> // getwd(), chdir()
@@ -15,7 +14,7 @@
 /// \retval EXIT_FAILURE Insucesso della funzione
 int getNCore(int *nCore)
 {
-    char tmpCore[256];
+    char tmpCore[PATH_MAX];
     int count=0;
     FILE *fp;
     
@@ -47,7 +46,7 @@ int getNCore(int *nCore)
 }
 
 /// \brief  Verifica se una stringa corrisponda ad una directory
-/// \param  wPath stringa contenete il Path
+/// \param  *wPath stringa contenete il Path
 /// \return Successo della funzione
 /// \retval EXIT_SUCCESS Riuscita della funzione
 /// \retval EXIT_FAILURE Insucesso della funzione

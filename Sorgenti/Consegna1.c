@@ -16,7 +16,7 @@
 #include <sys/stat.h> // stat()
 #include <errno.h>
 #include <dirent.h> // readdir()
-#include <prog.h>
+#include "prog.h"
 
 /// \var int nCore
 /// \brief Serve a contiene il numero dei core del processore
@@ -29,7 +29,7 @@ char    workPath[PATH_MAX]="~/";
 /// \var char* currDir
 /// \brief serve a memorizzare l'attuale cartella per poi ristabilirla
 char*   currDir=NULL;
-    
+
 
 
 /// \cond
@@ -47,28 +47,28 @@ int main(int argc,char* argv[])
     printf("D)-Passati %d Argomenti\n",argc);
     printf("D)-Directory di lavoro= [%s]\n",argv[1]);
 #endif
- 
+
 // Test directory
     if(!testPath(argv[1]))
-    {  
-        printf("Directory di lavoro= [%s]\nMi sposto su di essa...\n",argv[1]);  
-        if( (currDir=getcwd(NULL,0))==0 ) 
+    {
+        printf("Directory di lavoro= [%s]\nMi sposto su di essa...\n",argv[1]);
+        if( (currDir=getcwd(NULL,0))==0 )
             return(EXIT_FAILURE);
-                
+
         if( chdir(argv[1]) )
-            return(EXIT_FAILURE);       
-                   
+            return(EXIT_FAILURE);
+
        strncpy(workPath, argv[1], PATH_MAX);
-       printf("Nuova directory di lavoro= [%s]\n",workPath); 
+       printf("Nuova directory di lavoro= [%s]\n",workPath);
     }
     else
     {
         printf("directory non trovata\n");
         exit(EXIT_FAILURE);
     }
-    
-    if(getNCore(&nCore))    
-    {    
+
+    if(getNCore(&nCore))
+    {
         printf("Rilevati %d Core\n",nCore);
     }
     else
@@ -77,15 +77,15 @@ int main(int argc,char* argv[])
         exit(EXIT_FAILURE);
     }
     if( chdir( currDir ) )
-        return(EXIT_FAILURE); 
-        
+        return(EXIT_FAILURE);
+
 #ifdef DEBUG_
 printf("Ritorno alla directory =%s\n",getcwd(NULL,0));
 #endif
-    
-    free( currDir );      
+
+    free( currDir );
     // Libero la memoria allocata con getcwd()
-    currDir = NULL;         
+    currDir = NULL;
 
     return(EXIT_SUCCESS);
 }
