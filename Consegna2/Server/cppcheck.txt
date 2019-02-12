@@ -1,4 +1,0 @@
-[src/gestConn.c:22]: (style) The scope of the variable 'client_sockfd' can be reduced.
-[src/reciving.c:62]: (warning, inconclusive) The buffer 'nameF' may not be null-terminated after the call to strncpy().
-[src/Server.h:300] -> [src/verUser.c:19]: (style, inconclusive) Function 'verUser' argument 1 names different: declaration 'id' definition 'sockfd'.
-
