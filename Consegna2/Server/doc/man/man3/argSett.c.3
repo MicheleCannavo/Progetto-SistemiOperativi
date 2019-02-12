@@ -1,0 +1,59 @@
+.TH "/home/mikele/Documenti/Con2/Server/src/argSett.c" 3 "Sab 19 Gen 2019" "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mikele/Documenti/Con2/Server/src/argSett.c \- Imposta una struct con gli argomenti da linea di comando\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Server\&.h'\fP
+.br
+
+.SS "Funzioni"
+
+.in +1c
+.ti -1c
+.RI "int \fBargSett\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SH "Descrizione dettagliata"
+.PP 
+Imposta una struct con gli argomenti da linea di comando\&. 
+
+
+.PP
+.PP
+\fBVersione:\fP
+.RS 4
+1\&.0
+.RE
+.PP
+Questa funzione memoorizza gli argomenti da linea di comando (CLA - Commands line Arguments) in una struc SettServer\&. Accetta al momento un solo argmento che rappresentare la porta in ascolto, Il valore deve essere compreso nel range delle porte effimere (1023<n<65535)\&.
+.PP
+\fBParametri:\fP
+.RS 4
+\fI[int]\fP argc Intero che indica il numero di CLA 
+.br
+\fI[char]\fP *argv[] Puntatore alle stringhe con gli CLA
+.RE
+.PP
+\fBValori di ritorno:\fP
+.RS 4
+\fI-1\fP FAILURE 
+.br
+\fI0\fP SUCCESS 
+.RE
+.PP
+
+.PP
+Definizione nel file \fBargSett\&.c\fP\&.
+.SH "Documentazione delle funzioni"
+.PP 
+.SS "int argSett (int argc, char * argv[])"
+
+.PP
+Definizione alla linea 21 del file argSett\&.c\&.
+.SH "Autore"
+.PP 
+Generato automaticamente da Doxygen per My Project a partire dal codice sorgente\&.

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project:  File sorgente /home/mikele/Documenti/Con2/Server/src/rwconf.c</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Cerca');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_28e0fc74306190ab66f49d9779ef8fae.html">Con2</a></li><li class="navelem"><a class="el" href="../../dir_ac5b0656a8e285c7ac0d1fd1b08124a5.html">Server</a></li><li class="navelem"><a class="el" href="../../dir_45d10f57536e4cb64f412ddb7adaa388.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">rwconf.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dd/d32/a00041.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d5/de0/a00050.html">Server.h</a>&quot;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="../../d5/de0/a00050.html#ab2c6a8994eb18fd01ebda77f51847bab">   21</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../dd/d32/a00041.html#ab2c6a8994eb18fd01ebda77f51847bab">rwconf</a>(<span class="keywordtype">int</span> sockfd, <span class="keywordtype">void</span> *buff, <span class="keywordtype">int</span> size)</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(sockfd&lt;0 || buff==NULL || size&lt;1 )</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        errno=EINVAL;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        perror(__FUNCTION__);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> -1;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="../../d4/dee/a00008.html#aa6e2320d0a4267b15084f5eed8187380">fullread</a>(sockfd, buff, size) &gt; -1)</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="../../da/d45/a00011.html#a07a5975e70c72acac6fb5c1a8a6ce6d4">fullwrite</a>(sockfd,<span class="stringliteral">&quot;OK&quot;</span>, 3) &gt; -1)</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">else</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        {</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            perror(__FUNCTION__);</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">return</span> -1;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">else</span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        perror(__FUNCTION__);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> -1;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div><div class="ttc" id="a00041_html_ab2c6a8994eb18fd01ebda77f51847bab"><div class="ttname"><a href="../../dd/d32/a00041.html#ab2c6a8994eb18fd01ebda77f51847bab">rwconf</a></div><div class="ttdeci">int rwconf(int sockfd, void *buff, int size)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d32/a00041_source.html#l00021">rwconf.c:21</a></div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="../../d5/de0/a00050.html">Server.h</a></div><div class="ttdoc">Header per le funzioni del Server.</div></div>
+<div class="ttc" id="a00008_html_aa6e2320d0a4267b15084f5eed8187380"><div class="ttname"><a href="../../d4/dee/a00008.html#aa6e2320d0a4267b15084f5eed8187380">fullread</a></div><div class="ttdeci">size_t fullread(int fd, void *buff, size_t count)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dee/a00008_source.html#l00021">fullread.c:21</a></div></div>
+<div class="ttc" id="a00011_html_a07a5975e70c72acac6fb5c1a8a6ce6d4"><div class="ttname"><a href="../../da/d45/a00011.html#a07a5975e70c72acac6fb5c1a8a6ce6d4">fullwrite</a></div><div class="ttdeci">size_t fullwrite(int fd, const void *buff, size_t count)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d45/a00011_source.html#l00021">fullwrite.c:21</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
+</body>
+</html>

@@ -1,0 +1,61 @@
+.TH "/home/mikele/Documenti/Con2/Server/src/fullread.c" 3 "Sab 19 Gen 2019" "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mikele/Documenti/Con2/Server/src/fullread.c \- read() per socket  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Server\&.h'\fP
+.br
+
+.SS "Funzioni"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBfullread\fP (int fd, void *buff, size_t count)"
+.br
+.in -1c
+.SH "Descrizione dettagliata"
+.PP 
+read() per socket 
+
+
+.PP
+.PP
+\fBVersione:\fP
+.RS 4
+1\&.0
+.RE
+.PP
+Questa funzione legge ciclicamente da un socket\&. Nel caso dei socket è ideale perchè legge dal socket finchè la read non ritorna 0, garantendo cosi' che tutto il buffer verra' letto per intero\&.
+.PP
+\fBParametri:\fP
+.RS 4
+\fIfd\fP File descriptor 
+.br
+\fIbuff\fP Buffer dati 
+.br
+\fIcount\fP Dimensione massima buffer dati
+.RE
+.PP
+\fBValori di ritorno:\fP
+.RS 4
+\fI>0\fP Byte effettivamente letti 
+.br
+\fI-1\fP Errore 
+.RE
+.PP
+
+.PP
+Definizione nel file \fBfullread\&.c\fP\&.
+.SH "Documentazione delle funzioni"
+.PP 
+.SS "size_t fullread (int fd, void * buff, size_t count)"
+
+.PP
+Definizione alla linea 21 del file fullread\&.c\&.
+.SH "Autore"
+.PP 
+Generato automaticamente da Doxygen per My Project a partire dal codice sorgente\&.

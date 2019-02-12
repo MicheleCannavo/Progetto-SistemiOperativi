@@ -1,0 +1,717 @@
+\hypertarget{a00050}{}\section{Riferimenti per il file /home/mikele/\+Documenti/\+Con2/\+Server/src/\+Server.h}
+\label{a00050}\index{/home/mikele/Documenti/Con2/Server/src/Server.h@{/home/mikele/Documenti/Con2/Server/src/Server.h}}
+
+
+Header per le funzioni del Server.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{a00068}{\+\_\+\+Sett\+S\+E\+R\+V\+ER}}
+\item 
+struct \mbox{\hyperlink{a00072}{accounting}}
+\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00050_af5bf75ca4c78ac29cde0cf581bbbba8c}{D\+E\+C\+I\+M\+O\+\_\+\+U\+I\+NT}}~((U\+I\+N\+T\+\_\+\+M\+AX)/10)
+\begin{DoxyCompactList}\small\item\em A1/10 del valore di U\+N\+I\+T\+\_\+\+M\+AX. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a9bc472230cb9c73d7e6481638c4097ff}{U\+N\+I\+T\+A\+\_\+\+U\+I\+NT}}~((U\+I\+N\+T\+\_\+\+M\+AX)-\/((\mbox{\hyperlink{a00050_af5bf75ca4c78ac29cde0cf581bbbba8c}{D\+E\+C\+I\+M\+O\+\_\+\+U\+I\+NT}})$\ast$10))
+\begin{DoxyCompactList}\small\item\em Valore dell\textquotesingle{}unita\textquotesingle{} di U\+I\+N\+T\+\_\+\+M\+AX. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a3ac31ce35ba8dcc4af19c8045ef22e41}{D\+E\+C\+I\+M\+O\+\_\+\+I\+NT}}~(I\+N\+T\+\_\+\+M\+AX / 10)
+\begin{DoxyCompactList}\small\item\em 1/10 del valore di I\+N\+T\+\_\+\+M\+AX \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_af7ea7ff0e1cdd41a4b679e08a26225ce}{U\+N\+I\+T\+AP}}~((I\+N\+T\+\_\+\+M\+AX) -\/ (\mbox{\hyperlink{a00050_a3ac31ce35ba8dcc4af19c8045ef22e41}{D\+E\+C\+I\+M\+O\+\_\+\+I\+NT}} $\ast$10))
+\begin{DoxyCompactList}\small\item\em Valore dell\textquotesingle{}unita\textquotesingle{} di I\+N\+T\+\_\+\+M\+AX. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a2cfda22a0f5fbd983311abc2796ad3f4}{U\+N\+I\+T\+AN}}~(\mbox{\hyperlink{a00050_af7ea7ff0e1cdd41a4b679e08a26225ce}{U\+N\+I\+T\+AP}} + 1)
+\begin{DoxyCompactList}\small\item\em Valore dell\textquotesingle{}unita\textquotesingle{} di I\+N\+T\+\_\+\+M\+IN. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a18e9e79b7a0fd224d66258d08f939cc4}{M\+A\+X\+\_\+\+C\+H\+A\+R\+\_\+\+U\+S\+ER}}~20
+\begin{DoxyCompactList}\small\item\em Valore di caratteri massimo del nome utente. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_ae15aadb253d64179b684ad4dad2ec39c}{M\+A\+X\+\_\+\+C\+H\+A\+R\+\_\+\+P\+A\+SS}}~20
+\begin{DoxyCompactList}\small\item\em Valore di caratteri massimo del nome utente. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a614217d263be1fb1a5f76e2ff7be19a2}{P\+O\+RT}}~64000
+\begin{DoxyCompactList}\small\item\em Porta in ascolto del Server. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_ab8ba2d8f79af5ca38005742bbc29a927}{M\+A\+X\+\_\+\+C\+L\+I\+E\+NT}}~5
+\begin{DoxyCompactList}\small\item\em Numero massimo di connessioni simultanee possibili. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a622fe76a51e7e65de314a526dcbd535e}{S\+A\+V\+E\+D\+IR}}~\char`\"{}/Scaricati\char`\"{}
+\begin{DoxyCompactList}\small\item\em Percorso relativo dalla home per la cartella di salvataggio. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_ad7871643c05865c80f5d8050aead2b57}{M\+A\+X\+B\+UF}}~1024
+\begin{DoxyCompactList}\small\item\em Valore massimo del buffer per lo scambio di dati col client. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a7fa81987956645a88559576f6be2f51d}{S\+B\+U\+F\+F\+ER}}
+\begin{DoxyCompactList}\small\item\em Macro di puizia del buffer stdin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a93aba1d96ea1be9898253d4fa67e185e}{V\+E\+R\+\_\+\+U\+S\+ER}}~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Comando per la verifica dell\textquotesingle{}utente. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a8b1058dc115af8d4db0d84f2c43a61ca}{A\+D\+D\+\_\+\+U\+S\+ER}}~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}1\mbox{]}
+\begin{DoxyCompactList}\small\item\em Comando per la registrazione. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00050_a57d31bf36eb61b82737a881bd3e8a941}{R\+E\+S\+\_\+\+U\+S\+ER}}~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}2\mbox{]}
+\item 
+\#define \mbox{\hyperlink{a00050_a60c7d807af4f8196d078b83ed9c4f45c}{R\+E\+Q\+\_\+\+U\+S\+ER}}~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Ridefinizioni di tipo (typedef)}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{a00068}{\+\_\+\+Sett\+S\+E\+R\+V\+ER}} \mbox{\hyperlink{a00050_a2ae1b7622ac02fc56c93b1f3911fbd76}{Sett\+S\+E\+R\+V\+ER}}
+\item 
+typedef struct \mbox{\hyperlink{a00072}{accounting}} \mbox{\hyperlink{a00050_a36ac654fad535999242c37c6b7534162}{U\+S\+E\+R\+\_\+\+F\+I\+L\+D\+E\+RX}}
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{a00050_a686fdc51e62cecfde609bd7635ac4b4b}{main\+Write}} (int id, const char $\ast$nome\+User, const char $\ast$pass\+User)
+\item 
+int \mbox{\hyperlink{a00050_ac5c53a5bcea0e6648c6564f0b5f5b6bd}{main\+Read}} ()
+\item 
+int \mbox{\hyperlink{a00050_a577f6318104d3678662cd68be1f76225}{main\+Ver}} (int id, const char $\ast$name, const char $\ast$pass)
+\item 
+size\+\_\+t \mbox{\hyperlink{a00050_aa6e2320d0a4267b15084f5eed8187380}{fullread}} (int fd, void $\ast$buff, size\+\_\+t count)
+\item 
+size\+\_\+t \mbox{\hyperlink{a00050_a07a5975e70c72acac6fb5c1a8a6ce6d4}{fullwrite}} (int fd, const void $\ast$buff, size\+\_\+t count)
+\item 
+int \mbox{\hyperlink{a00050_a0447d21c2e258f94e73a2df7cc5deeb3}{isdigit\+\_\+in}} (int $\ast$caracter)
+\begin{DoxyCompactList}\small\item\em Funzione con controllo e validazione dell\textquotesingle{}input da tastiera di un solo carattere numerico. Se è presenta quansiasi altro carattere, fallisce. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{a00050_ac8639575e0352679109d50fdf1d8a09b}{input\+U\+Int}} (unsigned int $\ast$result)
+\begin{DoxyCompactList}\small\item\em Funzione con controllo e validazione dell\textquotesingle{}input da tastiera di un valore unsigned int. @detail Se l\textquotesingle{}input ha altri caratteri, o è un valore oltre i limiti del compilatore fallisce la funzione. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{a00050_adf6dc76d411ca0f1202098a0a3aa2049}{input\+Int}} (int $\ast$result)
+\item 
+int \mbox{\hyperlink{a00050_ad53b7ea4b153982d90a2c13cc2712980}{test\+Path}} (char $\ast$w\+Path)
+\item 
+int \mbox{\hyperlink{a00050_ab2c6a8994eb18fd01ebda77f51847bab}{rwconf}} (int sockfd, void $\ast$buff, int size)
+\item 
+int \mbox{\hyperlink{a00050_a0ac2167e23f9cadb1367b63f38e421cc}{wwconf}} (int sockfd, void $\ast$buff, int size)
+\item 
+int \mbox{\hyperlink{a00050_a77c974b2a79a9a1413f9ce1fb1e1a69a}{my\+MainS}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{a00050_a280a493f2edcc08fb9c250acac6163ff}{ini\+Sett}} ()
+\item 
+int \mbox{\hyperlink{a00050_a169605f11035e9caf2dd6f0479c2dc18}{arg\+Sett}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{a00050_a17b0f14b64d30c318b71f3c797009bef}{men\+Serv}} ()
+\item 
+int \mbox{\hyperlink{a00050_abd208224f708f66dffe535a706fb8f98}{men\+Sett}} ()
+\item 
+int \mbox{\hyperlink{a00050_a24cd4cacf089f3d3ad9a0a95df6ed1f9}{men\+Acc}} ()
+\item 
+void \mbox{\hyperlink{a00050_a97f7da246f13aa6b171eba5834af3e94}{sett\+Print}} (int fd\+Stream)
+\item 
+int \mbox{\hyperlink{a00050_acd1f4ad00301185734118d32a0ed391b}{mod\+Sett\+Serv}} ()
+\item 
+int \mbox{\hyperlink{a00050_aee8d8f7af88ed9ef270a00e96a976e30}{gest\+Conn}} ()
+\item 
+int \mbox{\hyperlink{a00050_a7d98cd038e0cc100b29cb96ddc0b35da}{new\+Socket}} (int $\ast$sockfd, unsigned short port, unsigned long T\+Y\+P\+E\+IP)
+\item 
+int \mbox{\hyperlink{a00050_a687133bcb442e7bb71461db9ae2c4202}{closefd}} (int $\ast$sockfd)
+\item 
+int \mbox{\hyperlink{a00050_a068fcd7c3774c56f2fec08bd0e67b8eb}{ver\+User}} (int id)
+\item 
+int \mbox{\hyperlink{a00050_afb6bcf6d0cbea179df5b49e8cfb1a4ae}{ver\+User2}} (const char $\ast$name, const char $\ast$pass)
+\item 
+int \mbox{\hyperlink{a00050_ae6d2192d8a6b146b46328f729f3f092b}{add\+User2}} (int id, char $\ast$name, char $\ast$pass)
+\item 
+int \mbox{\hyperlink{a00050_a3a8de8215b92820b1ceb58270cdc5f3c}{add\+User}} (int sockfd)
+\end{DoxyCompactItemize}
+\subsection*{Variabili}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array di sctringhe con i comandi. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{a00050_a2ae1b7622ac02fc56c93b1f3911fbd76}{Sett\+S\+E\+R\+V\+ER}} $\ast$ \mbox{\hyperlink{a00050_a9ea2d4cbc5355102c58960d512b000fc}{settaggi}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Header per le funzioni del Server. 
+
+
+
+ \begin{DoxyAuthor}{Autore}
+Cannavo Michele
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Versione}
+1.\+0
+\end{DoxyVersion}
+Questo è un header file cumulativo per tutte le funzioni del Server F\+I\+L\+D\+E\+RX 
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{a00050_a8b1058dc115af8d4db0d84f2c43a61ca}\label{a00050_a8b1058dc115af8d4db0d84f2c43a61ca}} 
+\index{Server.h@{Server.h}!ADD\_USER@{ADD\_USER}}
+\index{ADD\_USER@{ADD\_USER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{ADD\_USER}{ADD\_USER}}
+{\footnotesize\ttfamily \#define A\+D\+D\+\_\+\+U\+S\+ER~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}1\mbox{]}}
+
+
+
+Comando per la registrazione. 
+
+
+
+Definizione alla linea 112 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a3ac31ce35ba8dcc4af19c8045ef22e41}\label{a00050_a3ac31ce35ba8dcc4af19c8045ef22e41}} 
+\index{Server.h@{Server.h}!DECIMO\_INT@{DECIMO\_INT}}
+\index{DECIMO\_INT@{DECIMO\_INT}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{DECIMO\_INT}{DECIMO\_INT}}
+{\footnotesize\ttfamily \#define D\+E\+C\+I\+M\+O\+\_\+\+I\+NT~(I\+N\+T\+\_\+\+M\+AX / 10)}
+
+
+
+1/10 del valore di I\+N\+T\+\_\+\+M\+AX 
+
+
+
+Definizione alla linea 44 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_af5bf75ca4c78ac29cde0cf581bbbba8c}\label{a00050_af5bf75ca4c78ac29cde0cf581bbbba8c}} 
+\index{Server.h@{Server.h}!DECIMO\_UINT@{DECIMO\_UINT}}
+\index{DECIMO\_UINT@{DECIMO\_UINT}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{DECIMO\_UINT}{DECIMO\_UINT}}
+{\footnotesize\ttfamily \#define D\+E\+C\+I\+M\+O\+\_\+\+U\+I\+NT~((U\+I\+N\+T\+\_\+\+M\+AX)/10)}
+
+
+
+A1/10 del valore di U\+N\+I\+T\+\_\+\+M\+AX. 
+
+
+
+Definizione alla linea 32 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_ae15aadb253d64179b684ad4dad2ec39c}\label{a00050_ae15aadb253d64179b684ad4dad2ec39c}} 
+\index{Server.h@{Server.h}!MAX\_CHAR\_PASS@{MAX\_CHAR\_PASS}}
+\index{MAX\_CHAR\_PASS@{MAX\_CHAR\_PASS}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{MAX\_CHAR\_PASS}{MAX\_CHAR\_PASS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+H\+A\+R\+\_\+\+P\+A\+SS~20}
+
+
+
+Valore di caratteri massimo del nome utente. 
+
+
+
+Definizione alla linea 66 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a18e9e79b7a0fd224d66258d08f939cc4}\label{a00050_a18e9e79b7a0fd224d66258d08f939cc4}} 
+\index{Server.h@{Server.h}!MAX\_CHAR\_USER@{MAX\_CHAR\_USER}}
+\index{MAX\_CHAR\_USER@{MAX\_CHAR\_USER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{MAX\_CHAR\_USER}{MAX\_CHAR\_USER}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+H\+A\+R\+\_\+\+U\+S\+ER~20}
+
+
+
+Valore di caratteri massimo del nome utente. 
+
+
+
+Definizione alla linea 65 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_ab8ba2d8f79af5ca38005742bbc29a927}\label{a00050_ab8ba2d8f79af5ca38005742bbc29a927}} 
+\index{Server.h@{Server.h}!MAX\_CLIENT@{MAX\_CLIENT}}
+\index{MAX\_CLIENT@{MAX\_CLIENT}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{MAX\_CLIENT}{MAX\_CLIENT}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+L\+I\+E\+NT~5}
+
+
+
+Numero massimo di connessioni simultanee possibili. 
+
+
+
+Definizione alla linea 82 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_ad7871643c05865c80f5d8050aead2b57}\label{a00050_ad7871643c05865c80f5d8050aead2b57}} 
+\index{Server.h@{Server.h}!MAXBUF@{MAXBUF}}
+\index{MAXBUF@{MAXBUF}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{MAXBUF}{MAXBUF}}
+{\footnotesize\ttfamily \#define M\+A\+X\+B\+UF~1024}
+
+
+
+Valore massimo del buffer per lo scambio di dati col client. 
+
+
+
+Definizione alla linea 84 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a614217d263be1fb1a5f76e2ff7be19a2}\label{a00050_a614217d263be1fb1a5f76e2ff7be19a2}} 
+\index{Server.h@{Server.h}!PORT@{PORT}}
+\index{PORT@{PORT}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{PORT}{PORT}}
+{\footnotesize\ttfamily \#define P\+O\+RT~64000}
+
+
+
+Porta in ascolto del Server. 
+
+
+
+Definizione alla linea 81 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a60c7d807af4f8196d078b83ed9c4f45c}\label{a00050_a60c7d807af4f8196d078b83ed9c4f45c}} 
+\index{Server.h@{Server.h}!REQ\_USER@{REQ\_USER}}
+\index{REQ\_USER@{REQ\_USER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{REQ\_USER}{REQ\_USER}}
+{\footnotesize\ttfamily \#define R\+E\+Q\+\_\+\+U\+S\+ER~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}3\mbox{]}}
+
+
+
+Definizione alla linea 114 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a57d31bf36eb61b82737a881bd3e8a941}\label{a00050_a57d31bf36eb61b82737a881bd3e8a941}} 
+\index{Server.h@{Server.h}!RES\_USER@{RES\_USER}}
+\index{RES\_USER@{RES\_USER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{RES\_USER}{RES\_USER}}
+{\footnotesize\ttfamily \#define R\+E\+S\+\_\+\+U\+S\+ER~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}2\mbox{]}}
+
+
+
+Definizione alla linea 113 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a622fe76a51e7e65de314a526dcbd535e}\label{a00050_a622fe76a51e7e65de314a526dcbd535e}} 
+\index{Server.h@{Server.h}!SAVEDIR@{SAVEDIR}}
+\index{SAVEDIR@{SAVEDIR}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{SAVEDIR}{SAVEDIR}}
+{\footnotesize\ttfamily \#define S\+A\+V\+E\+D\+IR~\char`\"{}/Scaricati\char`\"{}}
+
+
+
+Percorso relativo dalla home per la cartella di salvataggio. 
+
+
+
+Definizione alla linea 83 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a7fa81987956645a88559576f6be2f51d}\label{a00050_a7fa81987956645a88559576f6be2f51d}} 
+\index{Server.h@{Server.h}!SBUFFER@{SBUFFER}}
+\index{SBUFFER@{SBUFFER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{SBUFFER}{SBUFFER}}
+{\footnotesize\ttfamily \#define S\+B\+U\+F\+F\+ER}
+
+{\bfseries Valore\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}\{\textcolor{keywordtype}{int} ch; \(\backslash\)}
+\DoxyCodeLine{                    while ( ( ch=getchar() ) !=\textcolor{charliteral}{'\(\backslash\)n'} \&\& (ch != EOF) );\(\backslash\)}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Macro di puizia del buffer stdin. 
+
+
+
+Definizione alla linea 90 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a9bc472230cb9c73d7e6481638c4097ff}\label{a00050_a9bc472230cb9c73d7e6481638c4097ff}} 
+\index{Server.h@{Server.h}!UNITA\_UINT@{UNITA\_UINT}}
+\index{UNITA\_UINT@{UNITA\_UINT}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{UNITA\_UINT}{UNITA\_UINT}}
+{\footnotesize\ttfamily \#define U\+N\+I\+T\+A\+\_\+\+U\+I\+NT~((U\+I\+N\+T\+\_\+\+M\+AX)-\/((\mbox{\hyperlink{a00050_af5bf75ca4c78ac29cde0cf581bbbba8c}{D\+E\+C\+I\+M\+O\+\_\+\+U\+I\+NT}})$\ast$10))}
+
+
+
+Valore dell\textquotesingle{}unita\textquotesingle{} di U\+I\+N\+T\+\_\+\+M\+AX. 
+
+
+
+Definizione alla linea 38 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a2cfda22a0f5fbd983311abc2796ad3f4}\label{a00050_a2cfda22a0f5fbd983311abc2796ad3f4}} 
+\index{Server.h@{Server.h}!UNITAN@{UNITAN}}
+\index{UNITAN@{UNITAN}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{UNITAN}{UNITAN}}
+{\footnotesize\ttfamily \#define U\+N\+I\+T\+AN~(\mbox{\hyperlink{a00050_af7ea7ff0e1cdd41a4b679e08a26225ce}{U\+N\+I\+T\+AP}} + 1)}
+
+
+
+Valore dell\textquotesingle{}unita\textquotesingle{} di I\+N\+T\+\_\+\+M\+IN. 
+
+
+
+Definizione alla linea 56 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_af7ea7ff0e1cdd41a4b679e08a26225ce}\label{a00050_af7ea7ff0e1cdd41a4b679e08a26225ce}} 
+\index{Server.h@{Server.h}!UNITAP@{UNITAP}}
+\index{UNITAP@{UNITAP}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{UNITAP}{UNITAP}}
+{\footnotesize\ttfamily \#define U\+N\+I\+T\+AP~((I\+N\+T\+\_\+\+M\+AX) -\/ (\mbox{\hyperlink{a00050_a3ac31ce35ba8dcc4af19c8045ef22e41}{D\+E\+C\+I\+M\+O\+\_\+\+I\+NT}} $\ast$10))}
+
+
+
+Valore dell\textquotesingle{}unita\textquotesingle{} di I\+N\+T\+\_\+\+M\+AX. 
+
+
+
+Definizione alla linea 50 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a93aba1d96ea1be9898253d4fa67e185e}\label{a00050_a93aba1d96ea1be9898253d4fa67e185e}} 
+\index{Server.h@{Server.h}!VER\_USER@{VER\_USER}}
+\index{VER\_USER@{VER\_USER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{VER\_USER}{VER\_USER}}
+{\footnotesize\ttfamily \#define V\+E\+R\+\_\+\+U\+S\+ER~\mbox{\hyperlink{a00050_ad7ed85b86ff98d7a5853304284acd79e}{\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+}}\mbox{[}0\mbox{]}}
+
+
+
+Comando per la verifica dell\textquotesingle{}utente. 
+
+
+
+Definizione alla linea 111 del file Server.\+h.
+
+
+
+\subsection{Documentazione delle ridefinizioni di tipo (typedef)}
+\mbox{\Hypertarget{a00050_a2ae1b7622ac02fc56c93b1f3911fbd76}\label{a00050_a2ae1b7622ac02fc56c93b1f3911fbd76}} 
+\index{Server.h@{Server.h}!SettSERVER@{SettSERVER}}
+\index{SettSERVER@{SettSERVER}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{SettSERVER}{SettSERVER}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{a00068}{\+\_\+\+Sett\+S\+E\+R\+V\+ER}} \mbox{\hyperlink{a00050_a2ae1b7622ac02fc56c93b1f3911fbd76}{Sett\+S\+E\+R\+V\+ER}}}
+
+
+
+Definizione alla linea 132 del file Server.\+h.
+
+\mbox{\Hypertarget{a00050_a36ac654fad535999242c37c6b7534162}\label{a00050_a36ac654fad535999242c37c6b7534162}} 
+\index{Server.h@{Server.h}!USER\_FILDERX@{USER\_FILDERX}}
+\index{USER\_FILDERX@{USER\_FILDERX}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{USER\_FILDERX}{USER\_FILDERX}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{a00072}{accounting}} \mbox{\hyperlink{a00050_a36ac654fad535999242c37c6b7534162}{U\+S\+E\+R\+\_\+\+F\+I\+L\+D\+E\+RX}}}
+
+
+
+Definizione alla linea 143 del file Server.\+h.
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{a00050_a3a8de8215b92820b1ceb58270cdc5f3c}\label{a00050_a3a8de8215b92820b1ceb58270cdc5f3c}} 
+\index{Server.h@{Server.h}!addUser@{addUser}}
+\index{addUser@{addUser}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{addUser()}{addUser()}}
+{\footnotesize\ttfamily int add\+User (\begin{DoxyParamCaption}\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 19 del file add\+U\+S\+E\+R.\+c.
+
+\mbox{\Hypertarget{a00050_ae6d2192d8a6b146b46328f729f3f092b}\label{a00050_ae6d2192d8a6b146b46328f729f3f092b}} 
+\index{Server.h@{Server.h}!addUser2@{addUser2}}
+\index{addUser2@{addUser2}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{addUser2()}{addUser2()}}
+{\footnotesize\ttfamily int add\+User2 (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{char $\ast$}]{name,  }\item[{char $\ast$}]{pass }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 145 del file add\+U\+S\+E\+R.\+c.
+
+\mbox{\Hypertarget{a00050_a169605f11035e9caf2dd6f0479c2dc18}\label{a00050_a169605f11035e9caf2dd6f0479c2dc18}} 
+\index{Server.h@{Server.h}!argSett@{argSett}}
+\index{argSett@{argSett}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{argSett()}{argSett()}}
+{\footnotesize\ttfamily int arg\+Sett (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 21 del file arg\+Sett.\+c.
+
+\mbox{\Hypertarget{a00050_a687133bcb442e7bb71461db9ae2c4202}\label{a00050_a687133bcb442e7bb71461db9ae2c4202}} 
+\index{Server.h@{Server.h}!closefd@{closefd}}
+\index{closefd@{closefd}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{closefd()}{closefd()}}
+{\footnotesize\ttfamily int closefd (\begin{DoxyParamCaption}\item[{int $\ast$}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 90 del file new\+Socket.\+c.
+
+\mbox{\Hypertarget{a00050_aa6e2320d0a4267b15084f5eed8187380}\label{a00050_aa6e2320d0a4267b15084f5eed8187380}} 
+\index{Server.h@{Server.h}!fullread@{fullread}}
+\index{fullread@{fullread}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{fullread()}{fullread()}}
+{\footnotesize\ttfamily size\+\_\+t fullread (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{void $\ast$}]{buff,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 21 del file fullread.\+c.
+
+\mbox{\Hypertarget{a00050_a07a5975e70c72acac6fb5c1a8a6ce6d4}\label{a00050_a07a5975e70c72acac6fb5c1a8a6ce6d4}} 
+\index{Server.h@{Server.h}!fullwrite@{fullwrite}}
+\index{fullwrite@{fullwrite}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{fullwrite()}{fullwrite()}}
+{\footnotesize\ttfamily size\+\_\+t fullwrite (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void $\ast$}]{buff,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 21 del file fullwrite.\+c.
+
+\mbox{\Hypertarget{a00050_aee8d8f7af88ed9ef270a00e96a976e30}\label{a00050_aee8d8f7af88ed9ef270a00e96a976e30}} 
+\index{Server.h@{Server.h}!gestConn@{gestConn}}
+\index{gestConn@{gestConn}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{gestConn()}{gestConn()}}
+{\footnotesize\ttfamily int gest\+Conn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 16 del file gest\+Conn.\+c.
+
+\mbox{\Hypertarget{a00050_a280a493f2edcc08fb9c250acac6163ff}\label{a00050_a280a493f2edcc08fb9c250acac6163ff}} 
+\index{Server.h@{Server.h}!iniSett@{iniSett}}
+\index{iniSett@{iniSett}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{iniSett()}{iniSett()}}
+{\footnotesize\ttfamily int ini\+Sett (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 19 del file ini\+Sett.\+c.
+
+\mbox{\Hypertarget{a00050_adf6dc76d411ca0f1202098a0a3aa2049}\label{a00050_adf6dc76d411ca0f1202098a0a3aa2049}} 
+\index{Server.h@{Server.h}!inputInt@{inputInt}}
+\index{inputInt@{inputInt}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{inputInt()}{inputInt()}}
+{\footnotesize\ttfamily int input\+Int (\begin{DoxyParamCaption}\item[{int $\ast$}]{result }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 139 del file isdigit\+\_\+in.\+c.
+
+\mbox{\Hypertarget{a00050_ac8639575e0352679109d50fdf1d8a09b}\label{a00050_ac8639575e0352679109d50fdf1d8a09b}} 
+\index{Server.h@{Server.h}!inputUInt@{inputUInt}}
+\index{inputUInt@{inputUInt}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{inputUInt()}{inputUInt()}}
+{\footnotesize\ttfamily int input\+U\+Int (\begin{DoxyParamCaption}\item[{unsigned int $\ast$}]{result }\end{DoxyParamCaption})}
+
+
+
+Funzione con controllo e validazione dell\textquotesingle{}input da tastiera di un valore unsigned int. @detail Se l\textquotesingle{}input ha altri caratteri, o è un valore oltre i limiti del compilatore fallisce la funzione. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em \mbox{[}\+O\+U\+T\mbox{]}} & result Valore unsigned int dell\textquotesingle{}input \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em -\/1} & Errore irreversibie \\
+\hline
+{\em 1} & Input non conforme \\
+\hline
+{\em 0} & Input Conforme \\
+\hline
+\end{DoxyRetVals}
+
+
+Definizione alla linea 70 del file isdigit\+\_\+in.\+c.
+
+\mbox{\Hypertarget{a00050_a0447d21c2e258f94e73a2df7cc5deeb3}\label{a00050_a0447d21c2e258f94e73a2df7cc5deeb3}} 
+\index{Server.h@{Server.h}!isdigit\_in@{isdigit\_in}}
+\index{isdigit\_in@{isdigit\_in}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{isdigit\_in()}{isdigit\_in()}}
+{\footnotesize\ttfamily int isdigit\+\_\+in (\begin{DoxyParamCaption}\item[{int $\ast$}]{caracter }\end{DoxyParamCaption})}
+
+
+
+Funzione con controllo e validazione dell\textquotesingle{}input da tastiera di un solo carattere numerico. Se è presenta quansiasi altro carattere, fallisce. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em \mbox{[}\+O\+U\+T\mbox{]}} & caracter valore intero del numero immesso in ingresso \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Verifica della funzione 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em -\/1} & Errore irreversibie \\
+\hline
+{\em 1} & Input non conforme \\
+\hline
+{\em 0} & Input Conforme \\
+\hline
+\end{DoxyRetVals}
+
+
+Definizione alla linea 22 del file isdigit\+\_\+in.\+c.
+
+\mbox{\Hypertarget{a00050_ac5c53a5bcea0e6648c6564f0b5f5b6bd}\label{a00050_ac5c53a5bcea0e6648c6564f0b5f5b6bd}} 
+\index{Server.h@{Server.h}!mainRead@{mainRead}}
+\index{mainRead@{mainRead}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{mainRead()}{mainRead()}}
+{\footnotesize\ttfamily int main\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 37 del file Save.\+c.
+
+\mbox{\Hypertarget{a00050_a577f6318104d3678662cd68be1f76225}\label{a00050_a577f6318104d3678662cd68be1f76225}} 
+\index{Server.h@{Server.h}!mainVer@{mainVer}}
+\index{mainVer@{mainVer}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{mainVer()}{mainVer()}}
+{\footnotesize\ttfamily int main\+Ver (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{pass }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 61 del file Save.\+c.
+
+\mbox{\Hypertarget{a00050_a686fdc51e62cecfde609bd7635ac4b4b}\label{a00050_a686fdc51e62cecfde609bd7635ac4b4b}} 
+\index{Server.h@{Server.h}!mainWrite@{mainWrite}}
+\index{mainWrite@{mainWrite}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{mainWrite()}{mainWrite()}}
+{\footnotesize\ttfamily int main\+Write (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{const char $\ast$}]{nome\+User,  }\item[{const char $\ast$}]{pass\+User }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 3 del file Save.\+c.
+
+\mbox{\Hypertarget{a00050_a24cd4cacf089f3d3ad9a0a95df6ed1f9}\label{a00050_a24cd4cacf089f3d3ad9a0a95df6ed1f9}} 
+\index{Server.h@{Server.h}!menAcc@{menAcc}}
+\index{menAcc@{menAcc}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{menAcc()}{menAcc()}}
+{\footnotesize\ttfamily int men\+Acc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{a00050_a17b0f14b64d30c318b71f3c797009bef}\label{a00050_a17b0f14b64d30c318b71f3c797009bef}} 
+\index{Server.h@{Server.h}!menServ@{menServ}}
+\index{menServ@{menServ}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{menServ()}{menServ()}}
+{\footnotesize\ttfamily int men\+Serv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 31 del file menu\+S.\+c.
+
+\mbox{\Hypertarget{a00050_abd208224f708f66dffe535a706fb8f98}\label{a00050_abd208224f708f66dffe535a706fb8f98}} 
+\index{Server.h@{Server.h}!menSett@{menSett}}
+\index{menSett@{menSett}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{menSett()}{menSett()}}
+{\footnotesize\ttfamily int men\+Sett (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 80 del file menu\+S.\+c.
+
+\mbox{\Hypertarget{a00050_acd1f4ad00301185734118d32a0ed391b}\label{a00050_acd1f4ad00301185734118d32a0ed391b}} 
+\index{Server.h@{Server.h}!modSettServ@{modSettServ}}
+\index{modSettServ@{modSettServ}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{modSettServ()}{modSettServ()}}
+{\footnotesize\ttfamily int mod\+Sett\+Serv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 18 del file mod\+Sett\+Serv.\+c.
+
+\mbox{\Hypertarget{a00050_a77c974b2a79a9a1413f9ce1fb1e1a69a}\label{a00050_a77c974b2a79a9a1413f9ce1fb1e1a69a}} 
+\index{Server.h@{Server.h}!myMainS@{myMainS}}
+\index{myMainS@{myMainS}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{myMainS()}{myMainS()}}
+{\footnotesize\ttfamily int my\+MainS (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 16 del file main\+\_\+\+Server.\+c.
+
+\mbox{\Hypertarget{a00050_a7d98cd038e0cc100b29cb96ddc0b35da}\label{a00050_a7d98cd038e0cc100b29cb96ddc0b35da}} 
+\index{Server.h@{Server.h}!newSocket@{newSocket}}
+\index{newSocket@{newSocket}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{newSocket()}{newSocket()}}
+{\footnotesize\ttfamily int new\+Socket (\begin{DoxyParamCaption}\item[{int $\ast$}]{sockfd,  }\item[{unsigned short}]{port,  }\item[{unsigned long}]{T\+Y\+P\+E\+IP }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 28 del file new\+Socket.\+c.
+
+\mbox{\Hypertarget{a00050_ab2c6a8994eb18fd01ebda77f51847bab}\label{a00050_ab2c6a8994eb18fd01ebda77f51847bab}} 
+\index{Server.h@{Server.h}!rwconf@{rwconf}}
+\index{rwconf@{rwconf}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{rwconf()}{rwconf()}}
+{\footnotesize\ttfamily int rwconf (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{void $\ast$}]{buff,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 21 del file rwconf.\+c.
+
+\mbox{\Hypertarget{a00050_a97f7da246f13aa6b171eba5834af3e94}\label{a00050_a97f7da246f13aa6b171eba5834af3e94}} 
+\index{Server.h@{Server.h}!settPrint@{settPrint}}
+\index{settPrint@{settPrint}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{settPrint()}{settPrint()}}
+{\footnotesize\ttfamily void sett\+Print (\begin{DoxyParamCaption}\item[{int}]{fd\+Stream }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 19 del file sett\+Print.\+c.
+
+\mbox{\Hypertarget{a00050_ad53b7ea4b153982d90a2c13cc2712980}\label{a00050_ad53b7ea4b153982d90a2c13cc2712980}} 
+\index{Server.h@{Server.h}!testPath@{testPath}}
+\index{testPath@{testPath}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{testPath()}{testPath()}}
+{\footnotesize\ttfamily int test\+Path (\begin{DoxyParamCaption}\item[{char $\ast$}]{w\+Path }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 22 del file test\+Path.\+c.
+
+\mbox{\Hypertarget{a00050_a068fcd7c3774c56f2fec08bd0e67b8eb}\label{a00050_a068fcd7c3774c56f2fec08bd0e67b8eb}} 
+\index{Server.h@{Server.h}!verUser@{verUser}}
+\index{verUser@{verUser}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{verUser()}{verUser()}}
+{\footnotesize\ttfamily int ver\+User (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 19 del file ver\+User.\+c.
+
+\mbox{\Hypertarget{a00050_afb6bcf6d0cbea179df5b49e8cfb1a4ae}\label{a00050_afb6bcf6d0cbea179df5b49e8cfb1a4ae}} 
+\index{Server.h@{Server.h}!verUser2@{verUser2}}
+\index{verUser2@{verUser2}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{verUser2()}{verUser2()}}
+{\footnotesize\ttfamily int ver\+User2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{pass }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 84 del file ver\+User.\+c.
+
+\mbox{\Hypertarget{a00050_a0ac2167e23f9cadb1367b63f38e421cc}\label{a00050_a0ac2167e23f9cadb1367b63f38e421cc}} 
+\index{Server.h@{Server.h}!wwconf@{wwconf}}
+\index{wwconf@{wwconf}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{wwconf()}{wwconf()}}
+{\footnotesize\ttfamily int wwconf (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{void $\ast$}]{buff,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 20 del file wwconf.\+c.
+
+
+
+\subsection{Documentazione delle variabili}
+\mbox{\Hypertarget{a00050_ad7ed85b86ff98d7a5853304284acd79e}\label{a00050_ad7ed85b86ff98d7a5853304284acd79e}} 
+\index{Server.h@{Server.h}!\_COMMAND\_@{\_COMMAND\_}}
+\index{\_COMMAND\_@{\_COMMAND\_}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{\_COMMAND\_}{\_COMMAND\_}}
+{\footnotesize\ttfamily const char$\ast$ \+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\mbox{[}$\,$\mbox{]}}
+
+
+
+Array di sctringhe con i comandi. 
+
+
+
+Definizione alla linea 5 del file new\+Socket.\+c.
+
+\mbox{\Hypertarget{a00050_a9ea2d4cbc5355102c58960d512b000fc}\label{a00050_a9ea2d4cbc5355102c58960d512b000fc}} 
+\index{Server.h@{Server.h}!settaggi@{settaggi}}
+\index{settaggi@{settaggi}!Server.h@{Server.h}}
+\subsubsection{\texorpdfstring{settaggi}{settaggi}}
+{\footnotesize\ttfamily \mbox{\hyperlink{a00050_a2ae1b7622ac02fc56c93b1f3911fbd76}{Sett\+S\+E\+R\+V\+ER}}$\ast$ settaggi}
+
+
+
+Definizione alla linea 14 del file main\+\_\+\+Server.\+c.
+

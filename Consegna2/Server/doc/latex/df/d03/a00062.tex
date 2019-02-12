@@ -1,0 +1,54 @@
+\hypertarget{a00062}{}\section{Riferimenti per il file /home/mikele/\+Documenti/\+Con2/\+Server/src/wwconf.c}
+\label{a00062}\index{/home/mikele/Documenti/Con2/Server/src/wwconf.c@{/home/mikele/Documenti/Con2/Server/src/wwconf.c}}
+
+
+Scrittura comando con conferma.  
+
+
+{\ttfamily \#include \char`\"{}Server.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{a00062_a0ac2167e23f9cadb1367b63f38e421cc}{wwconf}} (int sockfd, void $\ast$buff, int size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Scrittura comando con conferma. 
+
+
+
+
+
+\begin{DoxyVersion}{Versione}
+1.\+0
+\end{DoxyVersion}
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\texttt{ in}}  & {\em sockfd} & file descriptor del socket \\
+\hline
+\mbox{\texttt{ out}}  & {\em buff} & buffer che continene il comando \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Dimensione del buffer\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em -\/1} & F\+A\+I\+L\+U\+RE \\
+\hline
+{\em 0} & S\+U\+C\+C\+E\+SS\\
+\hline
+\end{DoxyRetVals}
+Questa funzione scrive un comando in un socket e dopo invia la conferma della lettura. Serve per sincronizzare server e client. 
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{a00062_a0ac2167e23f9cadb1367b63f38e421cc}\label{a00062_a0ac2167e23f9cadb1367b63f38e421cc}} 
+\index{wwconf.c@{wwconf.c}!wwconf@{wwconf}}
+\index{wwconf@{wwconf}!wwconf.c@{wwconf.c}}
+\subsubsection{\texorpdfstring{wwconf()}{wwconf()}}
+{\footnotesize\ttfamily int wwconf (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{void $\ast$}]{buff,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 20 del file wwconf.\+c.
+

@@ -1,0 +1,60 @@
+.TH "/home/mikele/Documenti/Con2/Server/src/rwconf.c" 3 "Sab 19 Gen 2019" "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mikele/Documenti/Con2/Server/src/rwconf.c \- Lettura comando con conferma\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Server\&.h'\fP
+.br
+
+.SS "Funzioni"
+
+.in +1c
+.ti -1c
+.RI "int \fBrwconf\fP (int sockfd, void *buff, int size)"
+.br
+.in -1c
+.SH "Descrizione dettagliata"
+.PP 
+Lettura comando con conferma\&. 
+
+
+.PP
+\fBVersione:\fP
+.RS 4
+1\&.0
+.RE
+.PP
+Questa funzione legge un comando da un socket e dopo invia la conferma della lettura\&. Serve per sincronizzare server e client\&.
+.PP
+\fBParametri:\fP
+.RS 4
+\fIsockfd\fP file descriptor del socket 
+.br
+\fIbuff\fP buffer dove verrà salvato il comando 
+.br
+\fIsize\fP Dimensione massima del buffer
+.RE
+.PP
+\fBValori di ritorno:\fP
+.RS 4
+\fI-1\fP FAILURE 
+.br
+\fI0\fP SUCCESS 
+.RE
+.PP
+
+.PP
+Definizione nel file \fBrwconf\&.c\fP\&.
+.SH "Documentazione delle funzioni"
+.PP 
+.SS "int rwconf (int sockfd, void * buff, int size)"
+
+.PP
+Definizione alla linea 21 del file rwconf\&.c\&.
+.SH "Autore"
+.PP 
+Generato automaticamente da Doxygen per My Project a partire dal codice sorgente\&.

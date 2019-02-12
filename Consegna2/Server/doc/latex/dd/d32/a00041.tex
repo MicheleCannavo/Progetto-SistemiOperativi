@@ -1,0 +1,52 @@
+\hypertarget{a00041}{}\section{Riferimenti per il file /home/mikele/\+Documenti/\+Con2/\+Server/src/rwconf.c}
+\label{a00041}\index{/home/mikele/Documenti/Con2/Server/src/rwconf.c@{/home/mikele/Documenti/Con2/Server/src/rwconf.c}}
+
+
+Lettura comando con conferma.  
+
+
+{\ttfamily \#include \char`\"{}Server.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{a00041_ab2c6a8994eb18fd01ebda77f51847bab}{rwconf}} (int sockfd, void $\ast$buff, int size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Lettura comando con conferma. 
+
+\begin{DoxyVersion}{Versione}
+1.\+0
+\end{DoxyVersion}
+Questa funzione legge un comando da un socket e dopo invia la conferma della lettura. Serve per sincronizzare server e client.
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\texttt{ in}}  & {\em sockfd} & file descriptor del socket \\
+\hline
+\mbox{\texttt{ out}}  & {\em buff} & buffer dove verrà salvato il comando \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & Dimensione massima del buffer\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em -\/1} & F\+A\+I\+L\+U\+RE \\
+\hline
+{\em 0} & S\+U\+C\+C\+E\+SS \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{a00041_ab2c6a8994eb18fd01ebda77f51847bab}\label{a00041_ab2c6a8994eb18fd01ebda77f51847bab}} 
+\index{rwconf.c@{rwconf.c}!rwconf@{rwconf}}
+\index{rwconf@{rwconf}!rwconf.c@{rwconf.c}}
+\subsubsection{\texorpdfstring{rwconf()}{rwconf()}}
+{\footnotesize\ttfamily int rwconf (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{void $\ast$}]{buff,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 21 del file rwconf.\+c.
+

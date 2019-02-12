@@ -1,0 +1,52 @@
+.TH "/home/mikele/Documenti/Con2/Server/src/iniSett.c" 3 "Sab 19 Gen 2019" "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mikele/Documenti/Con2/Server/src/iniSett.c \- inizzializza struct per i settaggi  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Server\&.h'\fP
+.br
+
+.SS "Funzioni"
+
+.in +1c
+.ti -1c
+.RI "int \fBiniSett\fP ()"
+.br
+.in -1c
+.SH "Descrizione dettagliata"
+.PP 
+inizzializza struct per i settaggi 
+
+
+.PP
+.PP
+\fBVersione:\fP
+.RS 4
+1\&.0
+.RE
+.PP
+Questa funzione alloca la memoria e inizializza un puntatore in ingresso ad una struct SettFILDERX che servirà a contenere i settaggi del programma\&. Nececcisa di una variabile globale (puntatore a SettServer) dal valore NULL, altrimenti la struct verràa' consdeerata gia' alloata\&. Il chiamante deve occuparsi anche della chiamata a free()\&.
+.PP
+\fBValori di ritorno:\fP
+.RS 4
+\fI-1\fP FAILURE 
+.br
+\fI0\fP SUCCESS 
+.RE
+.PP
+
+.PP
+Definizione nel file \fBiniSett\&.c\fP\&.
+.SH "Documentazione delle funzioni"
+.PP 
+.SS "int iniSett ()"
+
+.PP
+Definizione alla linea 19 del file iniSett\&.c\&.
+.SH "Autore"
+.PP 
+Generato automaticamente da Doxygen per My Project a partire dal codice sorgente\&.
