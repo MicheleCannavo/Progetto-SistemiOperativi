@@ -15,46 +15,55 @@
 #include "FILDERX.h"
 
 ELEFILDERX *creaNodo1( const char* path, unsigned long id)
-{
+{ 
+// VARIABILI E INIZIALIZZAZIONI    
+  char       *tmpPath = NULL;
+  ELEFILDERX *tmp     = NULL;
+
 // Verifica input
     if(path==NULL)
     {
         return NULL;
     }
     
-    char *tmpPath=calloc(PATH_MAX, sizeof(char));
+// Allocazione memoria per il path
+    tmpPath = calloc(PATH_MAX, sizeof(char));
     if(tmpPath==NULL)
     {
         return NULL;      
     }
 
-    ELEFILDERX *tmp = calloc(1, sizeof( ELEFILDERX ) );
+// Allocazione memoria per il nodo
+    tmp = calloc(1, sizeof( ELEFILDERX ) );
     if( !tmp )
     {
-        perror( "Allocazione nodo fallita: " );
-        free(tmpPath); tmpPath=NULL;
+        free(tmpPath);
+        tmpPath=NULL;
         return NULL;
     }
 
-// Carico l'ID
-    tmp->idNumber=id;
-
-// Carico il path assoluto
-    if(path[0]=='/')// Già Path assoluto
+// Ricavo una stringa con il path assoluto
+    // Già Path assoluto
+    if(path[0]=='/')
     {       
         strncpy(tmpPath, path, PATH_MAX-1);
         tmpPath[PATH_MAX-1]='\0';
     }
-    else if( (realpath(path, tmpPath )==NULL ))
+    // Risalgo al path assoluto
+    else if( (realpath(path, tmpPath ) == NULL ) )
     {
-        perror("Creazione pathname assoluto  non riuscita");
         free(tmpPath); tmpPath = NULL;
         free(tmp);         tmp = NULL;
         return NULL;
     }
+
+// Copio le info nel Nodo
+    tmp->idNumber=id;
     strncpy(tmp->absPath, tmpPath, PATH_MAX-1);
     tmp->absPath[PATH_MAX-1]='\0';
 
-    free(tmpPath); tmpPath=NULL;
+// Libero memoria e finisco la funzione
+    free(tmpPath); 
+    tmpPath=NULL;
     return tmp;
 }

@@ -16,6 +16,7 @@
 
 int iniSett()
 {
+
 // Controllo che la variabile globale settaggi non sia già allocata
     if(settaggi != NULL )
     {
@@ -63,7 +64,12 @@ int iniSett()
 // Setto il numero di core
     short int core=1;
     getNCore(&core);   
-    settaggi->nCoreProcessor=core;
-
+    // Il massimo numero di core utilizzabile è dato da MAX_CORE
+    // Un numero piu' alto causerebbe uno sforamente della variabile tread[MAX_CORE]
+    if(core>MAX_CORE)
+        settaggi->nCoreProcessor=MAX_CORE;
+    else
+        settaggi->nCoreProcessor=core;
+    
     return 0;
 }

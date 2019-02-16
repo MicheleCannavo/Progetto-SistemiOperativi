@@ -16,15 +16,19 @@
 #include "FILDERX.h"
 
 int freeL(listFILDERX **listComp)
-{
+{  
+// VARIABILI E INIZIALIZZAZIONI
+    listFILDERX *Temp1;
+    listFILDERX *Temp2;
+
+// Verifica argomenti
     if(listComp==NULL || *listComp==NULL)
     {
         errno=EINVAL;
-        perror(__FUNCTION__);
         return -1;
     }
-
-    listFILDERX *Temp1, *Temp2;
+    
+// Liberazione memori della lista
     Temp1=*listComp;
     while( Temp1 )
     {

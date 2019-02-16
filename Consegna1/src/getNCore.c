@@ -14,7 +14,14 @@
 #include "FILDERX.h"
 
 int getNCore(short *nCore)
-{
+{   
+// VARIABILI E INIZIALIZZAZIONI
+    char  tmpCore[20];
+    int   countC     =1;
+    FILE *fd;
+    memset(tmpCore, 0, 20);
+
+// Verifica argomenti
     if(nCore==NULL)
     {
         errno=EINVAL;
@@ -22,11 +29,7 @@ int getNCore(short *nCore)
         return -1;
     }
 
-    char tmpCore[20];
-    int countC=1;
-    FILE  *fd;
-    memset(tmpCore, 0, 20);
-
+// Apertura file "/proc/cpuinfo"
     fd=fopen("/proc/cpuinfo", "r");
     if(fd == NULL  )
     {
@@ -34,8 +37,11 @@ int getNCore(short *nCore)
         return -1;
     }
 
+// Scorimento righe "/proc/cpuinfo"
     while( fgets(tmpCore, 19, fd) != NULL )
     {
+    
+    // Se trovo corrispondenza recupero i numero di core e esco dal while
         if(memcmp(tmpCore, "siblings", 8) == 0 )
         {
             strtok(tmpCore,":");
@@ -44,8 +50,13 @@ int getNCore(short *nCore)
         }
         memset(tmpCore, 0, 20);
     }
+    // Sia se trovo corrispondenza, sia se non ne trovo
+    // memorizzo countC sulla variabile interessata
+    // in quanto countC era inizializzata comunque a 1
+    // che e' il minimo numero di core nella pratica
     *nCore=countC;
 
+// Chiusura file e fine funzione
     fclose(fd);
     fd=NULL;
     return 0;
