@@ -17,7 +17,13 @@
 
 // Dato una directory, crea una minilista con i file in maniera NON ricorsiva!!
 listFILDERX* listdir(const char *name)
-{
+{   
+    char          *fullPath   = NULL;
+    ELEFILDERX    *tmp        = NULL;
+    DIR           *directory  = NULL;
+    struct dirent *elementDir = NULL;
+    listFILDERX *miniList=NULL;
+
     if(name==NULL)
     {
         errno=EINVAL;
@@ -25,12 +31,7 @@ listFILDERX* listdir(const char *name)
         return NULL;
     }
 
-    char          *fullPath   = NULL;
-    ELEFILDERX    *tmp        = NULL;
-    DIR           *directory  = NULL;
-    struct dirent *elementDir = NULL;
-    listFILDERX *miniList=NULL;
-
+// Mi sposto nella cartella di ricerca
     if( chdir(name) != 0 )
     {
         perror(__FUNCTION__);
@@ -40,28 +41,32 @@ listFILDERX* listdir(const char *name)
 // Apro la directory
     if ( !(directory = opendir(name)) )
     {
-               // free(miniList);
                 return NULL;
     }
 
+// Ricerca nella directory
     while ((elementDir = readdir(directory)) != NULL)
     {
 
-          if (elementDir->d_name[0] == '.' &&( elementDir->d_name[1] == '\0' || elementDir->d_name[1] == '.' ))
-      //  if (elementDir->d_name[0] == '.' )
+    // Escludo le cartelle speciali
+        if (elementDir->d_name[0] == '.' )
             continue;
 
+    //Escludo i file esclusi dal pattern
         if ( fnmatch(settaggi->patttFILDERX, elementDir->d_name, 0) != 0 )
         {
             continue;
         }
-
+    
+    // Path assoluto
         if(elementDir->d_name[0]=='/')
-        {// Path assoluto
+        {
             tmp= creaNodo1(elementDir->d_name, count++);
         }
+    
+    // Path relativo
         else
-        {// Path relativo 
+        { 
             fullPath=realpath(elementDir->d_name,NULL );
             if( fullPath == NULL )
             {
@@ -83,6 +88,7 @@ listFILDERX* listdir(const char *name)
         free(tmp);
         tmp=NULL;
     }
+
 // Chiudo l'attuale directory
     closedir(directory);
     return miniList;

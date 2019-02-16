@@ -31,6 +31,7 @@ pthread_mutex_t muxList2;
 
 int MotoreFILDER(SettFILDERX settaggi )
 {
+// VARIABILI E INIZIALIZZAZIONI
     char currDir[PATH_MAX];
 
 // Salvo la posizione corrente della cartella di lavoro
@@ -40,6 +41,7 @@ int MotoreFILDER(SettFILDERX settaggi )
         return -1;
     }
 
+// inizializzo i mutex
     if(pthread_mutex_init(&muxList,  NULL) != 0)
     {
         perror ("Errore 2 in motoreFILDERX");
@@ -52,13 +54,14 @@ int MotoreFILDER(SettFILDERX settaggi )
         return -1;
     }
 
-    listFILDERX *miniList=listdir(settaggi.dirWork);//Elenco directory principale
-    
+// Creo l'elenco della directory Padre
+    listFILDERX *miniList=listdir(settaggi.dirWork);
     if( totL(&headTList, miniList) != 0)
     {
         perror ("Errore 6 in motoreFILDERX");
         return -1;
     }
+    
 
     if(pthread_mutex_lock(&muxList2) != 0)
     {
@@ -109,19 +112,18 @@ void *funcT(void*arg)
     do
     {
         listFILDERX *i; 
-       
-        i=delFolder(&headTList);
         if(pthread_mutex_lock(&muxList) != 0)
         {
             perror ("Errore 1 in funcT");
             pthread_exit( (void*)-1);
-        }
+        }      
+        i=delFolder(&headTList);
 
         if(i!=NULL)
         {
           listFILDERX *miniList=listdir(i->elemento.absPath);
-
-            if(totL(&headTList,miniList)!=0)
+       //     printf("%zu\n\n",pthread_self());  
+          if(totL(&headTList,miniList)!=0)
             {
                 perror ("Errore 2 in funcT");
                 pthread_exit( (void*)-1);
