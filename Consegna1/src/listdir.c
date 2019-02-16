@@ -1,47 +1,45 @@
 /** ***************************************************************************
- * \file        listdir.c 
  * \version     1.0
  * \date        22/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
+
+ * \retval  !NULL       Puntatore ad una lista di file e cartelle
+ * \retval  NULL        Funzione Fallita/L'elemento Non e' una cartella
  * 
  * \details     Questa funzione crea una lista NON RICORSIVA, dei file dentro 
  *              una directory, non opera filtri sul tipo di file ma solo in ba-
  *              se al pattern di ricerca impostato nei settaggi.
  *
- * \return puntatore ad una lista di file e cartelle
- * \retval  NULL     Funzione Fallita/L'elemento Non e' una cartella
  *****************************************************************************/
 #include "FILDERX.h"
 
-// Dato una directory, crea una minilista con i file in maniera NON ricorsiva!!
 listFILDERX* listdir(const char *name)
 {   
+// VARIABILI E INIZIALIZZAZIONI
     char          *fullPath   = NULL;
     ELEFILDERX    *tmp        = NULL;
     DIR           *directory  = NULL;
     struct dirent *elementDir = NULL;
-    listFILDERX *miniList=NULL;
+    listFILDERX   *miniList   = NULL;
 
-    if(name==NULL)
+// verifica argomenti
+    if(name == NULL)
     {
-        errno=EINVAL;
-        perror(__FUNCTION__);
+        errno = EINVAL;
         return NULL;
     }
 
 // Mi sposto nella cartella di ricerca
     if( chdir(name) != 0 )
     {
-        perror(__FUNCTION__);
         return NULL;
     } 
 
 // Apro la directory
     if ( !(directory = opendir(name)) )
     {
-                return NULL;
+        return NULL;
     }
 
 // Ricerca nella directory
@@ -52,7 +50,7 @@ listFILDERX* listdir(const char *name)
         if (elementDir->d_name[0] == '.' )
             continue;
 
-    //Escludo i file esclusi dal pattern
+    // Escludo i file esclusi dal pattern
         if ( fnmatch(settaggi->patttFILDERX, elementDir->d_name, 0) != 0 )
         {
             continue;
@@ -67,23 +65,23 @@ listFILDERX* listdir(const char *name)
     // Path relativo
         else
         { 
-            fullPath=realpath(elementDir->d_name,NULL );
+            realpath(elementDir->d_name, fullPath);
             if( fullPath == NULL )
             {
-                perror("errore memoria");
                 return NULL;
             }
              
-            tmp= creaNodo1(fullPath, count++);
-            if(tmp==NULL)
+            tmp = creaNodo1(fullPath, count++);
+            if(tmp == NULL)
             {
-                perror("ERRORE IN MEMORIA2");
                 return NULL;
             }
             
             free(fullPath);
-            fullPath=NULL;
+            fullPath = NULL;
         }
+
+    // Inserisco nodo e libero la memoria
         InsC(&miniList,tmp);  
         free(tmp);
         tmp=NULL;

@@ -1,16 +1,7 @@
-//==============================================================================
-/// \author  Cannavo' Michele [046002210]
-/// \date    07/12/2018
-//==============================================================================
-/// \file  FILDERX.c
-/// \brief Motore di ricerca ricorsiva di FILDERX
-/// \version 1.2
-/// \copyright GNU LGPL 3.0
-/// \details Motore che ricerca, con le impostazioni date, File e cartelle dentro una directory.
 /** ***************************************************************************
  * \file        motore.c 
  * \version     1.5
- * \date        25/12/2018
+ * \date        29/12/2018
  * \copyright   Licenza GPL 3.0
  * 
  * \brief       Motore del programma di ricerca file.

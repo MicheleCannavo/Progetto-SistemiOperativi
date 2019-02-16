@@ -43,6 +43,7 @@ ELEFILDERX *creaNodo1( const char* path, unsigned long id)
     }
 
 // Ricavo una stringa con il path assoluto
+  
     // Già Path assoluto
     if(path[0]=='/')
     {       

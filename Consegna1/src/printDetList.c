@@ -21,7 +21,8 @@
 #include "FILDERX.h"
 
 int printDetList(listFILDERX *headTList, int fdStream)
-{
+{  
+    listFILDERX *ltmp=headTList;
 // Verifica argomenti in input
     if(  (headTList==NULL) || (fdStream<0) )
     {
@@ -30,8 +31,6 @@ int printDetList(listFILDERX *headTList, int fdStream)
         return -1;
     }
 
-    listFILDERX *ltmp=headTList;
-    
     if(ltmp==NULL)
     {
         dprintf(fdStream, "Non ci sono elementi nella lista");

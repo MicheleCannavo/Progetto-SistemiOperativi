@@ -7,33 +7,12 @@
 /// \version 1.2
 /// \copyright GNU LGPL 3.0
 /// \details Motore che ricerca, con le impostazioni date, File e cartelle dentro una directory.
-//==============================================================================
-// Copyright (c) 2018, Michele Cannavo'
-// All rights reserved.
-//
-// This file is part of FILDERX.
-//
-//   myMain.c is free software: you can redistribute it and/or modify
-//   it under the terms of the GNU General Public License as published by
-//   the Free Software Foundation, either version 3 of the License, or
-//   (at your option) any later version.
-//
-//   myMain.c is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of the GNU General Public License
-//   along with myMain.c. If not, see <http://www.gnu.org/licenses/>.
-// ===============================================================================
 #include "FILDERX.h"
 
 /// VARIABILI GLOBALI PER TUTTI I FILE
 unsigned long int      count = 1;
 listFILDERX       *headTList = NULL;
 SettFILDERX        *settaggi = NULL;
-
-
 
 int myMain(int argc, char* argv[])
 {

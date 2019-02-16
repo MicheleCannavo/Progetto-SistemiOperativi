@@ -18,10 +18,10 @@
 void printSett( int fdStream)
 {
     dprintf(fdStream, "\x1B[1;1H\x1B[2J");
-    dprintf(fdStream, "%s\n", "=============== Settaggi Struttura ============== ");
-    dprintf(fdStream, "Directory di lavoro    = [%s]\n", settaggi->dirWork);
-    dprintf(fdStream, "Directory Salvataggio  = [%s]\n", settaggi->dirSave);
-    dprintf(fdStream, "Pattern di ricerca     = [%s]\n", settaggi->patttFILDERX);
-    dprintf(fdStream, "Numero di core         = [%d]\n", settaggi->nCoreProcessor);
+    dprintf(fdStream, "%s\n", "=============== Settings Struct ============== ");
+    dprintf(fdStream, "Work Directory   = [%s]\n", settaggi->dirWork);
+    dprintf(fdStream, "Save Directory   = [%s]\n", settaggi->dirSave);
+    dprintf(fdStream, "Patern search    = [%s]\n", settaggi->patttFILDERX);
+    dprintf(fdStream, "Number of core   = [%d]\n", settaggi->nCoreProcessor);
     dprintf(fdStream, "%s\n", "==================================================");
 }

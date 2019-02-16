@@ -1,34 +1,37 @@
 /** ***************************************************************************
- * \file        delFolder.c 
- * \version     1.0
+ * \version     1.2
+ * \date        27/12/2018
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  * 
- * \details     Elimina le voci riferite a directory in una lista FILDERX
+ * \param[in] **headTList Doppio puntatore alla Lista 
  * 
- * 
- * \param[in] **head Puntatore doppio alla Lista da cui cercare gli elementi cartella
- *
  * \return 
  * \retval  -1  Funzione Fallita
- * \retval   0  Successo
+ * \retval   0  Successo 
+ * 
+ * \details     Elimina le voci riferite a directory in una lista FILDERX
+ * 
  *****************************************************************************/
 #include "FILDERX.h"
 
 listFILDERX* delFolder(listFILDERX **head)
 {
+// VARIABILI E INIZIALIZZAZIONI
     listFILDERX *s;
+
+// Verifica argomenti
     if(*head == NULL)
     {
         return NULL;
     }
 
+// Ricerca directory
     if( (*head)->next != NULL )
     {
         s=*head;
         while(s->next!=NULL)
         {
-
             if( IsDir(s->next) )
             {    
                 listFILDERX *l;

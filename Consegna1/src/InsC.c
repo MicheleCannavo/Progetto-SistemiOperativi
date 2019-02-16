@@ -17,7 +17,10 @@
 #include "FILDERX.h"
 
 int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
-{
+{ 
+       listFILDERX *t;
+       listFILDERX *s;
+
 // Verifica input
     if(nodoF==NULL || miniList==NULL)
     {
@@ -25,7 +28,6 @@ int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
         return -1;
     }
 
-    listFILDERX *t,*s;
     t=(listFILDERX*)calloc(1,sizeof(listFILDERX));
     if(t==NULL)
     {
@@ -42,6 +44,7 @@ int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
         t->elemento.absPath[PATH_MAX-1]='\0';
         t->next=NULL;
     }
+    
 // Lista con elementi
     else
     {
