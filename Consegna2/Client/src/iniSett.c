@@ -1,7 +1,18 @@
 #include "Client.h"
 
-/// Questa funzione alloca la memoria e inizializza una struct SettFILDERX 
-/// che servirà a contenere i settaggi del programma. 
+/** ****************************************************************************
+ * \verison 1.0
+ * 0
+ * \brief       Gestione dei settaggi del Client
+ *
+ * \details     Inizializza la struct dei settaggi del client
+ *
+ * \param   sockFD      ID del socket 
+ * \param   fs_name     Nome del file da inviare 
+ * 
+ * \return  Verifica dell'esito funzione 
+ * 
+ ******************************************************************************/
 int iniSett()
 {
     if(settaggi != NULL )
@@ -38,12 +49,6 @@ int iniSett()
         strncpy(settaggi->saveDir, getenv("HOME"), PATH_MAX- (strlen(SAVEDIR)+1)  );  
         strncat( settaggi->saveDir, SAVEDIR, strlen(SAVEDIR)+1 );
     } 
-
-
- 
-
-
-
 
     return 0;
 }

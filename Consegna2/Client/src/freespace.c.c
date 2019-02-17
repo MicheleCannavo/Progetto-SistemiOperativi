@@ -1,13 +1,7 @@
 #include "Client.h"
 
-
-
-
 /** ***************************************************************************
  * \brief   	Verifica se ci sia spazio libero a sufficenza per un file
- *
- * \details     La funzione verifica che ci sia spazio a sufficenza per salvare
- *              il file trasmesso. Verifica lo spazio dalla cartella di root.
  *
  * \param 	sizeF 	Dimensione da verificare
  * 
@@ -15,24 +9,28 @@
  * 
  * \retval	-1		Errore (errno = errno<-statvfs() )
  * \retval	 0		Spazio disponibile (errno = SUCCESS)
- * \retval	 1		Spazio insufficente (errno = ENOSPC)
+ * \retval	 1		Spazio insufficente (errno = ENOSPC) 
+ *
+ * \details     La funzione verifica che ci sia spazio a sufficenza per salvare
+ *              il file trasmesso. Verifica lo spazio dalla root.
+ * 
  ******************************************************************************/
 int freespace(unsigned long sizeF)
 {
-	// VARIABILI E INIZZIALIZZAZIONE
-	struct statvfs info;
-	unsigned long freeblck = 0;
-	unsigned long blsize   = 0;
-	unsigned long freespcs = 0;
+// VARIABILI E INIZZIALIZZAZIONE
+    struct statvfs info;
+	unsigned long freeblck = 0; // Blocchi liberi
+	unsigned long blsize   = 0; // Dimensione singolo blocco
+	unsigned long freespcs = 0; // Spazio libero
 
 	memset((struct statvfs *)&info, 0, sizeof(info));
 
-	// <recupero informazione dal sistema
+// Recupero informazione dal sistema
 	if (statvfs("/", &info) == 0)
 	{
-		blsize   = info.f_bsize;
-		freeblck = info.f_bavail;
-		freespcs = blsize * freeblck;
+		blsize   = info.f_bsize;        // Dimensione singolo blocco
+		freeblck = info.f_bavail;       // Blocchi liberi usabili
+		freespcs = blsize * freeblck;   // Spazio libero in byte
 		if (sizeF < freespcs)
 		{
 			return 0;

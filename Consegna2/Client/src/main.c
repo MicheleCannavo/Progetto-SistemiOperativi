@@ -1,5 +1,5 @@
 #include "Client.h"
-#include <signal.h>
+
 
 void svuota(void)
 {

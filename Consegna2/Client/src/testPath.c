@@ -1,6 +1,6 @@
  /** ******************************************************************************
- * \file        testPath.c
- * \version     1.0
+ * \version     1.1
+ * \date        09/01/2019
  * 
  * \brief       Testa l'esistenza di una directory
  * 
@@ -15,11 +15,14 @@
  * \details    Questa funzione testa l'esistenza di una directory invia la
  *             conferma della lettura. Serve per sincronizzare server e client.
  *
- *****************************************************************************/
+ ******************************************************************************/
 #include "Client.h"
 
 int testPath(char* wPath)
-{
+{  
+// VARIABILI E INIZIALIZZAZIONI
+    struct stat *path;
+
 // Verifica allocazione stringa
     if(wPath==NULL)
     {
@@ -28,14 +31,14 @@ int testPath(char* wPath)
         return -1;
     }
 
-// Creo struc stat 
-    struct stat *path;
+// Alloco la memoria per struct stat 
     path=(struct stat*)calloc(1,sizeof(struct stat));
     if(path==NULL)
     {
         PRINTERR("Controllo cartella ");
         return -1;
     }
+
 // Se wPath contiene il percorso di una directory
     if ( stat(wPath, path)==0 && S_ISDIR(path->st_mode) )
     {
@@ -50,7 +53,6 @@ int testPath(char* wPath)
         free(path);
         path=NULL;
         errno=ENOTDIR;
-        PRINTERR("Controllo cartella ");
         return 1;
     }
 }

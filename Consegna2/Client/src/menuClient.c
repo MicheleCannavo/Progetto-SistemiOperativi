@@ -1,55 +1,72 @@
-//==============================================================================
-/// \author     Cannavo' Michele [046002210]
-/// \date       04/01/2019
-//==============================================================================
-/// \file       funcPrint.c
-/// \brief      Funzioni per la stampa di informazioni di FILDERX
-/// \version    1.1
-/// \copyright  Licenza GPL 3.0
-/// \details    File contenente l Header per le funzione di stampa di FILDERX
+/** ***************************************************************************
+ * \version     1.1
+ * \date        04/01/2019
+ * 
+ * \brief   	Menu per il Client
+ *
+ * \retval   -1		Funzione fallita
+ * \retval	  0		Connessione riuscita
+ * 
+ * \details         Queste funzioni contengono i menu' di gestione delle scelte
+ *                  per operare con il Client.
+ * 
+ ******************************************************************************/
 #include "Client.h"
 
 int menCli()
-{
-    if(settaggi==NULL)
-    {
-        errno=EINVAL;
-        perror("Errore in menuServer()");
-        return -1;
-    }
-
+{ 
+// Ciclo per reiiterare il menu' 
+// e non avere solo una scelta da eseguire
     do
     {
-    int rep=0;
-    int choose=0;
+        int rep       = 0;
+        int choose    = 0;
+
         do
         {
+    // Menu'
+            fflush(stdout);
             printf("\x1B[1;1H\x1B[2J");
             printf("\t\t\t***** MENU CLIENT *****\n\n");
             printf("\t\t=======================================\n");
             printf("\t\t1) Settaggi\n");
             printf("\t\t2) Avvia Connessione\n");
             printf("\t\t3) Esci\n");
+        
+    // Verifica se si e' reiterato il menu'
             if( rep++ )
+            {     
                 printf("\nScelta non corretta\nRiprova=");
+                if(rep == INT_MAX)
+                {
+                    rep=1; 
+                }
+            }
             else
+            {
                 printf("\nScelta: ");
+            }
         }
         while (isdigit_in(&choose) != 0 || ( choose<1 || choose>3) );
 
+    // Scelta
         switch(choose)
         {
+        
+        // Gestione dei settaggi
         case 1:
             menSett();
             break;
 
+        // Connessione al Server
         case 2:
             gestClient();
             break;
             
+        // Uscita dal programma
         case 3:
             return 0;
-
+        // Scelta non conforme
         default:
             break;
         }
@@ -58,41 +75,61 @@ int menCli()
 
 int menSett()
 {
+// Ciclo per reiiterare il menu' 
+// e non avere solo una scelta da eseguire
     do
     {
-    int rep=0;
-    int choose=0;
+        int rep       = 0;
+        int choose    = 0;
+
         do
         {
-        fflush(stdout);
+    // Menu'
+            fflush(stdout);
             printf("\x1B[1;1H\x1B[2J");
             printf("\t\t\t*****MENU CLIENT-SETTAGGI*****\n\n");
             printf("\t\t=======================================\n");
             printf("\t\t1) Visualizza Settaggi\n");
             printf("\t\t2) Cambia Settaggi\n");
             printf("\t\t3) Indietro\n");
+    
+    // Verifica se si e' reiterato il menu'
             if( rep++ )
+            {     
                 printf("\nScelta non corretta\nRiprova=");
+                if(rep == INT_MAX)
+                {
+                    rep=1; 
+                }
+            }
             else
+            {
                 printf("\nScelta: ");
+            }
         }
         while (isdigit_in(&choose) != 0 || ( choose<1 || choose>3) );
 
+    // Scelta
         switch(choose)
         {
+
+        // Stampa i settaggi del programma
         case 1:
-            settPrint(STDOUT_FILENO);
+            settPrint();
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
             break;
 
+        // Modifica i settaggi del programma
         case 2:
             modSettCli();
             break;
             
+        // Ritorna al menu' precedente
         case 3:
             return 0;
         
+        // Scelta non prevista
         default:
             break;
         }
@@ -102,31 +139,47 @@ int menSett()
 
 int menAcc()
 {
+// Ciclo per reiiterare il menu' 
+// e non avere solo una scelta da eseguire
     do
     {
-    int rep=0;
-    int choose=0;
+        int rep    = 0;
+        int choose = 0;
+        int res    = 0; 
         do
         {
+    // Menu'
+            fflush(stdout);
             printf("\x1B[1;1H\x1B[2J");
             printf("\t\t\t*****MENU CLIENT-ACCONUT*****\n");
-            printf("\t\t\t  (IP=%s - Porta=%u)\n",settaggi->IP_STRING,settaggi->nPort);
+            printf("\t\t\t    (IP=%s - Porta=%u)\n",settaggi->IP_STRING,settaggi->nPort);
             printf("\t\t=======================================\n");
             printf("\t\t1) Registrati\n");
             printf("\t\t2) Accedi\n");
-            printf("\t\t3) Indietro\n");
+            printf("\t\t3) Chiudi Client\n");
+    
+    // Verifica se si e' reiterato il menu'
             if( rep++ )
+            {     
                 printf("\nScelta non corretta\nRiprova=");
+                if(rep == INT_MAX)
+                {
+                    rep=1; 
+                }
+            }
             else
+            {
                 printf("\nScelta: ");
+            }
         }
         while (isdigit_in(&choose) != 0 || ( choose<1 || choose>3) );
-        int res;
-
+    
+    // Scelta
         switch(choose)
         {
+        // ADD_USER
         case 1:
-            res= addUser(sockid_Client);
+            res= addUser();
             if(res<0)
             {
                 printf("Errore nella registrazione \n");
@@ -141,18 +194,20 @@ int menAcc()
                 SBUFFER;
                 break;
             }
-            else //res == 0
-            {
+            else // res == 0
+            {                
+                printf("User Reistrato\n");
                 printf("\nPremere [INVIO] per contniuare...\n");
                 SBUFFER;
                 break;
             }
 
+        // VER_USER
         case 2:
-            res= verUser(sockid_Client);
+            res= verUser();
             if(res<0) 
             {
-                printf("Errore nel Server\n");
+                printf("Errore nella convalida accesso\n");
                 printf("\nPremere [INVIO] per contniuare...\n");
                 SBUFFER;
                 break;
@@ -169,7 +224,7 @@ int menAcc()
                 menFilderx();
                 break;
             }
-
+        // Chiusura client
         case 3:
             closeSocket();
             return 0;
@@ -188,34 +243,51 @@ int menFilderx()
     int choose=0;
         do
         {
-        fflush(stdout);
+            fflush(stdout);
             printf("\x1B[1;1H\x1B[2J");
             printf("\t\t\t*****MENU CLIENT FILDERX*****\n\n");
+            printf("\t\t\t    (IP=%s - Porta=%u)\n",settaggi->IP_STRING,settaggi->nPort);
             printf("\t\t=======================================\n");
             printf("\t\t1) Invia File\n");
             printf("\t\t2) Preleva File\n");
             printf("\t\t3) Indietro\n");
+    
+    // Verifica se si e' reiterato il menu'
             if( rep++ )
+            {     
                 printf("\nScelta non corretta\nRiprova=");
+                if(rep == INT_MAX)
+                {
+                    rep=1; 
+                }
+            }
             else
+            {
                 printf("\nScelta: ");
+            }
         }
         while (isdigit_in(&choose) != 0 || ( choose<1 || choose>3) );
 
         switch(choose)
         {
         case 1:
-        
+            wwconf(sockid_Client,"SEND_FIL");
+            sendFILE( sockid_Client);
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
             break;
             
         case 2:
+
+
+        case 3:
+            wwconf(sockid_Client,"RECV_FIL");
+            recvFILE(sockid_Client,"",4);
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
             break;
 
-        case 3:
+        case 4:
             return 0;
 
         default:
