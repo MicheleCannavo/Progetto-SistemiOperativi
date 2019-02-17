@@ -17,7 +17,7 @@
 listFILDERX* listdir(const char *name)
 {   
 // VARIABILI E INIZIALIZZAZIONI
-    char          *fullPath   = NULL;
+    char          fullPath[PATH_MAX]  ;
     ELEFILDERX    *tmp        = NULL;
     DIR           *directory  = NULL;
     struct dirent *elementDir = NULL;
@@ -66,10 +66,6 @@ listFILDERX* listdir(const char *name)
         else
         { 
             realpath(elementDir->d_name, fullPath);
-            if( fullPath == NULL )
-            {
-                return NULL;
-            }
              
             tmp = creaNodo1(fullPath, count++);
             if(tmp == NULL)
@@ -77,8 +73,6 @@ listFILDERX* listdir(const char *name)
                 return NULL;
             }
             
-            free(fullPath);
-            fullPath = NULL;
         }
 
     // Inserisco nodo e libero la memoria

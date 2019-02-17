@@ -64,7 +64,7 @@ int menuF()
         case 3: 
             printf("\nAttendere ricerca in corso...");  
             MotoreFILDER(*settaggi);        
-            printf("\rRicerca finita - Premere [INVIO] per contniuare...");
+            printf("\nRicerca finita - Premere [INVIO] per contniuare...");
             SBUFFER;
             break;
 

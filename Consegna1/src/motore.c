@@ -113,7 +113,9 @@ void *funcT(void*arg)
         if(i!=NULL)
         {
           listFILDERX *miniList=listdir(i->elemento.absPath);
-       //     printf("%zu\n\n",pthread_self());  
+
+           printf("%zu\n\n",pthread_self());  
+
           if(totL(&headTList,miniList)!=0)
             {
                 perror ("Errore 2 in funcT");

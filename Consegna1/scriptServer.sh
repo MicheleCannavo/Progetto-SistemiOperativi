@@ -26,7 +26,7 @@ case $choose1 in
 	./bin/cons1 $1
 	;;
 "4")
-	gcc -Wall -o ./bin/cons1 ./$SourceList -lpthread
+	gcc -Wall ./$SourceList -lpthread -o ./bin/cons1 
 	./bin/cons1 $1
 	;;
 "5")

@@ -17,8 +17,8 @@
 ELEFILDERX *creaNodo1( const char* path, unsigned long id)
 { 
 // VARIABILI E INIZIALIZZAZIONI    
-  char       *tmpPath = NULL;
-  ELEFILDERX *tmp     = NULL;
+  char       *tmpPath ;
+  ELEFILDERX *tmp     ;
 
 // Verifica input
     if(path==NULL)
