@@ -21,16 +21,18 @@
 
 int  isdigit_in( int* caracter )
 {
+
 // Verifica allocazione del puntatore
     if( caracter == NULL )
     {
         errno=EINVAL;
-        perror(__FUNCTION__);
         return -1;
     }
 
+// prelevo il primo carattere in input
     *caracter = getchar();
-// Verifica che l'nput sia di un solo carattere numerico
+
+// Verifica che l'input sia di un solo carattere numerico
     if( isdigit( *caracter ) && getchar() == '\n' )
     {
         *caracter -= '0';
@@ -38,7 +40,7 @@ int  isdigit_in( int* caracter )
     }
 
 // Controlla che non sia stat premuto "INVIO" senza altri input
-   if(*caracter!=10)
+   if(*caracter!='\n')
         SBUFFER;
 
     *caracter=-1; 
@@ -50,7 +52,6 @@ int inputUInt( unsigned int *result )
     if( result == NULL )
     {
         errno=EINVAL;
-        perror("Errore in InputUInt()"); 
         return -1 ;
     }
 
@@ -131,4 +132,22 @@ int inputInt( int *result )
         *result = 0;
         return -1;
     }
+}
+
+
+int  isalpha_in( int* caracter )
+{
+    if( caracter == NULL )
+		return -1;
+
+    *caracter = getchar();
+	if(*caracter==10)
+		return -1;
+
+    if( isalpha( *caracter  ) && (getchar() == '\n') )
+        return 0;
+
+  //  SBUFFER;
+   *caracter = -1;
+    return 1;
 }

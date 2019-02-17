@@ -28,6 +28,7 @@ int wwconf(int sockid, const char comm[9])
         PRINTERR("Invio comando: ");
         return -1;
     }
+    
 // Imposto un timeout per riceere conferma
     alarm(TIMEOUT);
 

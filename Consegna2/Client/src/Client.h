@@ -112,8 +112,6 @@ int mainWrite (int id, const char* nomeUser, const char *passser);
 int mainRead ();
 int mainVer(int id, const char *name, const char *pass);
 
-size_t   fullread(int fd,       void *buff, size_t count);
-size_t  fullwrite(int fd, const void *buff, size_t count);
 
 /////////////////////////////////// SETTAGGi //////////////////////////////////
 int  myMainC(int argc, char *argv[]);
@@ -140,12 +138,12 @@ int closeSocket();
 int  gestClient();
 
 ///////////////////////////////////////////////////////////////////////////////////
-int wwconf2(const char *buff);
-int rwconf2(char *buff);
+int wwconf(int sockid, const char buff[9]);
+int rwconf(int sockid, char buff[9]);
 
 ///////////////////////////////////////////////////////////////////////////////////
-int verUser();
-int addUser();
-int addUser2( char *name, char *pass);
-int verUser2( char *name, char *pass);
+int verUser(int sockid);
+int addUser(int sockid);
+//int addUser2( char *name, char *pass);
+//int verUser2( char *name, char *pass);
 #endif

@@ -1,6 +1,6 @@
 #include "Client.h"
 
-int verUser()
+int verUser(int sockid)
 {
 // VARIABILI E INIZZIALIZZAZIONE
     char user[MAX_CHAR_USER];
@@ -12,7 +12,7 @@ int verUser()
     memset(buff, '\0', sizeof(buff) );
 
 // Invio comando VER_USER
-    if (wwconf2("VER_USER") != 0)
+    if (wwconf(sockid, "VER_USER") != 0)
     {
         PRINTERR("Invio comando: ");
         return -1;
@@ -45,13 +45,13 @@ int verUser()
         return -1;
     }
 
-// Ricevo e verifico esito
+// Ricevo esito
     if (read(sockid_Client, buff, 3) < 0)
     {
-        PRINTERR(" Verifica VER_USER");
         return -1;
     }
 
+// Verifico esito
     if (strncmp(buff, "OK", 3) == 0)
     {
         PRINTERR("ACCESSO CONSENTITO: ");
@@ -64,7 +64,6 @@ int verUser()
     }
     else
     {
-        PRINTERR("Errone nella verifica: ");
         return -1;
     }
 }

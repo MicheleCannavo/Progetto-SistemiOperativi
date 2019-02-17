@@ -15,22 +15,22 @@
  *****************************************************************************/
 #include "Client.h"
 
-int addUser()
+int addUser(int sockid)
 {       
-// VARIABILI E INIZZIALIZZAZIONI
+// VARIABILI E INIZIALIZZAZIONI
     char user1[MAX_CHAR_USER];
     char pass1[MAX_CHAR_PASS];
     char pass2[MAX_CHAR_PASS];
     char risp[3];
-    int  s  =0;
+    int s   = 0;
 
     memset(user1, '\0', sizeof(user1) );
     memset(pass1, '\0', sizeof(pass1) );
     memset(pass2, '\0', sizeof(pass2) );
-    memset( risp, '\0', 4 );
+    memset( risp, '\0', 3 );
 
 // Invio Comando ADD_USER
-    if(wwconf2("ADD_USER") != 0)
+    if(wwconf(sockid, "ADD_USER") != 0)
     {
         PRINTERR("Invio comando:");
         return 1;

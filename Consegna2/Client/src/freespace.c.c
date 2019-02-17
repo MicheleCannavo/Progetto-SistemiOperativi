@@ -1,43 +1,6 @@
 #include "Client.h"
 
-int  isalpha_in( int* caracter )
-{
-    if( caracter == NULL )
-		return -1;
 
-    *caracter = getchar();
-	if(*caracter==10)
-		return -1;
-
-    if( isalpha( *caracter  ) && (getchar() == '\n') )
-        return 0;
-
-  //  SBUFFER;
-   *caracter = -1;
-    return 1;
-}
-
-int verTrnsf(int sockid, int dimF,int dimR)
-{
-	if(dimR==0)
-	{
-		printf("\nFile non ricevuto\n");
-		send(sockid,"ZER",4,0);
-		return -1;
-	}
-	else if( dimR!=dimF && dimR!=0 )
-	{
-		printf("\nFile danneggiato\n");
-		send(sockid,"DMG",4,0);
-		return 1;
-	}
-	else // dimR == dimF
-	{
-		printf("File ricevuto con successo\n");
-		send(sockid, "INT", 4, 0);
-		return 0;
-	}
-}
 
 
 /** ***************************************************************************

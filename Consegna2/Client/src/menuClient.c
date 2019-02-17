@@ -48,9 +48,6 @@ int menCli()
             break;
             
         case 3:
-            
-
-            break;
             return 0;
 
         default:
@@ -129,7 +126,7 @@ int menAcc()
         switch(choose)
         {
         case 1:
-            res= addUser();
+            res= addUser(sockid_Client);
             if(res<0)
             {
                 printf("Errore nella registrazione \n");
@@ -152,7 +149,7 @@ int menAcc()
             }
 
         case 2:
-            res= verUser();
+            res= verUser(sockid_Client);
             if(res<0) 
             {
                 printf("Errore nel Server\n");
