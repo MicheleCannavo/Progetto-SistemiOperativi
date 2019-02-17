@@ -12,6 +12,7 @@ int closeSocket()
     for(int i=5;i>0;i--)
     {
         printf("\rIl programma si chiuderà in %d second%c", i, i==1?'o':'i');
+          fflush(stdout);
         sleep(1);
     }
 

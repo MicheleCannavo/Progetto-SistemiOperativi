@@ -1,21 +1,56 @@
-#include "s.h"
-int sendFILE(int sockid, char *fs_name)
+#include "Client.h"
+/** ***************************************************************************
+ * \brief   	Invia un file tramite socket 
+ *
+ * \details     La funzione e' molto semplice. Innanzitutto invio la lunghezza
+ *              del nome del file, per poter usare agevolmente il flag
+ *              MSG_WAITALL nella funzione send(). Evito quindi la possibilità
+ *              che il nome del file venga inviato a pezzi (anche se con una
+ *              semplice stringa la possibilità e' remota, essendo i nomi dei
+ *              file di massimo NAME_MAX(256) caratteri). Invio successivamente
+ *              il nome del file per verificare per poterlo salvare con lo
+ *              stesso nome, e infine invio la dimensione del file, utile per
+ *              due scopi. Il primo e' una semplice verifica della dimensione
+ *              del file arrivato sicuramente verrà spedito in blocchi, e il TCP
+ *              ha un controllo solo sul singolo blocco e non sul totale file,
+ *              la seconda e' che, sapendo la dimensione totale del file, il
+ *              ricevente sa esattamente quanti dati aspettarmi, e posso
+ *              impostare il buffer della recv() in maniera da attendere il
+ *              giusto quantitativo di byte. Infine aspetto che il ricevente
+ *              inoltri l'esito della verifica dell'invio del file.    
+ *
+ * \param 	sockFD      ID del socket
+ * \param   fs_name     Nome del file da inviare 
+ * 
+ * \return  Verifica dell'esito funzione 
+ ******************************************************************************/
+int sendFILE(int sockFD)
 {
-// Variabili
-    char    	sdbuf[LENGTH] = {""}; // Send buffer	
-	char 		risp[4]		  = {""}; // Risposta al client
-	int     	fdF	 		  =	0; 	  // File descriptor file
-	int 		lName		  = 0;    // Lunghezza nome file
-	size_t 		sizeF      	  =	0; 	  // Dimensione totale del file da inviare
-    ssize_t 	fs_block_sz	  =	0; 	  // Dimensione blocco dati da inviare
-	size_t 		tmpFT      	  =	0; 	  // Dimensione dati totale inviati
-	struct stat fileStat;
-	
-// Azzero la struct stat e il buffer per evitare errori
-	memset((char*)sdbuf, '\0', sizeof(sdbuf) );
-	memset((struct stat*)&fileStat, 0, sizeof(struct stat)); 
+// Variabili con inizializzazione
+	char		fs_name[PATH_MAX+1]; 
+    char    	sdbuf[LENGTH] 	; 	// Send buffer	
+	char 		risp[4]			;	// Stringa per la verifica
+	int     	fdF	 		  =	0;  // File descriptor file
+	int 		lName		  = 0;  // Lunghezza nome file
+	size_t 		sizeF      	  =	0; 	// Dimensione totale del file da inviare
+    ssize_t 	fs_block_sz	  =	0; 	// Dimensione blocco dati da inviare
+	size_t 		tmpFT      	  =	0; 	// Dimensione dati totale inviati
+	struct stat fileStat		;	// Struct stat per dimensione file
 
-// Apro il file in lettura e ne prendo la dimensione tramite il fd
+// Azzeramento stringhe e struct per evitre errori
+	memset( (char*)fs_name, '\0', PATH_MAX);
+	memset( (char*)sdbuf,   '\0', sizeof(sdbuf) );
+	memset( (char*)risp,    '\0', 4);
+	memset((struct stat*)&fileStat, 0, sizeof(struct stat)); 	
+	
+// Scegli file
+	printf("Inserisci il nome del file comprensivo di percorso: ");
+	fgets(fs_name, PATH_MAX, stdin);
+	fs_name[PATH_MAX]='\0';
+	if(fs_name[strlen(fs_name)-1]=='\n')
+		fs_name[strlen(fs_name)-1]='\0';
+
+// Apertura file in lettura e calcolo dimensione Nome e File
     fdF = open(fs_name, O_RDONLY);
 	if(fdF == -1)
 	{
@@ -28,23 +63,23 @@ int sendFILE(int sockid, char *fs_name)
 		return -1;
 	}
 	sizeF=fileStat.st_size;
-	printf("\nInizio trasferimento del file: %s-[%zu bytes]\n\n",fs_name, sizeF);
 	lName=strlen(fs_name)+1;
+
 // Invio lunghezza nome file
-	if(send(sockid,(void *)&lName,sizeof(int),MSG_WAITALL) != sizeof(int) )
+	if(send(sockFD,(void *)&lName,sizeof(int), 0) != sizeof(int) )
 	{
 		PRINTERR("invio nome del file: ");
 		return -1;
 	}
-// Invio il nome del file
-	if(send(sockid, fs_name, strlen(fs_name)+1, 0) <0 )
+// Invio nome file
+	if(send(sockFD, fs_name, lName, 0) <0 )
 	{
 		PRINTERR("Invio nome file: ");
 		return -1;
 	}
 	
-// Invio la dimensione
-	if(send(sockid,(void*)&sizeF, sizeof(size_t),0) <0 )
+// Invio dimensione file
+	if(send(sockFD,&sizeF, sizeof(size_t),0) <0 )
 	{
 		PRINTERR("Invio dimensione file: ");
 		return -1;
@@ -52,11 +87,12 @@ int sendFILE(int sockid, char *fs_name)
 	printf("\nInizio trasferimento del file: %s-[%zu bytes]\n\n",fs_name,sizeF);
 
 // Trasferimento file
-	while((fs_block_sz =read(fdF,sdbuf, 512))>0)
+	while((fs_block_sz =read(fdF,sdbuf, settaggi->maxBuffer))>0)
 	{
 		tmpFT+=fs_block_sz;// Byte totali letti
 		printf("\rTraferiti=%zu di %zu", tmpFT, sizeF);
-	    if(send(sockid, sdbuf, fs_block_sz, 0) < 0)
+		fflush(stdout);
+	    if(send(sockFD, sdbuf, fs_block_sz, 0) < 0)
 	    {
 	        PRINTERR("send()");
 	        return -1;
@@ -69,14 +105,13 @@ int sendFILE(int sockid, char *fs_name)
 		PRINTERR("sending()-write()");
 		return -1;
 	}
-// Ricezione risposta
-	if(recv(sockid, risp, 4, 0) != 4 )
+// Ricezione e verifica esito invio
+	if(recv(sockFD, risp, 4, 0) != 4 )
 	{
 		PRINTERR("Ricezione risposta:");
 		return -1;
 	}
 
-// Verifica risposta
 	if(strncmp(risp,"ZER",4)==0)
 	{
 		printf("\nNon ricevuto\n");
@@ -92,6 +127,4 @@ int sendFILE(int sockid, char *fs_name)
 		printf("\nFile integro\n");
 		return 0;
 	}
- //   close(fdF);
-  //  return 0;
 }
