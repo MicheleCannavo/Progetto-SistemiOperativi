@@ -281,6 +281,7 @@ int menFilderx()
             
         // REQ_FILE
         case 2:
+            wwconf(sockid_Client,"REQ_FILE");
             searching(sockid_Client);
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;

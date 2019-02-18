@@ -14,13 +14,12 @@
  * 
  ******************************************************************************/
 #include "Server.h"
-#include <time.h>
 
 int gestConn()
 {
 // VARIABILIE INIZIALIZZAZIONI
     int                 client_sockfd = -1;
-    int                 server_sockfd = -1;
+
     time_t              ora;
     char                l[900];
     char                command[9];

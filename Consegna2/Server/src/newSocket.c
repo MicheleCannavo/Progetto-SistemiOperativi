@@ -1,11 +1,5 @@
-#include "Server.h"
 
-int server_sockfd=-1;
-int client_sockfd=-1;
-
-
- /**
- ******************************************************************************
+ /** ******************************************************************************
  *  \file       newsocket.c
  *  \version    1.0
  * 
@@ -20,6 +14,10 @@ int client_sockfd=-1;
  *  \retval    -1   Errore nella funzione
  *  \retval     0   Socket creato
  *****************************************************************************/
+#include "Server.h"
+
+int server_sockfd=-1;
+int client_sockfd=-1;
 int newSocket(int *sock_fd, unsigned short port, unsigned long addr) 
 {
 

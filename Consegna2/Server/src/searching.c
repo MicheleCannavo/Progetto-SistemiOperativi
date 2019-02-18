@@ -26,10 +26,11 @@ int searching(int sockid)
     }
 
 // Lista piena
+
     while(tmp->next!=NULL)
     {
         if(tmp->elemento.absPath[0] == '/' && 
-                fnmatch(patt,basename(tmp->elemento.absPath), FNM_NOESCAPE)==0)
+                fnmatch(patt, basename(tmp->elemento.absPath), FNM_NOESCAPE)==0)
         {
             dPathF=strlen(tmp->elemento.absPath)+1;
             //Invio la lunghezza del pathFile
@@ -52,10 +53,12 @@ int searching(int sockid)
 
             // invio il pathf file
             send(sockid, tmp->elemento.absPath, dPathF, 0); 
+            printf("--%s\n",tmp->elemento.absPath);
     }
     // Fine invio
     dPathF=-1;
     send(sockid, &dPathF, sizeof(int), 0); 
+    printf("FINE INVIO");
 
     return 0;
 }

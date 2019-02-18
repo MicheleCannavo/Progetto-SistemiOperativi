@@ -11,12 +11,26 @@
 */
 #include "Server.h"
 #include "FILDERX.h"
-int saveid;
-
 SettSERVER  *settaggi = NULL;
+void svuota(void)
+{
+    closefd(&server_sockfd);
+    printf("\x1B[1;1H\x1B[2J");
+}
+
+void timeout(int sig)
+{
+    signal(SIGALRM, SIG_IGN);
+    errno=ETIMEDOUT;
+    closefd(&server_sockfd);
+    signal(SIGALRM,timeout);
+}
 
 int myMainS(int argc, char* argv[])
-{
+{   
+    atexit(svuota);
+    signal(SIGALRM,timeout);
+
     if (argc<1 || argc>2 )
     {
         errno=EINVAL;
@@ -52,6 +66,5 @@ int myMainS(int argc, char* argv[])
 
     free(settaggi);
     settaggi=NULL;
-    close(saveid);
     return 0;
 }

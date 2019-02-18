@@ -29,6 +29,7 @@
 #include <netdb.h>        //
 #include <sys/statvfs.h>  //
 #include <time.h>         //
+#include "FILDERX.h"
 
 //int FDD=2; 
 #define PRINTERR(x) printf( "[%s:%d] - %s-%s\n",__FUNCTION__,__LINE__,x,strerror(errno))
@@ -36,6 +37,7 @@
 #define BACKLOG     (5)
 #define LENGTH      (2048)
 #define TIMEOUT     (5)
+#define MAX_CORE    (32)
 
 #ifndef PATH_MAX
 #define PATH_MAX    (2048)
@@ -50,11 +52,8 @@
 #endif
 
 
-
-/**
- * \def    DECIMO_UINT
- * \brief  A1/10 del valore di UNIT_MAX
- */
+/// \def    DECIMO_UINT
+/// \brief  A1/10 del valore di UNIT_MAX
 #define DECIMO_UINT ((UINT_MAX)/10)
 
 /**
@@ -117,25 +116,15 @@
                     while ( ( ch=getchar() ) !='\n' && (ch != EOF) );\
                 }while(0)
 
-#define N_COMM (7)
+#define N_COMM (5)
 
 extern const char *_COMMAND_[];
 
 #define VER_USER _COMMAND_[0]
 #define ADD_USER _COMMAND_[1]
-#define RES_USER _COMMAND_[2]
-#define REQ_FILE _COMMAND_[3]
-#define SEND_FIL _COMMAND_[4]
-#define RECV_FIL _COMMAND_[5]
-#define SHELL_FN _COMMAND_[6]
-
-
-
-
-
-
-
-
+#define REQ_FILE _COMMAND_[2]
+#define SEND_FIL _COMMAND_[3]
+#define RECV_FIL _COMMAND_[4]
 
 struct _SettSERVER //<!
 {
@@ -146,7 +135,6 @@ struct _SettSERVER //<!
 };
 // Alias per struct _SetttSERVER
 typedef struct _SettSERVER SettSERVER;
-
 
 struct accounting
 { 
@@ -160,6 +148,7 @@ typedef struct accounting USER_FILDERX;
 
  //  VARIABILI GLOBALI PER TUTTI I FILE
 extern SettSERVER *settaggi;
+extern int server_sockfd;
 
 ////////////////////////////////// PROTOTIPI //////////////////////////////////
 

@@ -20,11 +20,9 @@
 const char *_COMMAND_[]={
     "VER_USER",
     "ADD_USER",
-    "RES_FILE",
     "REQ_FILE",
     "SEND_FIL",
     "RECV_FIL",
-    "SHELL_LN"
 };
 
 int rwconf(int sockid, char *comm)

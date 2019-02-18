@@ -1,12 +1,3 @@
-#include "FILDERX.h"
-
-/// VARIABILI GLOBALI PER TUTTI I FILE
-unsigned long int       count;  // Contatore di file
-listFILDERX        *headTList;  // Lista completa globale
-pthread_t           thread[32]; // Variabile per i thread (fino a 32 gestibili)
-pthread_mutex_t       muxList;  // Mutex1
-pthread_mutex_t      muxList2;  // Mutex2
-
 /** ***************************************************************************
  * \version     1.5
  * \date        25/12/2018
@@ -17,6 +8,14 @@ pthread_mutex_t      muxList2;  // Mutex2
  * \details     Questa funzione e' il motore di ricerca.
  * 
  *****************************************************************************/
+#include "Server.h"
+
+/// VARIABILI GLOBALI PER TUTTI I FILE
+unsigned long int            count;     // Contatore di file
+listFILDERX             *headTList;     // Lista completa globale
+pthread_t         thread[MAX_CORE];     // Variabile per i thread (fino a 32 gestibili)
+pthread_mutex_t            muxList;     // Mutex1
+pthread_mutex_t           muxList2;     // Mutex2
 int MotoreFILDER( )
 {
 // VARIABILI E INIZZIALIZZAZIONI

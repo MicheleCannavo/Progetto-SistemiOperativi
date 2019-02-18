@@ -1,6 +1,3 @@
-#include "Server.h"
-
-
 /** ***************************************************************************
  * \brief   	Verifica se ci sia spazio libero a sufficenza per un file
  *
@@ -16,6 +13,8 @@
  *              il file trasmesso. Verifica lo spazio dalla root.
  * 
  ******************************************************************************/
+#include "Server.h"
+
 int freespace(unsigned long sizeF)
 {
 // VARIABILI E INIZZIALIZZAZIONE

@@ -10,12 +10,6 @@ int searching(int sockid)
     memset(patt,'\0',PATT_MAX);
     memset(list,'\0',PATH_MAX);
 
-// Comando per la richiesta file
-    if(wwconf(sockid,"REQ_FILE")!=0)
-    {
-        PRINTERR("Errore nel comando");
-        return -1;
-    }
 // Richiedo il pattern per la richiesta file
     printf("Inserisci il pattern: ");
     fgets(patt, PATT_MAX-1, stdin);
@@ -26,11 +20,18 @@ int searching(int sockid)
 // invio la richiesta
     dPathaF=strlen(patt)+1;
     send(sockid, &dPathaF,sizeof(int),0);
-    send(sockid, patt, PATT_MAX, 0);
+    send(sockid, patt, dPathaF, 0);
 
 // Ricevo la lista
-    while( recv(sockid, (void*)&dPathaF, sizeof(int), 0) != -1 )
+    while( recv(sockid, (void*)&dPathaF, sizeof(int), MSG_WAITALL) == sizeof(int) )
     {
+        if(dPathaF==-1)
+        {
+            printf("\n\nFINE INVIO!!\n");
+            break;
+        }
+   
+        memset(list,'\0',PATH_MAX);
         recv(sockid, list, dPathaF, MSG_WAITALL);
         printf("%s\n",list);
     }
