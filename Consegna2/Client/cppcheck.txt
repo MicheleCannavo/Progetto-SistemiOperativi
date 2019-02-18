@@ -1,11 +1,10 @@
-[src/freespace.c.c:22] -> [src/freespace.c.c:28]: (style) Condition 'dimR!=0' is always true
-[src/freespace.c.c:61]: (style) The scope of the variable 'freeblck' can be reduced.
-[src/freespace.c.c:62]: (style) The scope of the variable 'blsize' can be reduced.
-[src/freespace.c.c:63]: (style) The scope of the variable 'freespcs' can be reduced.
-[src/reciving.c:36]: (style) The scope of the variable 'byteRecv' can be reduced.
-[src/reciving.c:38]: (style) The scope of the variable 'buf2' can be reduced.
-[src/s.h:29] -> [src/sending.c:2]: (style, inconclusive) Function 'sendFILE' argument 1 names different: declaration 'sockFD' definition 'sockid'.
-[src/Client.h:141] -> [src/wwconfi.c:19]: (style, inconclusive) Function 'wwconf' argument 2 names different: declaration 'buff' definition 'comm'.
-[src/reciving.c:28]: (style) The function 'recvFILE' is never used.
-[src/sending.c:2]: (style) The function 'sendFILE' is never used.
+[src/freespace.c:22]: (style) The scope of the variable 'freeblck' can be reduced.
+[src/freespace.c:23]: (style) The scope of the variable 'blsize' can be reduced.
+[src/freespace.c:24]: (style) The scope of the variable 'freespcs' can be reduced.
+[src/reciving.c:37]: (style) The scope of the variable 'byteRecv' can be reduced.
+[src/reciving.c:39]: (style) The scope of the variable 'buf2' can be reduced.
+[src/searching.c:11]: (error) Buffer is accessed out of bounds: list
+[src/Client.h:158] -> [src/sending.c:26]: (style, inconclusive) Function 'sendFILE' argument 1 names different: declaration 'sockid' definition 'sockFD'.
+[src/Client.h:153] -> [src/wwconfi.c:19]: (style, inconclusive) Function 'wwconf' argument 2 names different: declaration 'buff' definition 'comm'.
+[src/searching.c:3]: (style) The function 'searching' is never used.
 (information) Cppcheck cannot find all the include files (use --check-config for details)

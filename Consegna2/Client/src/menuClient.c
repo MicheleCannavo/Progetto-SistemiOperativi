@@ -149,14 +149,14 @@ int menAcc()
         do
         {
     // Menu'
-            fflush(stdout);
-            printf("\x1B[1;1H\x1B[2J");
-            printf("\t\t\t*****MENU CLIENT-ACCONUT*****\n");
-            printf("\t\t\t    (IP=%s - Porta=%u)\n",settaggi->IP_STRING,settaggi->nPort);
-            printf("\t\t=======================================\n");
-            printf("\t\t1) Registrati\n");
-            printf("\t\t2) Accedi\n");
-            printf("\t\t3) Chiudi Client\n");
+        fflush(stdout);
+        printf("\x1B[1;1H\x1B[2J");
+        printf("\t\t\t*****MENU CLIENT FILDERX*****\n");
+        printf("\t\t\t  (IP=%s - Porta=%u)\n\n",settaggi->IP_STRING,settaggi->nPort);
+        printf("\t\t=======================================\n");
+        printf("\t\t1) Registrati\n");
+        printf("\t\t2) Accedi\n");
+        printf("\t\t3) Chiudi Client\n");
     
     // Verifica se si e' reiterato il menu'
             if( rep++ )
@@ -239,18 +239,19 @@ int menFilderx()
 {
     do
     {
-    int rep=0;
-    int choose=0;
+        int rep     = 0;
+        int choose  = 0;
         do
         {
             fflush(stdout);
             printf("\x1B[1;1H\x1B[2J");
-            printf("\t\t\t*****MENU CLIENT FILDERX*****\n\n");
-            printf("\t\t\t    (IP=%s - Porta=%u)\n",settaggi->IP_STRING,settaggi->nPort);
+            printf("\t\t\t*****MENU CLIENT FILDERX*****\n");
+            printf("\t\t\t  (IP=%s - Porta=%u)\n\n", settaggi->IP_STRING,  settaggi->nPort);
             printf("\t\t=======================================\n");
             printf("\t\t1) Invia File\n");
-            printf("\t\t2) Preleva File\n");
-            printf("\t\t3) Indietro\n");
+            printf("\t\t2) Richiedi File\n");
+            printf("\t\t3) Preleva File\n");
+            printf("\t\t4) Indietro\n");
     
     // Verifica se si e' reiterato il menu'
             if( rep++ )
@@ -266,10 +267,11 @@ int menFilderx()
                 printf("\nScelta: ");
             }
         }
-        while (isdigit_in(&choose) != 0 || ( choose<1 || choose>3) );
+        while (isdigit_in(&choose) != 0 || ( choose<1 || choose>4) );
 
         switch(choose)
         {
+    //SEND_FIL
         case 1:
             wwconf(sockid_Client,"SEND_FIL");
             sendFILE( sockid_Client);
@@ -277,9 +279,10 @@ int menFilderx()
             SBUFFER;
             break;
             
+        // REQ_FILE
         case 2:
-
-
+            break;
+        // RECV_FIL
         case 3:
             wwconf(sockid_Client,"RECV_FIL");
             recvFILE(sockid_Client,"",4);

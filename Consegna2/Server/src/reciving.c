@@ -110,7 +110,7 @@ int recvFILE(int sockid, char *fr_name, int buff)
 		send(sockid,"ZER",4,0);
 		return -1;
 	}
-	else if( countDT!=sizeF && countDT!=0 )
+	else if( countDT!=sizeF )
 	{
 		printf("\nFile danneggiato\n");
 		send(sockid,"DMG",4,0);

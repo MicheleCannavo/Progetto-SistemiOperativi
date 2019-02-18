@@ -124,7 +124,7 @@ extern const char *_COMMAND_[];
 #define VER_USER _COMMAND_[0]
 #define ADD_USER _COMMAND_[1]
 #define RES_USER _COMMAND_[2]
-#define REQ_USER _COMMAND_[3]
+#define REQ_FILE _COMMAND_[3]
 #define SEND_FIL _COMMAND_[4]
 #define RECV_FIL _COMMAND_[5]
 #define SHELL_FN _COMMAND_[6]
@@ -167,12 +167,10 @@ int mainWrite (int id, const char* nomeUser, const char *passUser);
 int mainRead ();
 int mainVer(int id, const char *name, const char *pass);
 
-//============ DI INPUT
-
 int isdigit_in( int *caracter );
 int  inputUInt( unsigned int *result );
 int   inputInt( int *result );
-int   testPath( char* wPath);
+int   testPath( char *wPath );
 int isalpha_in( int *caracter );
 int  freespace( unsigned long sizeF);
 
@@ -198,8 +196,8 @@ int verUser2( const char *name, const char *pass);
 int addUser2( int sockid, char *name,  char *pass);
 int  addUser( int sockfd);
 
-int sendFILE( int  sockFD);
-int recvFILE( int  sockid, char *fr_name, int buff);
-int verTrnsf( int  sockid, int   dimF,    int dimR);
+int  sendFILE( int sockFD);
+int  recvFILE( int sockid, char *fr_name, int buff);
+int searching( int sockid);
 
 #endif

@@ -5,8 +5,9 @@
 int searching(int sockid)
 {
 // VARIABILI E INIZIALIZZAZIONI
-    char patt[PATT_MAX];
-    char list[PATT_MAX];
+    char    patt[PATT_MAX];
+    char    list[PATT_MAX];
+    int     dPathF  =    0;
 
     memset(patt,'\0',PATT_MAX);
     memset(list,'\0',PATH_MAX);
@@ -26,7 +27,6 @@ int searching(int sockid)
     if(tmp==NULL)
     {
         printf( "Non ci sono elementi nella lista");
-        return -1;
     }
 
 // Lista piena
@@ -35,7 +35,12 @@ int searching(int sockid)
         if(tmp->elemento.absPath[0] == '/' && 
                 fnmatch(patt,basename(tmp->elemento.absPath), FNM_NOESCAPE)==0)
         {
-            send(sockid, tmp->elemento.absPath, strlen(tmp->elemento.absPath)+1, 0); 
+            dPathF=strlen(tmp->elemento.absPath)+1;
+            //Invio la lunghezza del pathFile
+            send(sockid, (void*)&dPathF, sizeof(int), 0); 
+
+            // invio il pathf file
+            send(sockid, tmp->elemento.absPath, dPathF, 0); 
         }
         tmp=tmp->next;
     }
@@ -44,8 +49,16 @@ int searching(int sockid)
     if(tmp->elemento.absPath[0] == '/' &&
             !fnmatch(patt,basename(tmp->elemento.absPath), FNM_NOESCAPE))
     {
-            send(sockid, tmp->elemento.absPath, strlen(tmp->elemento.absPath)+1, 0); 
+            dPathF=strlen(tmp->elemento.absPath)+1;
+            //Invio la lunghezza del pathFile
+            send(sockid, (void*)&dPathF, sizeof(int), 0); 
+
+            // invio il pathf file
+            send(sockid, tmp->elemento.absPath, dPathF, 0); 
     }
+    // Fine invio
+    dPathF=-1;
+    send(sockid, (void*)&(dPathF), sizeof(int), 0); 
 
     return 0;
 }

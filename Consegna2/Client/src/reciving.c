@@ -129,5 +129,25 @@ while(countDT!=sizeF)
 }close(fdF);
 chdir(pathAct);
 // Verifica sommaria dalla dimensione del file arrivato
-	return verTrnsf(sockFD, sizeF, countDT);
+	if(countDT == 0 )
+	{
+		printf("File non ricevuto\n");
+		send(sockFD, "ZER", 4, 0);
+		return -1;
+	}
+	else if(countDT != sizeF && countDT !=0)
+	{
+
+		printf("File danneggiato\n");
+		send(sockFD, "DMG", 4, 0);
+		return -1;
+	}
+	else
+	{
+		{
+			printf("File ricevuto con successo\n");
+			send(sockFD,"INT",4,0);
+			return 0;
+		}
+	}
 }

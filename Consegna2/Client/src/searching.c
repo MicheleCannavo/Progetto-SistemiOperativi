@@ -5,6 +5,7 @@ int searching(int sockid)
 // VARIABILI E INIZIALIZZAZIONI
     char patt[PATT_MAX];
     char list[PATT_MAX];
+    int  dPathaF=0;
 
     memset(patt,'\0',PATT_MAX);
     memset(list,'\0',PATH_MAX);
@@ -18,6 +19,10 @@ int searching(int sockid)
     send(sockid, patt, PATT_MAX, 0);
 
 // Ricevo la lista
-    recv(sockid, list, PATH_MAX, 0);
+    while( recv(sockid, (void*)&dPathaF, sizeof(int), 0) != -1 )
+    {
+        recv(sockid, list, dPathaF, MSG_WAITALL);
+        printf("%s\n",list);
+    }
     return 0;
 }

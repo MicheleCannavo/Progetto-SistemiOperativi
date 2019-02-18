@@ -30,7 +30,7 @@ int gestConn()
 // Nuova connessione
     if (newSocket(&server_sockfd, settaggi->nPort, INADDR_ANY) != 0)
     {
-        PRINTERR("Nuova connessione: ");
+        PRINTERR("Connessione fallita: ");
         return -1;
     }
 
@@ -63,21 +63,26 @@ int gestConn()
 
         if (cpid == 0)
         {
-            close(server_sockfd);
+            // Chiudo il socket_server del figlio per eliminare i vari
+            //  riferimenti che non permetterebbero la chiusura di esso
+            close(server_sockfd); 
 
             while (1)
             {
+            // Azzeramento variabile per i comandi e attesa ricezioe di uno di essi
                 memset((void *)command, 0, 9);
                 if (rwconf(client_sockfd, command) != 0)
                 {
                     break;
                 }
-                // ADD_USER
+
+            // ADD_USER
                 if (strncmp(command, ADD_USER, 9) == 0)
                 {
                     printf("[%s] Tentativo di registrazione da %s\n",
                            strtok(ctime(&ora), "\n"),
                            inet_ntoa(clientaddr.sin_addr));
+
                     if (addUser(client_sockfd) != 0)
                     {
                         printf("Registrazione fallita\n");
@@ -99,40 +104,39 @@ int gestConn()
                     if (verUser(client_sockfd) != 0)
                     {
                         printf("Accesso negato!\n");
-                        return -1;
+                        return -1;// Uscita
                     }
                     else
                     {
                         printf("Accesso consentito\n");
+                        // Continuazione
                     }
 
                     memset((void *)command, 0, 9);
                     if (rwconf(client_sockfd, command) == 0)
                     {
 
-                        // SEND_FIL
+                    // SEND_FIL
                         if (strncmp(command, SEND_FIL, 9) == 0)
                         {
-                            recvFILE(client_sockfd, l, 1222);
-                            continue;
+                            recvFILE(client_sockfd, l, MAXBUF);
+                            
                         }
 
-                        // RECV_FIL
+                    // REQ_FILE
+                        else if (strncmp(command, REQ_FILE, 9) == 0)
+                        {
+                            searching(client_sockfd);
+                        }
+
+                    // RECV_FIL
                         else if (strncmp(command, RECV_FIL, 9) == 0)
                         {
                             sendFILE(client_sockfd);
-                            continue;
                         }
-
-                        // SHELL
-                        else if (strncmp(command, SHELL_FN, 9) == 0)
-                        {
-                        //    sendFILE(client_sockfd);
-                            continue;
-                        }
-                        //
                     }
                 }
+
                 else
                     break;
             }
