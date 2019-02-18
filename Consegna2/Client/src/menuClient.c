@@ -279,14 +279,14 @@ int menFilderx()
             SBUFFER;
            continue;
             
-        // REQ_FILE
+    // REQ_FILE
         case 2:
             wwconf(sockid_Client,"REQ_FILE");
             searching(sockid_Client);
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
             continue;
-        // RECV_FIL
+    // RECV_FIL
         case 3:
             wwconf(sockid_Client,"RECV_FIL");
             recvFILE(sockid_Client,"",4);

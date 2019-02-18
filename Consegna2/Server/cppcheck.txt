@@ -1,10 +1,9 @@
-[src/freespace.c:23]: (style) The scope of the variable 'freeblck' can be reduced.
-[src/freespace.c:24]: (style) The scope of the variable 'blsize' can be reduced.
-[src/freespace.c:25]: (style) The scope of the variable 'freespcs' can be reduced.
+[src/freespace.c:22]: (style) The scope of the variable 'freeblck' can be reduced.
+[src/freespace.c:23]: (style) The scope of the variable 'blsize' can be reduced.
+[src/freespace.c:24]: (style) The scope of the variable 'freespcs' can be reduced.
 [src/reciving.c:62]: (warning, inconclusive) The buffer 'nameF' may not be null-terminated after the call to strncpy().
-[src/searching.c:13]: (error) Buffer is accessed out of bounds: list
-[src/Server.h:194] -> [src/verUser.c:19]: (style, inconclusive) Function 'verUser' argument 1 names different: declaration 'id' definition 'sockfd'.
-[src/newSocket.c:119]: (style) The function 'closeSocket' is never used.
+[src/Server.h:183] -> [src/verUser.c:19]: (style, inconclusive) Function 'verUser' argument 1 names different: declaration 'id' definition 'sockfd'.
+[src/newSocket.c:117]: (style) The function 'closeSocket' is never used.
 [src/totL.c:213]: (style) The function 'freeL' is never used.
 [src/isdigit_in.c:63]: (style) The function 'isalpha_in' is never used.
 [src/Save.c:59]: (style) The function 'mainVer' is never used.
