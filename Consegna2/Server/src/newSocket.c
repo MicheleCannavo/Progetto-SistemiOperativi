@@ -124,5 +124,5 @@ int closeSocket(int *sock_fd)
         sleep(1);
     }
     
-    return  closefd(sock_fd);
+    return  close(*sock_fd);
 }

@@ -11,12 +11,13 @@ int closeSocket()
 
     for(int i=5;i>0;i--)
     {
-        printf("\rIl programma si chiuderà in %d second%c", i, i==1?'o':'i');
+        printf("\rIl programma si chiudera' in %d second%c", i, i==1?'o':'i');
           fflush(stdout);
         sleep(1);
     }
+    puts("");// '\n'
 
-    if( close(sockid_Client) != 0)
+    if( shutdown(sockid_Client, SHUT_RDWR) != 0)
     {
         perror(__FUNCTION__);
         sockid_Client=-1;

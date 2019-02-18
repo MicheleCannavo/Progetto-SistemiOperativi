@@ -40,6 +40,7 @@ int gestConn()
     printf("\t\t\t            (Porta=%u)\n\n", settaggi->nPort);
 
     // Ciclo infinito per la comunicazione con i Client
+
     while (1)
     {
         client_len = sizeof(clientaddr);
@@ -52,7 +53,8 @@ int gestConn()
         printf("[%s] Connessione da parte di : %s\n",
                strtok(ctime(&ora), "\n"),
                inet_ntoa(clientaddr.sin_addr));
-
+        
+        fflush(stdout);
         // Fork()
         int cpid = fork();
         if (cpid == -1)
@@ -64,7 +66,7 @@ int gestConn()
         if (cpid == 0)
         {
             // Chiudo il socket_server del figlio per eliminare i vari
-            //  riferimenti che non permetterebbero la chiusura di esso
+            // riferimenti che non permetterebbero la chiusura di esso
             close(server_sockfd); 
 
             while (1)
@@ -73,6 +75,10 @@ int gestConn()
                 memset((void *)command, 0, 9);
                 if (rwconf(client_sockfd, command) != 0)
                 {
+                    printf("Comando errato\n");
+                    closefd(&client_sockfd);
+                  //  close(cpid);
+    
                     break;
                 }
 
@@ -85,16 +91,22 @@ int gestConn()
 
                     if (addUser(client_sockfd) != 0)
                     {
-                        printf("Registrazione fallita\n");
+                        printf("[%s] Registrazione da %s FALLITA!\n",
+                           strtok(ctime(&ora), "\n"),
+                           inet_ntoa(clientaddr.sin_addr));
+                           continue;
                     }
                     else
                     {
-                        printf("Registrazione Riuscita\n");
+                        printf("[%s] Registrazione da %s RIUSCITA!\n",
+                           strtok(ctime(&ora), "\n"),
+                           inet_ntoa(clientaddr.sin_addr));
+                        continue;
                     }
                     // return to menu'
                 }
 
-                // VER_USER
+            // VER_USER
                 else if (strncmp(command, VER_USER, 9) == 0)
                 {
                     printf("[%s] Tentativo di accesso da %s\n",
@@ -103,15 +115,20 @@ int gestConn()
 
                     if (verUser(client_sockfd) != 0)
                     {
-                        printf("Accesso negato!\n");
-                        return -1;// Uscita
+                        printf("[%s] Accesso da %s NEGATO!!\n",
+                           strtok(ctime(&ora), "\n"),
+                           inet_ntoa(clientaddr.sin_addr));
+                        continue;
                     }
                     else
                     {
-                        printf("Accesso consentito\n");
+                        printf("[%s] Accesso da %s CONSENTITO\n",
+                           strtok(ctime(&ora), "\n"),
+                           inet_ntoa(clientaddr.sin_addr));
                         // Continuazione
                     }
 
+                // Comandi secondari
                     memset((void *)command, 0, 9);
                     if (rwconf(client_sockfd, command) == 0)
                     {
@@ -120,23 +137,26 @@ int gestConn()
                         if (strncmp(command, SEND_FIL, 9) == 0)
                         {
                             recvFILE(client_sockfd, l, MAXBUF);
-                            
+                            continue;                            
                         }
 
                     // REQ_FILE
                         else if (strncmp(command, REQ_FILE, 9) == 0)
                         {
                             searching(client_sockfd);
+                            continue;
                         }
 
                     // RECV_FIL
                         else if (strncmp(command, RECV_FIL, 9) == 0)
                         {
                             sendFILE(client_sockfd);
+                            continue;
                         }
                     }
                 }
 
+            // Comando sbagliato
                 else
                     break;
             }

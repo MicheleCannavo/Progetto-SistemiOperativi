@@ -15,12 +15,14 @@
  ******************************************************************************/
 int gestClient()
 {   
+    alarm(TIMEOUT);
     printf("Connessione in corso...\n");
     sleep(2); 
-    alarm(TIMEOUT);
+
     if( newSocket() !=0 )
-    {
+    {    
         perror(__FUNCTION__);
+        alarm(0);
         sleep(2);
         return -1;
     }   
