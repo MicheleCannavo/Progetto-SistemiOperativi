@@ -40,19 +40,16 @@ int myMainS(int argc, char* argv[])
         settaggi=NULL;
        return -1;
     }
+    printf("Caricamento Lista...Attendere\n");
     MotoreFILDER();
 
     if(menServ()==-1)
     {
         free(settaggi);
-     //   free(headTList);
-     //   headTList=NULL;
         settaggi=NULL;
         return-1;
     }
 
-   // freeL(&headTList);
-  //  headTList=NULL;
     free(settaggi);
     settaggi=NULL;
     close(saveid);

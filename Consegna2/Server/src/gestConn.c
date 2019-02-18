@@ -53,9 +53,8 @@ int gestConn()
         printf("[%s] Connessione da parte di : %s\n",
                strtok(ctime(&ora), "\n"),
                inet_ntoa(clientaddr.sin_addr));
-        
-        fflush(stdout);
-        // Fork()
+
+    // Fork()
         int cpid = fork();
         if (cpid == -1)
         {
@@ -65,19 +64,19 @@ int gestConn()
 
         if (cpid == 0)
         {
-            // Chiudo il socket_server del figlio per eliminare i vari
-            // riferimenti che non permetterebbero la chiusura di esso
+        // Chiudo il socket_server del figlio per eliminare i vari
+        // riferimenti che non permetterebbero la chiusura di esso
             close(server_sockfd); 
 
             while (1)
             {
             // Azzeramento variabile per i comandi e attesa ricezioe di uno di essi
-                memset((void *)command, 0, 9);
+                memset(command, '\0', 9);
                 if (rwconf(client_sockfd, command) != 0)
                 {
                     printf("Comando errato\n");
                     closefd(&client_sockfd);
-                  //  close(cpid);
+                    close(cpid);
     
                     break;
                 }

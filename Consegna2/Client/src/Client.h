@@ -157,5 +157,5 @@ int  verUser( int sockid);
 int  addUser( int sockid);
 int sendFILE( int sockid);
 int recvFILE( int sockFD, char *fr_name, int buff);
-
+int searching(int sockid);
 #endif

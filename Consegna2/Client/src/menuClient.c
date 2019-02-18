@@ -277,24 +277,27 @@ int menFilderx()
             sendFILE( sockid_Client);
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
-            break;
+           continue;
             
         // REQ_FILE
         case 2:
-            break;
+            searching(sockid_Client);
+            printf("\nPremere [INVIO] per contniuare...\n");
+            SBUFFER;
+            continue;
         // RECV_FIL
         case 3:
             wwconf(sockid_Client,"RECV_FIL");
             recvFILE(sockid_Client,"",4);
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
-            break;
+            continue;
 
         case 4:
             return 0;
 
         default:
-            break;
+            continue;
         }
     } while(1);
 }
