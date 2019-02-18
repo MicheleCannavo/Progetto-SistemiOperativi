@@ -179,7 +179,7 @@ int menAcc()
         {
         // ADD_USER
         case 1:
-            res= addUser();
+            res= addUser(sockid_Client);
             if(res<0)
             {
                 printf("Errore nella registrazione \n");
@@ -204,7 +204,7 @@ int menAcc()
 
         // VER_USER
         case 2:
-            res= verUser();
+            res= verUser(sockid_Client);
             if(res<0) 
             {
                 printf("Errore nella convalida accesso\n");

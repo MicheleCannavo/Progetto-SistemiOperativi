@@ -15,9 +15,8 @@
  * 
  *****************************************************************************/
  #include "Server.h"
- #include <time.h>
- time_t ora;
- 
+
+
 int addUser(int sockfd)
 {  
 // VARIABILI E INIZZIALIZZAZIONE
@@ -80,10 +79,10 @@ int addUser(int sockfd)
         close(userfile);
         return -1;
     }
+    
 // Invio risultatto salvataggio account
     if(test==1)
     {
-        ora=time(NULL);
         if(write(sockfd,"OK", 3) == 3)
         {
             return 0;
@@ -91,7 +90,6 @@ int addUser(int sockfd)
     }
     else 
     {
-        ora=time(NULL);
         if(write(sockfd, "KO", 3) == 3)
         {
             return 1;

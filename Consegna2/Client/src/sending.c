@@ -20,7 +20,6 @@
  *              inoltri l'esito della verifica dell'invio del file.    
  *
  * \param 	sockFD      ID del socket
- * \param   fs_name     Nome del file da inviare 
  * 
  * \return  Verifica dell'esito funzione 
  ******************************************************************************/
@@ -28,7 +27,7 @@ int sendFILE(int sockFD)
 {
 // Variabili con inizializzazione
 	char		fs_name[PATH_MAX+1]; 
-    char    	sdbuf[LENGTH] 	; 	// Send buffer	
+    char    	sdbuf[2048] 	; 	// Send buffer	
 	char 		risp[4]			;	// Stringa per la verifica
 	int     	fdF	 		  =	0;  // File descriptor file
 	int 		lName		  = 0;  // Lunghezza nome file

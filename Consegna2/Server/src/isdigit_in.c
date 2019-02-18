@@ -37,7 +37,7 @@ int  isdigit_in( int* caracter )
     }
 
 // Controlla che non sia stat premuto "INVIO" senza altri input
-   if(*caracter!=10)
+   if(*caracter!='\n')
         SBUFFER;
 
     *caracter=-1; 

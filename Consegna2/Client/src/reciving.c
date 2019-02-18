@@ -30,7 +30,7 @@ int recvFILE(int sockFD, char *fr_name, int buff)
 // Variabili 
 	char 	nameF[NAME_MAX+1]	= {""};	// Nome file   
 	char 	pathAct[PATH_MAX];
-	char 	revbuf[LENGTH] 		= {""};	// Receiver buffer	
+	char 	revbuf[2048] 		= {""};	// Receiver buffer	
 	size_t  sizeF				=	 0;	// Dimensione file
     int 	fdF					=   -1;	// File desceriptor file
 	int 	lName				=	 0; // Lunghezza nome del file

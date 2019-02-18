@@ -23,23 +23,12 @@ int myMainS(int argc, char* argv[])
         perror(__FUNCTION__); 
         return -1;
     } 
-    /*
-    createLog(&saveid);
-    close(saveid);
-    getchar();*/
-// Disattivo il buffer di stdout perchè da fastidio
- /*  if(setvbuf(stdout,NULL,_IONBF,0)!=0)
-    { 
-        perror(__FUNCTION__); 
-        return -1;
-    }*/
+
 
 // Inizializza la struttura dei settaggi con valori di default
     if( iniSett() != 0 )
     {
         perror(__FUNCTION__); 
-        free(settaggi);
-        settaggi=NULL;
         return -1;
     }
 
@@ -48,8 +37,6 @@ int myMainS(int argc, char* argv[])
     {
         perror(__FUNCTION__); 
         free(settaggi);
-      //  free(headTList);
-      //  headTList=NULL;
         settaggi=NULL;
        return -1;
     }

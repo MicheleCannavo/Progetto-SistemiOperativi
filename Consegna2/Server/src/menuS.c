@@ -13,13 +13,6 @@
 
 int menServ()
 {
-    if(settaggi==NULL)
-    {
-        errno=EINVAL;
-        perror("Errore in menuServer()");
-        return -1;
-    }
-
     do
     {
     int rep=0;

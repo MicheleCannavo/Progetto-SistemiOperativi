@@ -56,6 +56,10 @@
 /// \brief  Macro per definire la cartella di salvataggio dei file ricevuti
 #define SAVEDIR     "/Scaricati"
 
+/// \def    PATT_MAX
+/// \brief  Macro che definisce i caratteri massimi del pattern
+#define PATT_MAX (20)
+
 /// \def    TIMEOUT
 /// \brief  Definisce il tempo massimo di attessa per la connessione col Server
 #define TIMEOUT     (5)
@@ -80,9 +84,15 @@
                 }while(0)
 
 /// \def    PATH_MAX
-/// \brief  Macro che definisce se non presente la dimensione massima dei PATH
+/// \brief  Macro che definisce la dimensione massima dei PATH
 #ifndef PATH_MAX
 #define PATH_MAX 2048
+#endif
+
+/// \def    NAME_MAX
+/// \brief  Macro che definisce la dimensione massima del nome di un file
+#ifndef NAME_MAX
+#define NAME_MAX 256
 #endif
 
 //////////////////////////////////// STRUCT ////////////////////////////////////
@@ -132,7 +142,7 @@ int  inputUInt( unsigned int  *result );
 int   inputInt( int  *result   );
 int isalpha_in( int  *caracter );
 int   testPath( char  *wPath   );
-int freespoace( unsigned long  sizeF );
+int  freespace( unsigned long  sizeF );
 
 /////////////////////////////////// SOCKET //////////////////////////////////
 int   newSocket();

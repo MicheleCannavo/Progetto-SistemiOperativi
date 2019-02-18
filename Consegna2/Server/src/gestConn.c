@@ -18,24 +18,23 @@
 
 int gestConn()
 {
-    // Variabili e inizzializzazione
-    int client_sockfd = -1;
-    int server_sockfd = -1;
-    time_t ora;
-    char l[900];
-    char command[9];
+// VARIABILIE INIZIALIZZAZIONI
+    int                 client_sockfd = -1;
+    int                 server_sockfd = -1;
+    time_t              ora;
+    char                l[900];
+    char                command[9];
+    struct sockaddr_in  clientaddr;
+    socklen_t           client_len    = -1;
 
-    // Nuova connessione
+// Nuova connessione
     if (newSocket(&server_sockfd, settaggi->nPort, INADDR_ANY) != 0)
     {
         PRINTERR("Nuova connessione: ");
         return -1;
     }
 
-    struct sockaddr_in clientaddr;
-    socklen_t client_len;
-
-    // Intestazione
+// Intestazione
     printf("\x1B[1;1H\x1B[2J");
     printf("\t\t\t********** SERVER FILDERX **********\n");
     printf("\t\t\t            (Porta=%u)\n\n", settaggi->nPort);
@@ -43,7 +42,6 @@ int gestConn()
     // Ciclo infinito per la comunicazione con i Client
     while (1)
     {
-
         client_len = sizeof(clientaddr);
         if ((client_sockfd = accept(server_sockfd, (struct sockaddr *)&clientaddr, &client_len)) < 0)
         {

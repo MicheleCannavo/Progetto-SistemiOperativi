@@ -64,9 +64,9 @@ extern listFILDERX *headTList;
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////    PROTOTIPI    ////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-int          getNCore( short *nCore);
-int          testPath( char  *wPath);
-int           MotoreFILDER( );
+int           getNCore( short *nCore);
+int           testPath( char  *wPath);
+int       MotoreFILDER( );
 void            *funcT( void *arg);
 int               InsC( listFILDERX **miniList, ELEFILDERX *nodoF );
 int              freeL( listFILDERX **listComp );

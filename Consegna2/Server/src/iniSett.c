@@ -21,9 +21,6 @@ int iniSett()
 // Controllo che la variabile globale settaggi non sia già allocata
     if(settaggi != NULL )
     {
-        if(errno==0)
-            errno=EINVAL;
-        perror(__FUNCTION__);
         return -1;
     }
 
@@ -31,8 +28,6 @@ int iniSett()
     settaggi = calloc(1, sizeof(SettSERVER) );
     if(settaggi == NULL)
     {
-        if(errno==0)
-            errno=ENOMEM;
         perror(__FUNCTION__);
         return -1;
     }
