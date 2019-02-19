@@ -75,7 +75,6 @@ int gestConn()
                 {
                     printf("Comando errato\n");
                     closefd(&client_sockfd);
-                    close(cpid);
     
                     break;
                 }
@@ -92,7 +91,7 @@ int gestConn()
                         printf("[%s] Registrazione da %s FALLITA!\n",
                            strtok(ctime(&ora), "\n"),
                            inet_ntoa(clientaddr.sin_addr));
-                           continue;
+                        continue;
                     }
                     else
                     {

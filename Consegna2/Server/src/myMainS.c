@@ -1,16 +1,14 @@
-/*
-//==============================================================================
- *  \author  Cannavo' Michele [046002210]
- *  \date    07/12/2018
-//==============================================================================
- *  \file  main_Server.c
- *  \brief Motore di ricerca ricorsiva di FILDERX
- *  \version 1.2
- *  \copyright GNU LGPL 3.0
- *  \details Motore che ricerca, con le impostazioni date, File e cartelle dentro una directory.
-*/
+/** ****************************************************************************
+ * \version     1.4
+ * \date        15/02/2019
+ * 
+ * \brief       Motore di ricerca ricorsiva di FILDERX
+ * 
+ * \details     Motore che ricerca, con le impostazioni date, File e cartelle 
+ *              dentro una directory.
+ * 
+ *****************************************************************************/
 #include "Server.h"
-#include "FILDERX.h"
 SettSERVER  *settaggi = NULL;
 void svuota(void)
 {
@@ -38,7 +36,6 @@ int myMainS(int argc, char* argv[])
         return -1;
     } 
 
-
 // Inizializza la struttura dei settaggi con valori di default
     if( iniSett() != 0 )
     {
@@ -52,18 +49,24 @@ int myMainS(int argc, char* argv[])
         perror(__FUNCTION__); 
         free(settaggi);
         settaggi=NULL;
-       return -1;
+        return -1;
     }
     printf("Caricamento Lista...Attendere\n");
-    MotoreFILDER();
+    if(MotoreFILDER() == -1)
+    {
+        PRINTERR("MotoreFILDERX");
+        return -1;
+    };
 
     if(menServ()==-1)
     {
+        freeL(&headTList);
         free(settaggi);
         settaggi=NULL;
         return-1;
     }
 
+    freeL(&headTList);
     free(settaggi);
     settaggi=NULL;
     return 0;

@@ -1,17 +1,39 @@
 #include "Server.h"
 int recvFILE(int sockid, char *fr_name, int buff)
 {
-// Variabili 
-	char 	nameF[NAME_MAX]	= {""};	// Nome file   
-	char 	pathAct[PATH_MAX];
-	char 	revbuf[LENGTH] 	  	= {""};	// Receiver buffer	
-	size_t  sizeF				=	 0;	// Dimensione file
-    int 	fdF					=   -1;	// File desceriptor file
-	int 	lName				=	 0; // Lunghezza nome del file
-	size_t countDT				=	 0; // Counter dati trasferiti
+// VARIABILI E INIZIALIZZAZIONI
+	size_t  countDT           	=  0; 	// Counter dati trasferiti
+	size_t  sizeF            	=  0;	// Dimensione file
+    int 	fdF              	= -1;	// File desceriptor file
+	int 	lName               =  0; 	// Lunghezza nome del file
+	int 	dim                 =  0;	// Dimensione
+	int 	r                   =  1;	// 
+	char 	copy[NAME_MAX+1];			// Copya temporanea del nome file
+	char 	nameF[NAME_MAX+1];			// Nome file
+	char 	pathAct[PATH_MAX];			// Path File 
+	char 	revbuf[MAXBUF];    			// Buffer per la ricezione dati
+	char 	str[NAME_MAX+1];			//
 
-	getcwd(pathAct,PATH_MAX);
-	chdir(settaggi->saveDir);
+	memset( nameF, 	 '\0', sizeof(char)*(NAME_MAX+1) );
+	memset( pathAct, '\0', sizeof(char)*PATH_MAX );	
+	memset( revbuf,  '\0', sizeof(char)*MAXBUF );	
+	memset( copy, 	 '\0', sizeof(char)*(NAME_MAX+1) );
+	memset( str, 	 '\0', sizeof(char)*(NAME_MAX+1) );		
+
+// Salvo la directory corrente
+	if( getcwd(pathAct,PATH_MAX)==NULL)
+	{
+		PRINTERR("Salvataggio work dir");
+		return -1;
+	};
+
+// Imposto la directory di Salvataggio
+	if(chdir(settaggi->saveDir)!=0)
+	{
+		PRINTERR("Cartella di Salvataggio");
+		return -1;
+	}
+
 // Verifica argomenti
 	if(sockid==-1 || fr_name==NULL || buff<0)
 	{
@@ -45,21 +67,19 @@ int recvFILE(int sockid, char *fr_name, int buff)
 	freespace(sizeF);
 
 	printf("Ricezione file: %s [%zu bytes]\n", nameF, sizeF);
-		int r = 1;
-		char copy[NAME_MAX+1];
-		int dim=NAME_MAX-strlen(nameF);
-		char str[NAME_MAX+1];
 
-		memset(copy, '\0', sizeof(char)*(NAME_MAX+1) );
-		memset( str, '\0', sizeof(char)*(NAME_MAX+1) );		
-		strncpy(copy, nameF, NAME_MAX);
+	dim  = NAME_MAX-strlen(nameF);
+	strncpy(copy, nameF, NAME_MAX);
+	copy[NAME_MAX-1]='\0';
 
 // Verifico se il file esiste
 	while( access(nameF, 0) == 0 )
 	{
 		printf("\rFile :%s gia' presente.",nameF);
 		sprintf(str, " (Copia %d)", r);	
-		strncpy(nameF,copy, NAME_MAX);
+		strncpy(nameF, copy, NAME_MAX);
+		nameF[NAME_MAX-1]='\0';
+
 		strncat(nameF, str, dim);
 		r++;
 	}
@@ -80,6 +100,7 @@ int recvFILE(int sockid, char *fr_name, int buff)
         ssize_t	byteRecv 	= 0; // Dimensione dati letti da trasferire
 	    size_t	buf2		= 0; // Buffer di trasferimento
     	int     write_sz    = 0;
+	
 	// Azzero il buffer
 	    memset(revbuf, 0, sizeof(char)); 
 	

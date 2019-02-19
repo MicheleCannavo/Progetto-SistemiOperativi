@@ -27,19 +27,20 @@
 int sendFILE(int sockFD)
 {
 // Variabili con inizializzazione
-	char 		nameF[NAME_MAX];
-    char    	sdbuf[LENGTH] 	; 	// Send buffer	
-	char 		risp[4]			;	// Stringa per la verifica
+	ssize_t 	fs_block_sz	  =	0; 	// Dimensione blocco dati da inviare
+	size_t 		sizeF      	  =	0; 	// Dimensione totale del file da inviare
+	size_t 		tmpFT      	  =	0; 	// Dimensione dati totale inviati
 	int     	fdF	 		  =	0;  // File descriptor file
 	int 		lName		  = 0;  // Lunghezza nome file
-	size_t 		sizeF      	  =	0; 	// Dimensione totale del file da inviare
-    ssize_t 	fs_block_sz	  =	0; 	// Dimensione blocco dati da inviare
-	size_t 		tmpFT      	  =	0; 	// Dimensione dati totale inviati
+
+	char 		nameF[NAME_MAX] ; 	//
+    char    	sdbuf[MAXBUF] 	; 	// Send buffer	
+	char 		risp[4]			;	// Stringa per la verifica
+
 	struct stat fileStat		;	// Struct stat per dimensione file
 
-// Azzeramento stringhe e struct per evitre errori
 	memset((char*)nameF, '\0', sizeof(char)*NAME_MAX);
-	memset((char*)sdbuf, '\0', sizeof(char)*LENGTH );
+	memset((char*)sdbuf, '\0', sizeof(char)*MAXBUF );
 	memset((char*)risp, '\0', 4);
 	memset((struct stat*)&fileStat, 0, sizeof(struct stat)); 	
 

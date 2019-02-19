@@ -92,9 +92,13 @@ int addUser(int sockid)
         {
             return 0;
         }
-        else
+        else if(strncmp(risp, "KO", 3) == 0)
         {
             return 1;
+        }
+        else if (strncmp(risp, "!!", 3) == 0)
+        {
+            return 2;
         }
     }
     perror(__FUNCTION__);
