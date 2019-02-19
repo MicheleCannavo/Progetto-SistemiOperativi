@@ -1,13 +1,14 @@
 /** **************************************************************************
- *  \file       gestConn.c
- *  \version    1.0
+ * \file        gestConn.c
+ * \version     1.7
+ * \date        28/01/2019
  * 
- *  \brief      Funzione per'istaurazione e la gestione della connessione
+ * \brief      Funzione per'istaurazione e la gestione della connessione
  *  
- *  \retval    -1   FAILURE
- *  \retval     0   SUCCESS
+ * \retval    -1   FAILURE
+ * \retval     0   SUCCESS
  * 
- *  \details    Questa funzione avvia il serve per ricevere connessioni dai
+ * \details     Questa funzione avvia il serve per ricevere connessioni dai
  *              client abilitati e ne gestisce gli aspetti. La porta in ascolto
  *              e data dal valore delle impostazioni sìdi settaggi.nPort, invece
  *              gli IP accettati sono tutti tramite la macr INADDR_ANY.
@@ -18,13 +19,12 @@
 int gestConn()
 {
 // VARIABILIE INIZIALIZZAZIONI
-    int                 client_sockfd = -1;
-
-    time_t              ora;
-    char                l[900];
-    char                command[9];
-    struct sockaddr_in  clientaddr;
-    socklen_t           client_len    = -1;
+    int                 client_sockfd = -1;     // FD Socket connessione
+    time_t              ora;                    // Per memorizzare ora attuale
+    char                l[900];                 // Variabile per recvFILE
+    char                command[9];             // Varibile per i comandi
+    struct sockaddr_in  clientaddr;             // Per gestire indirizzi AF_INET
+    socklen_t           client_len    = -1;     // Dimensione clientaddr
 
 // Nuova connessione
     if (newSocket(&server_sockfd, settaggi->nPort, INADDR_ANY) != 0)

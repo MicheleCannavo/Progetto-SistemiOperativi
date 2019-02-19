@@ -3,7 +3,6 @@
 /** ***************************************************************************
  * \version     1.0
  * \date        22/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di  stampa per la lista concatenata.
  * 
@@ -47,11 +46,9 @@ int printList(listFILDERX *head,char *pattern)
     }
     return 0;
 }
-
 /** ***************************************************************************
  * \version     1.0
  * \date        22/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione settaggi
  * 
@@ -67,15 +64,17 @@ int printList(listFILDERX *head,char *pattern)
  *              Successivamente una doppia chiamata a strtok() permette lo slit
  *              della riga in occorenza dei :. In qesto modo estrapolo il numero
  *              dei core e lo converto in int.
+ * 
  *****************************************************************************/
 int getNCore(short *nCore)
 {
-// VARIABILI E INIZZIALIZZAZIONI
+// VARIABILI E INIZIALIZZAZIONI
     char tmpCore[20];
     int  countC=1;
     FILE  *fd;
     memset(tmpCore, '\0', 20);
 
+// Verifica argomenti
     if(nCore==NULL)
     {
         errno=EINVAL;
@@ -102,8 +101,19 @@ int getNCore(short *nCore)
         }
         memset(tmpCore, 0, 20);
     }
-    *nCore=countC;
 
+// Comparo countC con MAX_CORE
+    if(countC>MAX_CORE)
+    {
+    // Troppi core, non gestibili
+       *nCore=MAX_CORE; 
+    }
+    else
+    {
+    // Numero di CORE gestibili
+        *nCore=countC;
+    }
+    
 // Chiudo ed esco
     fclose(fd);
     fd=NULL;

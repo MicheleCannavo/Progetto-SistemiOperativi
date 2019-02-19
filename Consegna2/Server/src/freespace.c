@@ -1,9 +1,11 @@
 /** ***************************************************************************
+ * \file 		freespace.c
+ * \version 	1.0
+ * \date		12/02/2019
+ * 
  * \brief   	Verifica se ci sia spazio libero a sufficenza per un file
  *
  * \param 	sizeF 	Dimensione da verificare
- * 
- * \return  Verifica dell'esito funzione 
  * 
  * \retval	-1		Errore
  * \retval	 0		Spazio disponibile

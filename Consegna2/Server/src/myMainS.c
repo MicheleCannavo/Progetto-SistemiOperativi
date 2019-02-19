@@ -1,24 +1,33 @@
-/** ****************************************************************************
- * \version     1.4
- * \date        15/02/2019
- * 
- * \brief       Motore di ricerca ricorsiva di FILDERX
- * 
- * \details     Motore che ricerca, con le impostazioni date, File e cartelle 
- *              dentro una directory.
- * 
- *****************************************************************************/
+
 #include "Server.h"
 SettSERVER  *settaggi = NULL;
-
-// Funzione chiusura SERVER
+/** ****************************************************************************
+ * \version     1.0
+ * \date        18/02/2019
+ * 
+ * \brief       Funzione chiusura SERVER
+ * 
+ * \details     Funzione chiamata da atexit() che dopo aver chiuso il socket 
+ *              della listen() pulisce lo schermo. * 
+ * 
+ *****************************************************************************/
 void svuota(void)
 {
     closefd(&server_sockfd);
     printf("\x1B[1;1H\x1B[2J");
 }
 
-// Funzione per evitare resti di PROCESSi ZOMBIE
+/** ****************************************************************************
+ * \version     1.0
+ * \date        18/02/2019
+ * 
+ * \brief       Gestore SIGCHLD
+ * 
+ * \details     Funzione per evitare resti di PROCESSi ZOMBIE. gestisce il 
+ *              segnale di chiusura del processo figlio (SIGCHLD) e attende
+ *              tramite waipid l'effettiva chiusura per evitare processi zombie
+ * 
+ *****************************************************************************/
 void closeCHLD(int sig)
 {
     signal(SIGCHLD, SIG_IGN);
@@ -31,6 +40,16 @@ void closeCHLD(int sig)
     signal(SIGCHLD,closeCHLD);
 }
 
+/** ****************************************************************************
+ * \version     1.0
+ * \date        18/02/2019
+ * 
+ * \brief       gestore SIGALARM
+ * 
+ * \details     Funzione per la gestione del segnale SIGALARM ricevuto in caso 
+ *              che il Client impiegi troppo tempo a rispondere
+ * 
+ *****************************************************************************/
 void timeout(int sig)
 {
     signal(SIGALRM, SIG_IGN);
@@ -39,6 +58,16 @@ void timeout(int sig)
     signal(SIGALRM,timeout);
 }
 
+/** ****************************************************************************
+ * \version     1.4
+ * \date        15/02/2019
+ * 
+ * \brief       Motore di ricerca ricorsiva di FILDERX
+ * 
+ * \details     Motore che ricerca, con le impostazioni date, File e cartelle 
+ *              dentro una directory.
+ * 
+ *****************************************************************************/
 int myMainS(int argc, char* argv[])
 {   
     atexit(svuota);

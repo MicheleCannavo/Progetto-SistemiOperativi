@@ -1,6 +1,18 @@
 #include "Server.h"
-#include "FILDERX.h"
-
+/** ****************************************************************************
+ * \version     1.3
+ * \date        15/02/2019
+ * 
+ * \brief       Cerca i file col PATTERN disegnato 
+ * 
+ * \param   sockFD      ID del socket 
+ * 
+ * \return  Verifica dell'esito funzione  
+ *
+ * \details     Prende la lista completa headTList, la scorre e ne stampa solo 
+ *              i file che seguono le regole del PATTERN
+ *
+ *******************************************************************************/
 
 int searching(int sockid)
 {

@@ -1,12 +1,11 @@
  /** ******************************************************************************
  * \file        testPath.c
  * \version     1.0
+ * \date        15/01/2018
  * 
  * \brief       Testa l'esistenza di una directory
  * 
- * \param[in]   *wPath  file descriptor del socket
- * \param[out]   buff   buffer dove verrà salvato il comando
- * \param[in]    size   Dimensione massima del buffer
+ * \param[in]   *wPath  path della directory
  *  
  * \retval      -1      Funzione fallita
  * \retval       0      Il path e' una directory

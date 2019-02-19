@@ -12,6 +12,7 @@
  *
  * \details     Questa funzione legge un comando da un socket e dopo invia la
  *              conferma della lettura. Serve per sincronizzare server e client.
+ * 
  ******************************************************************************/
 #include "Server.h"
 /**

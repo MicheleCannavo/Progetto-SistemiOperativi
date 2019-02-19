@@ -1,18 +1,20 @@
 /** ***************************************************************************
- * \file       iniSett.c
- * \version    1.0
+ * \file        iniSett.c
+ * \version     1.0
+ * \date        03/01/2019
  * 
  * \brief      inizzializza struct per i settaggi
- * 
+ *  
+ * \retval    -1    FAILURE
+ * \retval     0    SUCCESS
+ *  
  * \details     Questa funzione alloca la memoria e inizializza un puntatore
  *              in ingresso ad una struct SettFILDERX che servirà a contenere 
  *              i settaggi del programma. Nececcisa di una variabile globale
  *              (puntatore a SettServer) dal valore NULL, altrimenti 
  *              la struct verràa' consdeerata gia' alloata. 
  *              Il chiamante deve occuparsi anche della chiamata a free().
- *  
- * \retval    -1    FAILURE
- * \retval     0    SUCCESS
+ * 
  *****************************************************************************/
 #include "Server.h"
 

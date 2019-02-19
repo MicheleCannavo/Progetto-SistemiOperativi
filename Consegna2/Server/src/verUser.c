@@ -1,20 +1,21 @@
 #include "Server.h"
  /**
  ******************************************************************************
- *  \file       verUser.c
- *  \version    1.0
+ * \file        verUser.c
+ * \version     1.0
  * 
- *  \brief      Funzione per il comando VER_USER
+ * \brief       Funzione per il comando VER_USER
  * 
- *  \details    Questa funzione gestisce le operazioni da effettuare quando il
+ * \param[in]  sockfd  file descriptor del socket
+ *  
+ * \retval    -1   FAILURE
+ * \retval     0   SUCCESS 
+ *  
+ * \details     Questa funzione gestisce le operazioni da effettuare quando il
  *              server riceve il comando di VER_USER. Questo comando richiede al 
  *              server di verificare l'autorizzazzione da parte di un client
  *              ad utilizzare le funzione del Server.
  * 
- *  \param[in]  sockfd  file descriptor del socket
- *  
- *  \retval    -1   FAILURE
- *  \retval     0   SUCCESS
  *****************************************************************************/
 int verUser(int sockfd)
 {  

@@ -1,7 +1,6 @@
 /** ***************************************************************************
  * \version     1.5
  * \date        25/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Motore del programma di ricerca file.
  * 

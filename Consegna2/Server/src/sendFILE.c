@@ -33,7 +33,7 @@ int sendFILE(int sockFD)
 	int     	fdF	 		  =	0;  // File descriptor file
 	int 		lName		  = 0;  // Lunghezza nome file
 
-	char 		nameF[NAME_MAX] ; 	//
+	char 		nameF[NAME_MAX] ; 	// Variabile per il nome del file
     char    	sdbuf[MAXBUF] 	; 	// Send buffer	
 	char 		risp[4]			;	// Stringa per la verifica
 

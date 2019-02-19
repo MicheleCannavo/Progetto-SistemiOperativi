@@ -1,20 +1,22 @@
  /** **************************************************************************
- *  \file       isdigit_in.c
- *  \version    1.0
+ * \file        isdigit_in.c
+ * \version     1.0
+ * \date        20/12/2018
  * 
- *  \brief      verifica input di monocaratteri numerici.
+ * \brief      verifica input di monocaratteri numerici.
  * 
- *  \details    Questa funzione legge un input da stdin e veruififca se sia
+ * \param[out] *caracter   puntatore a int per memorizzare il carattere.
+ *  
+ * \retval    -1   Funzione fallita.
+ * \retval     0   Input monocarattere numerico.
+ * \retval     1   Input non conforme.*
+ * 
+ * \details    Questa funzione legge un input da stdin e veruififca se sia
  *              se  un carattere numerico. A differenza di funzioni simili,
  *              non accetta spazi, o qualsiasi altro carattere in ingresso. 
  *              L'unico input accettato e' un unico carattere numerico,
  *              il resto lo identifica come errore in input.
  * 
- *  \param[out] *caracter   puntatore a int per memorizzare il carattere.
- *  
- *  \retval    -1   Funzione fallita.
- *  \retval     0   Input monocarattere numerico.
- *  \retval     1   Input non conforme.
  *****************************************************************************/
 #include "Server.h"
 
@@ -45,9 +47,19 @@ int  isdigit_in( int* caracter )
 }
 
 
-/**
- * \brief gestiste un input monocarttere alfabetico
- *
+/** ****************************************************************************
+ * \file        isdigit_in.c
+ * \version     1.0
+ * \date        20/12/2018
+ * 
+ * \brief      verifica input di numeri senza segno.
+ * 
+ * \param[out] *caractert      puntatore a int per memorizzare il carattere.
+ *  
+ * \retval    -1   Funzione fallita.
+ * \retval     0   Input carattere singolo.
+ * \retval     1   Input non conforme. 
+ * 
  * \details     La funzione analizza un input da tastiera e verifica se sia tra
  *              le opzioni scente. Se lo è ritorna 0, altrimenti ritorna 1. Se
  *              la funzione non può essere svolta ritorna -1. Il funzionamento
@@ -55,11 +67,9 @@ int  isdigit_in( int* caracter )
  *              verifica. L'unico input accettato e' un input di un solo
  *              carattere alfabetico il resto degli input darà errore. un input
  *              maggiore di 1 carattere dara' errore, cosi come un input minore
- *              di un carattere
- *
- * \param caracter 
- * \return int 
- */
+ *              di un carattere.
+ * 
+ *****************************************************************************/
 int  isalpha_in( int* caracter )
 {
     if( caracter == NULL )
@@ -76,12 +86,18 @@ int  isalpha_in( int* caracter )
    *caracter = -1;
     return 1;
 }
-/**
- ******************************************************************************
- *  \file       inputUInt.c
- *  \version    1.0
+/** ****************************************************************************
+ * \file        isdigit_in.c
+ * \version     1.0
+ * \date        20/12/2018
  * 
  *  \brief      verifica input di numeri senza segno.
+ * 
+ *  \param[out] *result puntatore a unsigned int per memorizzare il numero.
+ *  
+ *  \retval    -1   Funzione fallita.
+ *  \retval     0   Input unsigned int.
+ *  \retval     1   Input non conforme. 
  * 
  *  \details    Questa funzione legge un input da stdin e verififca che sia
  *              se un numero intero nsigned. A differenza di funzioni simili,
@@ -91,11 +107,6 @@ int  isalpha_in( int* caracter )
  *              Ha pure un semplice controllo dell'overflow con il limite
  *              dato dal sistema.
  * 
- *  \param[out] *result puntatore a unsigned int per memorizzare il numero.
- *  
- *  \retval    -1   Funzione fallita.
- *  \retval     0   Input unsigned int.
- *  \retval     1   Input non conforme.
  *****************************************************************************/
 int inputUInt( unsigned int *result )
 {
@@ -145,14 +156,20 @@ int inputUInt( unsigned int *result )
     }
 }
 
-/** 
- ******************************************************************************
- *  \file       inputInt.c
- *  \version    1.0
+/**  ***************************************************************************
+ * \file        isdigit_in.c
+ * \version     1.0
+ * \date        20/12/2018
  * 
- *  \brief      verifica input di numeri.
+ * \brief      verifica input di numeri.
  * 
- *  \details    Questa funzione legge un input da stdin e verififca che sia
+ * \param[out] *result puntatore a int per memorizzare il numero.
+ *  
+ * \retval    -1   Funzione fallita.
+ * \retval     0   Input int.
+ * \retval     1   Input non conforme. 
+ * 
+ * \details    Questa funzione legge un input da stdin e verififca che sia
  *              se un numero intero. A differenza di funzioni simili,
  *              non accetta spazi, o qualsiasi altro caratterecol numero.
  *              L'unico input accettato e' un numerico senza neppure spazii,
@@ -160,11 +177,6 @@ int inputUInt( unsigned int *result )
  *              Ha pure un semplice controllo dell'overflow con il limite
  *              inferiore e superiore dato dal sistema.
  * 
- *  \param[out] *result puntatore a int per memorizzare il numero.
- *  
- *  \retval    -1   Funzione fallita.
- *  \retval     0   Input int.
- *  \retval     1   Input non conforme.
  *****************************************************************************/
 int inputInt( int *result )
 {

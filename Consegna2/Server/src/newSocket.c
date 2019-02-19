@@ -1,18 +1,18 @@
-
  /** ******************************************************************************
- *  \file       newsocket.c
- *  \version    1.0
+ * \file       newsocket.c
+ * \version    1.0
  * 
- *  \brief      Crea una comnessione TCP
+ * \brief      Crea una comnessione TCP
  * 
- *  \details    Questa funzione crea un socket AF_INET, SOCK_STREAM, TCP
- * 
- *  \param[out] *sock_fd    puntatore ad int per il file descriptor del socket
- *  \param[in]  port        porta in ascolto del socket
- *  \param[in]  addr        Indirizzo del socket
+ * \param[out] *sock_fd    puntatore ad int per il file descriptor del socket
+ * \param[in]  port        porta in ascolto del socket
+ * \param[in]  addr        Indirizzo del socket
  *  
- *  \retval    -1   Errore nella funzione
- *  \retval     0   Socket creato
+ * \retval    -1   Errore nella funzione
+ * \retval     0   Socket creato 
+ * 
+ * \details    Questa funzione crea un socket AF_INET, SOCK_STREAM, TCP
+ * 
  *****************************************************************************/
 #include "Server.h"
 
@@ -64,21 +64,22 @@ int newSocket(int *sock_fd, unsigned short port, unsigned long addr)
     return 0;
 }
 
- /**
- ******************************************************************************
- *  \file       closefd.c
- *  \version    1.0
+ /** ***************************************************************************
+ * \file        closefd.c
+ * \version     1.0
+ * \date        03/01/2019
  * 
- *  \brief      Chiude un file descriptor
+ * \brief      Chiude un file descriptor
  * 
- *  \details    Questa funzione chiude un file puntato dal file descriptor
+ * \param[out] *sock_fd    puntatore per il file descriptor da chiuderr
+ *  
+ * \retval    -1   Errore nella funzione
+ * \retval     0   File descriptor chiuso
+ * 
+ * \details     Questa funzione chiude un file puntato dal file descriptor
  *              e dopo one a -1 la variabile per indicarne che non è più 
  *              utilizzabile come file descriptor.
  * 
- *  \param[out] *sock_fd    puntatore per il file descriptor da chiuderr
- *  
- *  \retval    -1   Errore nella funzione
- *  \retval     0   File descriptor chiuso
  *****************************************************************************/
 int closefd(int *sock_fd)
 {          
@@ -99,20 +100,20 @@ int closefd(int *sock_fd)
     return 0;
 }
 
- /**
- ******************************************************************************
+ /** ***************************************************************************
  *  \file       closeSocket.c
  *  \version    1.0
  * 
  *  \brief      Chiude un socket con avviso. 
  * 
- *  \details    Questa funzione stampa su video un avviso della chiusura del 
- *              Socket usato per il server.
- * 
  *  \param[out] *sock_fd    puntatore per il file descriptor da chiudere
  *  
  *  \retval    -1   Errore nella funzione
- *  \retval     0   File descriptor chiuso
+ *  \retval     0   File descriptor chiuso 
+ * 
+ *  \details    Questa funzione stampa su video un avviso della chiusura del 
+ *              Socket usato per il server.
+ * 
  *****************************************************************************/
 int closeSocket(int *sock_fd)
 {          

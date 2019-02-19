@@ -107,9 +107,7 @@
 /// \brief  Macro per il tempo di risposta della connessione
 #define TIMEOUT     (5)
 
-/// \def    MAX_CORE
-/// \brief  Numero massimo di core gestibil
-#define MAX_CORE    (32)
+
 
 
 

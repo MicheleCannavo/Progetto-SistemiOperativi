@@ -1,7 +1,8 @@
+#include "FILDERX.h"
+
 /** ***************************************************************************
  * \version     1.0
  * \date        17/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  *
@@ -14,8 +15,8 @@
  * \details     Questa funzione copia un nodo precededentemente creato in 
  *              una lista temporanea che verrà successivamente aggiunta a 
  *              quella completa. 
+ * 
  *****************************************************************************/
-#include "FILDERX.h"
 int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
 {  
 // VARIABILI E INIZZZIAIZZAZIONI
@@ -36,8 +37,6 @@ int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
         perror(__FUNCTION__);
         return -1;
     }
-    
-
 
 // Lista vuota
     if((*miniList)==NULL)
@@ -70,7 +69,6 @@ int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
 /** ***************************************************************************
  * \version     1.0
  * \date        17/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  *
@@ -83,6 +81,7 @@ int InsC(listFILDERX **miniList, ELEFILDERX *nodoF)
  * \details     Questa funzione unisce una lista temporanea parziale,
  *              creta da ogni singolo thread, a quella completa data dallo 
  *              apporto della ricerca ricorsiva in ogni singola sottocartella
+ * 
  *****************************************************************************/
 int totL(listFILDERX **Head, listFILDERX *mini)
 {
@@ -113,11 +112,10 @@ int totL(listFILDERX **Head, listFILDERX *mini)
 /** ***************************************************************************
  * \version     1.0
  * \date        17/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  *
- * \param[in]   **head      Lista Completa finale
+ * \param[in]   **miniList     Lista parziale con cartelle
  * 
  * \retval      -1      Funzione fallita
  * \retval       0      Nodo inserito
@@ -126,6 +124,7 @@ int totL(listFILDERX **Head, listFILDERX *mini)
  *              gli elementi si riferiscono ad una directory. In caso di esito
  *              positivo, elimina l'elemento e lo restituisce per effettuare 
  *              una ricerca all'interno di esso.
+ * 
  *****************************************************************************/
 listFILDERX* delFolder(listFILDERX **miniList)
 {
@@ -169,7 +168,6 @@ listFILDERX* delFolder(listFILDERX **miniList)
 /** ***************************************************************************
  * \version     1.0
  * \date        17/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  *
@@ -197,7 +195,6 @@ int IsDir(listFILDERX *listNodo)
 /** ***************************************************************************
  * \version     1.0
  * \date        17/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  *
@@ -241,7 +238,6 @@ int freeL(listFILDERX **listComp)
  * \file        totL.c 
  * \version     1.0
  * \date        17/12/2018
- * \copyright   Licenza GPL 3.0
  * 
  * \brief       Funzione di gestione della lista concatenata del programma.
  *
@@ -254,6 +250,7 @@ int freeL(listFILDERX **listComp)
  * \details     Questa funzione unisce una lista temporanea parziale,
  *              creta da ogni singolo thread, a quella completa data dallo 
  *              apporto della ricerca ricorsiva in ogni singola sottocartella
+ * 
  *****************************************************************************/
 ELEFILDERX *creaNodo1( const char* path, unsigned long id)
 {

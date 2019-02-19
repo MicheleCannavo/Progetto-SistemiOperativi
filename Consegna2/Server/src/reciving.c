@@ -1,4 +1,33 @@
 #include "Server.h"
+/** ****************************************************************************
+ * \version     1.3
+ * \date        15/02/2019
+ * 
+ * \brief       Invia un file tramite socket 
+ * 
+ * \param   sockFD      ID del socket 
+ * \param   fs_name     Nome del file da inviare 
+ * 
+ * \return  Verifica dell'esito funzione  
+ *
+ * \details     La funzione e' molto semplice. Come prima cosa attende la
+ *              lunghezza del nome del del file, per poter usare agevolmente il
+ *              flag MSG_WAITALL nella funzione send(). Si evita' la possiilità
+ *              che il nome del file venga invia a pezzi (anche se con una
+ *              semplice stringa la possibilità e' remota, essendo i nomi dei
+ *              file di massimo NAME_MAX(256) caratteri). Dopo attende il nome
+ *              del file per salvarlo (adopera un piccolo controllo di esistenza
+ *              dello stesso con relativa riciesta di sostituzione/Nuovo Nome).
+ *              con lo stesso nome, e la dimensione di esso utile per 2 scopi.
+ *              Il primo e' una semplice verifica della dimensione del file
+ *              arrivato (Sicuramente verra' spedito in blocchi, e il TCP ha un
+ *              controllo solo sul singolo blocco e non sul totale file, la
+ *              seconda e' che, sapendo la dimensione totale del file so
+ *              esattamente quanti dati aspettarmi, e posso impostare il buffer
+ *              della recv() in maniera da attendere il giusto quantitativo di
+ *              byte. Infine aspetto).
+ *
+ *******************************************************************************/
 int recvFILE(int sockid, char *fr_name, int buff)
 {
 // VARIABILI E INIZIALIZZAZIONI
@@ -7,12 +36,12 @@ int recvFILE(int sockid, char *fr_name, int buff)
     int 	fdF              	= -1;	// File desceriptor file
 	int 	lName               =  0; 	// Lunghezza nome del file
 	int 	dim                 =  0;	// Dimensione
-	int 	r                   =  1;	// 
+	int 	r                   =  1;	// Numera i file con lo stesso nome
 	char 	copy[NAME_MAX+1];			// Copya temporanea del nome file
 	char 	nameF[NAME_MAX+1];			// Nome file
 	char 	pathAct[PATH_MAX];			// Path File 
 	char 	revbuf[MAXBUF];    			// Buffer per la ricezione dati
-	char 	str[NAME_MAX+1];			//
+	char 	str[NAME_MAX+1];			// Variabile d'appoggio per il nome File
 
 	memset( nameF, 	 '\0', sizeof(char)*(NAME_MAX+1) );
 	memset( pathAct, '\0', sizeof(char)*PATH_MAX );	

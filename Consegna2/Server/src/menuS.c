@@ -1,13 +1,19 @@
-/*//==============================================================================
- *  \author     Cannavo' Michele [046002210]
- *  \date       04/01/2019
-//==============================================================================
- *  \file       funcPrint.c
- *  \brief      Funzioni per la stampa di informazioni di FILDERX
- *  \version    1.1
- *  \copyright  Licenza GPL 3.0
- *  \details    File contenente l Header per le funzione di stampa di FILDERX
-*/
+/**  ***************************************************************************
+ * \file        menuS.c
+ * \version     3.2
+ * \date        18/02/2019
+ * 
+ * \brief      Menu per il SERVER.
+ * 
+ *  
+ * \retval    -1   Funzione fallita.
+ * \retval     0   Input int.
+ * \retval     1   Input non conforme. 
+ * 
+ * \details     Queste funzione gestiscono un piccolo menu' lato SERVER 
+ *              fino all'avvio connessio
+ * 
+ *****************************************************************************/
 #include "Server.h"
 
 int menServ()

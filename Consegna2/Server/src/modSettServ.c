@@ -1,17 +1,18 @@
- /**
- ******************************************************************************
- *  \file       modSettServ.c
- *  \version    1.0
+ /** ***************************************************************************
+ * \file        modSettServ.c
+ * \version     1.3
+ * \date        15/01/2019
  * 
  *  \brief      Modifica manualmente i settaggi del Server
  * 
- *  \details    Questa funzione permette la modifica manuale dei settaggi del server
- *              Per ogni parametro è possibile specificarne uno nuovo. 
+ * \retval    -1   Fallimento funzione
+ * \retval     0   Settaggi modiifcati 
+ * 
+ * \details     Questa funzione permette la modifica manuale dei settaggi del 
+ *              server. Per ogni parametro è possibile specificarne uno nuovo. 
  *              Se non lo si vuole cambiare basterà non scrivere nulla, 
  *              se si scrive un parametro errato, esso non verrà modificato
  * 
- *  \retval    -1   Fallimento funzione
- *  \retval     0   Settaggi modiifcati
  *****************************************************************************/
 #include "Server.h"
 

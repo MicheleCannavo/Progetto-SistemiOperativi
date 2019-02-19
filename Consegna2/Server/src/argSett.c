@@ -5,17 +5,18 @@
  * 
  * \brief       Imposta una struct con gli argomenti da linea di comando
  * 
+ * \param[int]      argc        Intero che indica il numero di CLA
+ * \param[char]     *argv[]     Puntatore alle stringhe con gli CLA
+ *  
+ * \retval    -1    FAILURE
+ * \retval     0    SUCCESS
+ * 
  * \details     Questa funzione memoorizza gli argomenti da linea di comando 
  *              (CLA - Commands line Arguments) in una struc SettServer.
  *              Accetta al momento un solo argmento che rappresentare la porta
  *              in ascolto, Il valore deve essere compreso nel range delle 
  *              porte effimere (1023<n<65535).
  * 
- * \param[int]  argc    Intero che indica il numero di CLA
- * \param[char] *argv[] Puntatore alle stringhe con gli CLA
- *  
- * \retval    -1    FAILURE
- * \retval     0    SUCCESS
  *****************************************************************************/
 #include "Server.h"
 
@@ -25,7 +26,7 @@ int argSett(int argc, char *argv[])
     int p=0;
     switch(argc)
     {
-        
+
     // Parametri di default 
         case 1:
             return 0;

@@ -1,11 +1,8 @@
  /** **************************************************************************
  * \author      Cannavo' Michele [046002210]
- * \date        11/12/2018* 
- * 
  * \file        FILDERX.h
  * \version     1.0
- * \copyright   Copyright (c) 2018,2019 Cannavo' Michele
- * \license     GNU GPL 3.0
+ * \date        11/12/2018
  * \brief       Header per FILDERX.c
  * \details     File contenente l header per le funzione di ricerca per FOILDERX
 *******************************************************************************/
@@ -15,26 +12,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////  HEADER  ///////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-#include <stdio.h>      // Generico
-#include <stdlib.h>     // Generico
-#include <string.h>     // Generico
-#include <sys/types.h>  // getNCore(),
-#include <sys/stat.h>   // testPath(), isDIR()
-#include <fcntl.h>      // getNCore()
-#include <unistd.h>     // listDir()
-#include <dirent.h>     // MotoreFILDERX(), listDir()
-#include <pthread.h>    // MotoreFILDERX(),
-#include <errno.h>      // errno
-#include <fnmatch.h>    // istDir(), 
-#include <libgen.h>     // listPrintS()
-#include "FILDERX.h"
+#include <stdio.h>          // Generico
+#include <stdlib.h>         // Generico
+#include <string.h>         // Generico
+#include <sys/types.h>      // getNCore(),
+#include <sys/stat.h>       // testPath(), isDIR()
+#include <fcntl.h>          // getNCore()
+#include <unistd.h>         // listDir()
+#include <dirent.h>         // MotoreFILDERX(), listDir()
+#include <pthread.h>        // MotoreFILDERX(),
+#include <errno.h>          // errno
+#include <fnmatch.h>        // listDir(), 
+#include <libgen.h>         // listPrintS(),
+#include <linux/limits.h>
 
-#ifndef PATH_MAX
-#define PATH_MAX 2048
-#endif
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////  STRUCT  ///////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
+/// \def    MAX_CORE
+/// \brief  Numero massimo di core gestibil
+#define MAX_CORE    (32)
 
 typedef struct _ELEFILDERX          //! Struttura per i dati della lista di file
 {
