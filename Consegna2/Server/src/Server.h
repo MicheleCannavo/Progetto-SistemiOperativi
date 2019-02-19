@@ -42,17 +42,11 @@
 #define SBUFFER do{int ch; \
                     while ( ( ch=getchar() ) !='\n' && (ch != EOF) );\
                 }while(0)
-
-#ifndef PATH_MAX
-#define PATH_MAX    (2048)
-#endif
-
+                
+/// \def    PATT_MAX
+/// \brief  Macro per il massimo numero di caratteri el PATTERN
 #ifndef PATT_MAX
 #define PATT_MAX    (20)
-#endif
-
-#ifndef NAME_MAX
-#define NAME_MAX    (256)
 #endif
 
 /// \def    MAX_CHAR_USER
@@ -75,17 +69,13 @@
 /// \brief  1/10 del valore di INT_MAX
 #define DECIMO_INT  (INT_MAX / 10)
 
-
 /// \def    UNITAP
 /// \brief  Valore dell'unita' di INT_MAX
 #define UNITAP      ((INT_MAX) - (DECIMO_INT *10))
 
-
 /// \def    UNITAN
 /// \brief  Valore dell'unita' di INT_MIN
 #define UNITAN      (UNITAP + 1)
-
-
 
 /// \def     PORT
 /// \brief   Porta in ascolto di default del Server
@@ -106,10 +96,6 @@
 /// \def    TIMEOUT
 /// \brief  Macro per il tempo di risposta della connessione
 #define TIMEOUT     (5)
-
-
-
-
 
 
 
@@ -156,9 +142,10 @@ extern int server_sockfd;
 
 ////////////////////////////////// PROTOTIPI ///////////////////////////////////
 
-int accountWrite (int id, const char* nomeUser, const char *passUser);
-int mainRead ();
-int accountVer(const char *name);
+int accountWrite(int id, const char* nomeUser, const char *passUser);
+int accountRead();
+int  accountVer(const char *name);
+int accountVer2(const char *name, const char *pass);
 
 int isdigit_in( int *caracter );
 int  inputUInt( unsigned int *result );
@@ -180,14 +167,12 @@ int menAcc();
 int gestConn();
 int newSocket(int *sock_fd, unsigned short port, unsigned long addr);
 int closefd(int *sock_fd);
+int closeSocket(int *sock_fd);
 
 int   rwconf( int sockid,       char comm[9]);
 
-int  verUser( int id);
-int verUser2( const char *name, const char *pass);
-int addUser2( int sockid, char *name,  char *pass);
-int  addUser( int sockfd);
-
+int   verUser( int sockfd);
+int   addUser( int sockfd);
 int  sendFILE( int sockFD);
 int  recvFILE( int sockid, char *fr_name, int buff);
 int searching( int sockid);

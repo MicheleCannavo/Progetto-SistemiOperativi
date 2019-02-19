@@ -1,3 +1,24 @@
+
+#include "Client.h"
+
+void svuota(void)
+{
+  printf("\x1B[1;1H\x1B[2J");
+}
+
+void timeout(int sig)
+{
+    signal(SIGALRM, SIG_IGN);
+    errno=ETIMEDOUT;
+    closeSocket();
+    //close
+    signal(SIGALRM,timeout);
+}
+
+/// VARIABILI GLOBALI PER TUTTI I FILE
+SettCLIENT  *settaggi       = NULL;
+int         sockid_Client   =-1;
+
 //==============================================================================
 /// \author  Cannavo' Michele [046002210]
 /// \date    07/12/2018
@@ -7,14 +28,11 @@
 /// \version 1.2
 /// \copyright GNU LGPL 3.0
 /// \details Motore che ricerca, con le impostazioni date, File e cartelle dentro una directory.
-#include "Client.h"
-
-/// VARIABILI GLOBALI PER TUTTI I FILE
-SettCLIENT  *settaggi = NULL;
-int sockid_Client=-1;
-
 int myMainC(int argc, char* argv[])
 {
+    atexit(svuota);
+    signal(SIGALRM, timeout);
+
 // Al massimo 2 argomenti più argv[0]
     if (argc<1 || argc>2 )
     {

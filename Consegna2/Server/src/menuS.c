@@ -97,13 +97,13 @@ int menSett()
             break;
          
          case 3:// Lista utenti
-            mainRead();
+            accountRead();
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
             break;
          
          case 4:// Lista file
- printList(headTList, "*");
+            printList(headTList, "*");
             printf("\nPremere [INVIO] per contniuare...\n");
             SBUFFER;
             break;

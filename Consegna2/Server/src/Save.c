@@ -35,7 +35,7 @@ int accountWrite (int id, const char* nomeUser, const char *passUser)
 }
 
 // Driver program
-int mainRead ()
+int accountRead ()
 {
     int userfile;
     USER_FILDERX input;
@@ -92,4 +92,38 @@ int accountVer(const char *name)
 
     close (userfile);
     return 1;
+}
+
+int accountVer2(const char *name, const char *pass)
+{ 
+    int userfile;
+    struct accounting input;  
+    
+// Open accounting.dat in lettura
+    userfile = open ("userlist.dat", O_RDONLY);
+    if (userfile == -1)
+    {
+        perror(__FUNCTION__);
+        return -1;
+    }  
+int comp=1;
+// Preleva e confronta gli account salvati
+    while( read(userfile, (struct accounting *)&input, sizeof(struct accounting) ) > 0 )
+    {       
+        if( strcmp(name,input.user) == 0 )
+        {
+            if(strcmp( pass, input.pass) == 0 )
+            {
+                comp=0;
+                break;
+            }
+        }
+    }  
+
+    if(close (userfile) != 0)
+    {
+        perror(__FUNCTION__);
+        return -1;
+    }
+    return comp;
 }

@@ -45,7 +45,7 @@ int verUser(int sockfd)
     }
 
 // Verifico se esiste la coppia nome-pass
-    if( verUser2(user, pass ) == 0)
+    if( accountVer2(user, pass ) == 0)
     {
         if(write(sockfd,"OK",3) > 0)
         {// Accesso consentito
@@ -61,38 +61,4 @@ int verUser(int sockfd)
     }   
     perror(__FUNCTION__);
     return -1;
-}
-
-int verUser2(const char *name, const char *pass)
-{ 
-    int userfile;
-    struct accounting input;  
-    
-// Open accounting.dat in lettura
-    userfile = open ("userlist.dat", O_RDONLY);
-    if (userfile == -1)
-    {
-        perror(__FUNCTION__);
-        return -1;
-    }  
-int comp=1;
-// Preleva e confronta gli account salvati
-    while( read(userfile, (struct accounting *)&input, sizeof(struct accounting) ) > 0 )
-    {       
-        if( strcmp(name,input.user) == 0 )
-        {
-            if(strcmp( pass, input.pass) == 0 )
-            {
-                comp=0;
-                break;
-            }
-        }
-    }  
-
-    if(close (userfile) != 0)
-    {
-        perror(__FUNCTION__);
-        return -1;
-    }
-    return comp;
 }

@@ -73,7 +73,7 @@ int gestConn()
                 memset(command, '\0', 9);
                 if (rwconf(client_sockfd, command) != 0)
                 {
-                    time_t ora=time(NULL);
+                    ora=time(NULL);
        
                     printf("[%s] Chiusura Client [%s]\n",
                             strtok(ctime(&ora), "\n"),

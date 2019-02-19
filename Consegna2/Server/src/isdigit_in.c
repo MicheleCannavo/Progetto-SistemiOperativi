@@ -46,46 +46,6 @@ int  isdigit_in( int* caracter )
     return 1;
 }
 
-
-/** ****************************************************************************
- * \file        isdigit_in.c
- * \version     1.0
- * \date        20/12/2018
- * 
- * \brief      verifica input di numeri senza segno.
- * 
- * \param[out] *caractert      puntatore a int per memorizzare il carattere.
- *  
- * \retval    -1   Funzione fallita.
- * \retval     0   Input carattere singolo.
- * \retval     1   Input non conforme. 
- * 
- * \details     La funzione analizza un input da tastiera e verifica se sia tra
- *              le opzioni scente. Se lo è ritorna 0, altrimenti ritorna 1. Se
- *              la funzione non può essere svolta ritorna -1. Il funzionamento
- *              e' semplice: prende un input un carattere alla volta e lo
- *              verifica. L'unico input accettato e' un input di un solo
- *              carattere alfabetico il resto degli input darà errore. un input
- *              maggiore di 1 carattere dara' errore, cosi come un input minore
- *              di un carattere.
- * 
- *****************************************************************************/
-int  isalpha_in( int* caracter )
-{
-    if( caracter == NULL )
-		return -1;
-
-    *caracter = getchar();
-	if(*caracter==10)// Invio
-		return -1;
-
-    if( isalpha( *caracter  ) && (getchar() == '\n') )
-        return 0;
-
-  //  SBUFFER;
-   *caracter = -1;
-    return 1;
-}
 /** ****************************************************************************
  * \file        isdigit_in.c
  * \version     1.0

@@ -1,6 +1,1 @@
-[src/Server.h:184] -> [src/verUser.c:19]: (style, inconclusive) Function 'verUser' argument 1 names different: declaration 'id' definition 'sockfd'.
-[src/newSocket.c:117]: (style) The function 'closeSocket' is never used.
-[src/isdigit_in.c:63]: (style) The function 'isalpha_in' is never used.
-[src/Save.c:59]: (style) The function 'mainVer' is never used.
-[src/Save.c:3]: (style) The function 'mainWrite' is never used.
 (information) Cppcheck cannot find all the include files (use --check-config for details)

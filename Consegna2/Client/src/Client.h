@@ -150,12 +150,12 @@ int closeSocket();
 int  gestClient();
 
 //////////////////////////////// COMANDI ////////////////////////////////////
-int wwconf( int sockid, const char buff[9]);
-int rwconf( int sockid, char buff[9]);
+int wwconf( int sockid, const char comm[9]);
+int rwconf( int sockid, char comm[9]);
 
 int  verUser( int sockid);
 int  addUser( int sockid);
-int sendFILE( int sockid);
+int sendFILE( int sockFD);
 int recvFILE( int sockFD, char *fr_name, int buff);
 int searching(int sockid);
 #endif

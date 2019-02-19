@@ -34,9 +34,10 @@ int recvFILE(int sockFD, char *fr_name, int buff)
 	size_t  sizeF				=	 0;	// Dimensione file
     int 	fdF					=   -1;	// File desceriptor file
 	int 	lName				=	 0; // Lunghezza nome del file
-    ssize_t	byteRecv 			= 	 0; // Dimensione dati letti da trasferire
+	int h;
+	int hh;
 	size_t countDT				=	 0; // Counter dati trasferiti
-	size_t	buf2				=	 0; // Buffer di trasferimento
+
 
 // Verifica argomenti
 	if(sockFD==-1 || fr_name==NULL || buff<0)
@@ -49,15 +50,15 @@ int recvFILE(int sockFD, char *fr_name, int buff)
 		getcwd(pathAct,PATH_MAX);
 		chdir(settaggi->saveDir);
 
-printf("Digigta il nome del file da importare: ");
-fgets(nameF,NAME_MAX,stdin);
+	printf("Digigta il nome del file da importare: ");
+	fgets(nameF,NAME_MAX,stdin);
 	nameF[NAME_MAX]='\0';
 	if(nameF[strlen(nameF)-1]=='\n')
 		nameF[strlen(nameF)-1]='\0';
-int hh=strlen(nameF);
+	hh=strlen(nameF);
 // Mando dimensione nome del file;
 	send(sockFD, &hh, sizeof(int), 0) ;
-int h=strlen(nameF)+1;
+ 	h=strlen(nameF)+1;
 // Mando il nome del file
 	if(send(sockFD, nameF,h ,0 )!=strlen(nameF)+1)
 	{
@@ -82,11 +83,12 @@ int h=strlen(nameF)+1;
 // Verifico se il file esiste
 	while( access(nameF, 0) == 0 )
 	{
-		int r = 0;
+		int 	scelta		= 0; // Variabile Per la scelta
+
 
 		printf("File :%s gia' presente.\nSovrascriverlo?[S/n]",nameF);
-		isalpha_in(&r);
-		if(r=='S')
+		isalpha_in(&scelta);
+		if(scelta=='S')
 		{
 			break;
 		}
@@ -107,9 +109,13 @@ int h=strlen(nameF)+1;
 
 while(countDT!=sizeF)
 {
-	// Azzero il buffer
+	ssize_t	byteRecv 	= 0; // Dimensione dati letti da trasferire
+	size_t	buf2		= 0; // Buffer di trasferimento
+
+// Azzero il buffer
 	memset(revbuf, 0, sizeof(char)); 
-	// Minimo tra DimBuff e byte restanti
+	
+// Minimo tra DimBuff e byte restanti
 	buf2=(sizeF-countDT>buff)?buff:(sizeF-countDT);
 	byteRecv=recv(sockFD,revbuf,buf2,MSG_WAITALL);
 	if(byteRecv<0)

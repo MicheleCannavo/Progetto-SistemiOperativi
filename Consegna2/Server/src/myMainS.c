@@ -13,7 +13,7 @@ SettSERVER  *settaggi = NULL;
  *****************************************************************************/
 void svuota(void)
 {
-    closefd(&server_sockfd);
+    closeSocket(&server_sockfd);
     printf("\x1B[1;1H\x1B[2J");
 }
 
