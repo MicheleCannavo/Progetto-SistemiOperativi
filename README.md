@@ -4,9 +4,7 @@
   - [__1.1 GENERALITA'__](#11-generalita)
   - [__1.2 Consegna1__](#12-consegna1)
   - [__1.3 Consegna2__](#13-consegna2)
-  - [__1.4 COME SI USA__](#14-come-si-usa)
-  - [__1.5 DOCUMENTAZIONE__](#15-documentazione)
-  
+
 ## 1.1 GENERALITA'
 
 Questo progetto prende il nome di  __FILDERX__ (<b>FIL</b>E SEN<b>DER</b> UNI<b>X</b>) e’ stato creata per il progetto di Sistemi Operativi del corso di Ingegneria Informatica, dallo studente
@@ -51,7 +49,7 @@ Ha diversi menu'. Inizialmente ha il solito menù per la visione dei settaggi o 
 + Riceere una lista di file regolata dal __PATTERN__
 + Ricevere un file
 
-### Possibili implementazioni generali
+## Possibili implementazioni generali
 
 + Criptare almeno la password
 + Utilizzare database per la gestione account
