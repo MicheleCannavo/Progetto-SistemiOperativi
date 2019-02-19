@@ -73,10 +73,14 @@ int gestConn()
                 memset(command, '\0', 9);
                 if (rwconf(client_sockfd, command) != 0)
                 {
-                    printf("Comando errato\n");
+                    time_t ora=time(NULL);
+       
+                    printf("[%s] Chiusura Client [%s]\n",
+                            strtok(ctime(&ora), "\n"),
+                            inet_ntoa(clientaddr.sin_addr)); 
+
                     closefd(&client_sockfd);
-    
-                    break;
+                    _exit(-1);
                 }
 
             // ADD_USER

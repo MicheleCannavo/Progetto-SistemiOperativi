@@ -10,10 +10,25 @@
  *****************************************************************************/
 #include "Server.h"
 SettSERVER  *settaggi = NULL;
+
+// Funzione chiusura SERVER
 void svuota(void)
 {
     closefd(&server_sockfd);
     printf("\x1B[1;1H\x1B[2J");
+}
+
+// Funzione per evitare resti di PROCESSi ZOMBIE
+void closeCHLD(int sig)
+{
+    signal(SIGCHLD, SIG_IGN);
+    
+    pid_t cpid=0;
+
+    while((cpid=waitpid(-1, NULL, WNOHANG)) > 0 )
+        continue;
+
+    signal(SIGCHLD,closeCHLD);
 }
 
 void timeout(int sig)

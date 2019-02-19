@@ -1,6 +1,7 @@
 /** ***************************************************************************
- * \file       argSett.c
- * \version    1.0
+ * \file        argSett.c
+ * \version     1.0
+ * \date        28/12/2018
  * 
  * \brief       Imposta una struct con gli argomenti da linea di comando
  * 
@@ -24,10 +25,13 @@ int argSett(int argc, char *argv[])
     int p=0;
     switch(argc)
     {
-        case 1:// Parametri di default 
+        
+    // Parametri di default 
+        case 1:
             return 0;
 
-        case 2:// Porta da riga di comando
+    // Porta da riga di comando
+        case 2:
             p=atoi(argv[1]);
             if(p<1023 || p>65535) // Semplice verifica numero di porta effimera
             {
@@ -38,7 +42,8 @@ int argSett(int argc, char *argv[])
             settaggi->nPort=p;
             return 0;
 
-        default:// Troppi argomenti
+    // Troppi argomenti
+        default:
             errno=E2BIG;
             perror(__FUNCTION__); 
             return -1;

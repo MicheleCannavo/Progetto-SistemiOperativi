@@ -70,7 +70,7 @@ int accountVer(const char *name)
     {
         errno=EINVAL;
         perror("Errore nei dati di input");
-        exit(-1);
+        return -1;
     } 
 
 // Apertura accounting.dat in lettura
@@ -78,7 +78,7 @@ int accountVer(const char *name)
     if (userfile == 0)
     {
         perror("Errore nel recupero lista account\n");
-        exit (-1);
+        return -1;
     }  
          
     // read file contents till end of file
@@ -86,10 +86,10 @@ int accountVer(const char *name)
     {       
         if( strcmp(name, input.user) == 0 )
         {
-            return 1;
+            return 0;
         }
     }  
 
     close (userfile);
-    return 0;
+    return 1;
 }

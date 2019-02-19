@@ -182,28 +182,28 @@ int menAcc()
             switch(addUser(sockid_Client))
             {
                 case 0 :
-                    printf("User Reistrato\n");
+                    printf("User Registrato\n");
                     printf("\nPremere [INVIO] per contniuare...\n");
                     SBUFFER;
-                    break;
+                    continue;
 
                 case 1:
                     printf("Tentativo di registrazione fallito\n");
                     printf("\nPremere [INVIO] per contniuare...\n");
                     SBUFFER;
-                    break;
+                    continue;
 
                 case 2:
                     printf("Nome utente non disponiile\n");
                     printf("\nPremere [INVIO] per contniuare...\n");
                     SBUFFER;
-                    break;
+                    continue;
 
-            default :
-                printf("Errore nella registrazione \n");
-                printf("\nPremere [INVIO] per contniuare...\n");
-                SBUFFER;
-                break;
+                default :
+                    printf("Errore nella registrazione \n");
+                    printf("\nPremere [INVIO] per contniuare...\n");
+                    SBUFFER;
+                    continue;
         }
 
         // VER_USER

@@ -1,16 +1,17 @@
 /** **************************************************************************
- *  \file       addUser.c
- *  \version    1.0
+ * \file        addUser.c
+ * \version     1.3
+ * \date        23/01/2019
  * 
- *  \brief      Funzione che permette la registrazione di un utente
+ * \brief      Funzione che permette la registrazione di un utente
  * 
- *  \param[in]  sockfd  riferito ad fd di una connessione TCP già stabilita
+ * \param[in]  sockfd  riferito ad fd di una connessione TCP già stabilita
  *  
- *  \retval    -1   Funzione fallita
- *  \retval     0   Nome utente e password registrati
- *  \retval    -1   Nome utente e password non registrati
+ * \retval    -1   Funzione fallita
+ * \retval     0   Nome utente e password registrati
+ * \retval    -1   Nome utente e password non registrati
  * 
- *  \details    Questa funzione riceve da un client nome utente e password
+ * \details     Questa funzione riceve da un client nome utente e password
  *              e li inserisce nel file degli utenti. 
  * 
  *****************************************************************************/

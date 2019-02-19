@@ -87,24 +87,28 @@
 
 
 
-/**
- * \def     PORT
- * \brief   Porta in ascolto del Server
- * 
- * \def     MAX_CLIENT
- * \brief   Numero massimo di connessioni simultanee possibili
- * 
- * \def     SAVEDIR
- * \brief   Percorso relativo dalla home per la cartella di salvataggio
- * 
- * \def     MAXBUF
- * \brief   Valore massimo del buffer per lo scambio di dati col client
- */
+/// \def     PORT
+/// \brief   Porta in ascolto di default del Server
 #define PORT        (64000)
-#define MAX_CLIENT  (5)
-#define SAVEDIR     "/Scaricati"
+
+/// \def     MAX_CLIENT
+/// \brief   Numero massimo di connessioni simultanee possibili
+ #define MAX_CLIENT  (10)
+
+/// \def     SAVEDIR
+/// \brief   Percorso relativo dalla home per la cartella di salvataggio
+ #define SAVEDIR     "/Scaricati"
+
+/// \def     MAXBUF
+/// \brief   Valore massimo del buffer per lo scambio di dati col client
 #define MAXBUF      (1024)
+
+/// \def    TIMEOUT
+/// \brief  Macro per il tempo di risposta della connessione
 #define TIMEOUT     (5)
+
+/// \def    MAX_CORE
+/// \brief  Numero massimo di core gestibil
 #define MAX_CORE    (32)
 
 

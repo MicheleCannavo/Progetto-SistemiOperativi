@@ -33,7 +33,6 @@ int rwconf(int sockid, char *comm)
 // Ricezione comando
     if(recv(sockid, comm, 9, MSG_WAITALL) != 9 )
     {
-        PRINTERR("Invio comando: ");
         return -1;
     }
 
